@@ -81,7 +81,6 @@ export default class BaseballGame {
         }
         return score;
     }
-
     //판정결과를 문자열로 변경
     play(userNumber, computerNumber) {
         const score = this.checkingBallOrStrike(userNumber, computerNumber);
