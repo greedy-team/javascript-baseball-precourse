@@ -60,4 +60,18 @@ export default class BaseballGame {
         let uniqueNumberSet = new Set(input);
         return uniqueNumberSet.size === input.length;
     }
+
+    //볼, 스트라이크 판정
+    checkingBallOrStrike(userNumber, computerNumber) {
+        let score = [0, 0]; //볼,스트라이크
+        for (let i = 0; i < 3; i++) {
+            if (computerNumber[i] === userNumber[i]) {
+                score[1] += 1;
+            }
+            if (computerNumber.includes(userNumber[i])){
+                score[0] += 1;
+            }
+        }
+        return score;
+    }
 }
