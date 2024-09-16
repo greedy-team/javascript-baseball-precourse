@@ -1,5 +1,3 @@
-import { checkUsersValidation } from "../utils/validations.js";
-
 export default class BaseballGameModel {
     constructor() {
         this.computerNumber = this.makeRandomNumbers();
