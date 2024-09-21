@@ -2,13 +2,18 @@
 
     // BaseballGame 생성자
     constructor() {
+      this.computerNumbers = [];
       this.gameStart();
     }
 
     // 게임의 결과인 볼, 스트라이크, 낫싱 반환
     play(computerNumbers, userNumbers) {
       const results = this.compareNumbers(userNumbers, computerNumbers);
+      return this.extractResult(results);
+    }
 
+    // 볼, 스트라이크르 문자열로 변경
+    extractResult(results) {
       if(results[0] === 0 && results[1] === 0)
         return "낫싱";
       else if(results[0] === 0 && results[1] !== 0)
@@ -88,22 +93,57 @@
       return true;
     }
 
+    // 결과 표시
     printResult(result) {
       const output = document.querySelector("#result");
       output.insertAdjacentHTML('beforeend', `<div>${result}</div>`);
     }
 
+    // 게임 종료
+    endGame(result) {
+      alert(result + " 축하드립니다!");
+
+      const restartButton = document.querySelector("#game-restart-button");
+      const submitButton = document.querySelector("#submit");
+
+      submitButton.style.display = 'none';
+      restartButton.style.display = 'block';
+
+      restartButton.addEventListener('click', () => this.restart());
+    }
+
+    // 재시작
+    restart() {
+      this.computerNumbers = this.makeComputerNumbers();
+
+      const submitButton = document.querySelector("#submit");
+      const restartButton = document.querySelector("#game-restart-button");
+      const output = document.querySelector("#result");
+
+      submitButton.style.display = 'block';
+      restartButton.style.display = 'none';
+      output.innerHTML = '';
+    }
+
+    // 결과 확인
+    checkResult(result) {
+      return result === "3스트라이크";
+    }
+
     // 게임 시작
     gameStart() {
       const input = document.querySelector("#user-input");
-      const submit = document.querySelector("#submit");
+      const submitButton = document.querySelector("#submit");
 
-      submit.addEventListener('click', (event) => {
+      this.computerNumbers = this.makeComputerNumbers();
+
+      submitButton.addEventListener('click', (event) => {
         event.preventDefault(); // 기본 동작 방지
+        
+        console.log(this.computerNumbers);
+
         const userInput = input.value;
         const userNumbers = userInput.split('').map(Number);
-
-        let computerNumbers = this.makeComputerNumbers();
 
         if (!this.validateLength(userNumbers) ||
             !this.validateNumbers(userInput) ||
@@ -111,8 +151,12 @@
           return;
         }
 
-        let result = this.play(userNumbers, computerNumbers);
+        let result = this.play(userNumbers, this.computerNumbers);
         this.printResult(result);
+
+        if(this.checkResult(result)){
+          this.endGame(result);
+        }
       });
     }
   }
