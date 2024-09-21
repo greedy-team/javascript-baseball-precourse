@@ -19,3 +19,9 @@
     - 재시작 버튼 rendering
   - 정답이 아닐경우
     - 판정 결과 문자열 출력
+## Directory Structure
+![directoryStructure.png](directoryStructure.png)
+## ⛓️‍클래스 다이어그램
+![img.png](classDiagram.png)
+## 🎊Test Result
+![Test.png](Test.png)
