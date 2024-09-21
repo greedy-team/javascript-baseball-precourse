@@ -1,5 +1,30 @@
   export default class BaseballGame {
 
+    makeComputerNumbers() {
+      let numbers = [];
+
+      while(true) {
+        numbers = [
+          this.makeRandomNumber(),
+          this.makeRandomNumber(),
+          this.makeRandomNumber()
+        ];
+
+        if(this.validateComputerDifferentNumber(numbers))
+          break;
+      }
+
+      return numbers;
+    }
+
+    makeRandomNumber() {
+      return MissionUtils.Random.pickNumberInRange(1, 9);
+    }
+
+    validateComputerDifferentNumber(computerNumbers) {
+      return new Set(computerNumbers).size === 3;
+    }
+
     // 3개의 숫자가 서로 다른 수인지 검증
     validateDifferentNumber(userNumbers) {
       if (new Set(userNumbers).size !== 3) {
@@ -40,8 +65,8 @@
           return; // 검증 실패 시 종료
         }
         
+        console.log(this.makeComputerNumbers());
         alert('입력이 유효합니다!');
-        
       });
     }
   }
