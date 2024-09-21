@@ -1,5 +1,18 @@
   export default class BaseballGame {
 
+    compareNumbers(userNumbers, computerNumbers) {
+      let results = [0, 0, 0];
+
+      for(let i = 0; i < 3; i++) {
+        if(userNumbers[i] === computerNumbers[i]) 
+          results[0]++;
+        else if(computerNumbers.includes())
+          results[1]++;
+      
+        return results;
+      }
+    }
+
     makeComputerNumbers() {
       let numbers = [];
 
@@ -57,15 +70,17 @@
       const submit = document.querySelector("#submit");
 
       submit.addEventListener('click', (event) => {
-        const userNumbers = input.value;
+        const userInput = input.value;
+        const userNumbers = userInput.split('').map(Number);
 
         if (!this.validateLength(userNumbers) ||
-            !this.validateNumbers(userNumbers) ||
+            !this.validateNumbers(userInput) ||
             !this.validateDifferentNumber(userNumbers)) {
-          return; // 검증 실패 시 종료
+          return this.gameStart(); // 검증 실패 시 재시작
         }
         
-        console.log(this.makeComputerNumbers());
+        let computerNumbers = this.makeComputerNumbers();
+
         alert('입력이 유효합니다!');
       });
     }
