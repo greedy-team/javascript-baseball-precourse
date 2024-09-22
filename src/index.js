@@ -8,34 +8,33 @@
 
     // 게임의 결과인 볼, 스트라이크, 낫싱 반환
     play(computerNumbers, userNumbers) {
-      const results = this.compareNumbers(userNumbers, computerNumbers);
-      return this.extractResult(results);
+      const strikeAndBallCounts = this.compareNumbers(userNumbers, computerNumbers);
+      return this.extractResult(strikeAndBallCounts);
     }
 
     // 볼, 스트라이크르 문자열로 변경
-    extractResult(results) {
-      if(results[0] === 0 && results[1] === 0)
-        return "낫싱";
-      else if(results[0] === 0 && results[1] !== 0)
-        return results[1] + "볼";
-      else if(results[0] !== 0 && results[1] === 0)
-        return results[0] + "스트라이크";
-      else
-        return results[1] + "볼 " + results[0] + "스트라이크";
+    extractResult(strikeAndBallCounts) {
+      if(strikeAndBallCounts[0] === 0 && strikeAndBallCounts[1] === 0)
+        return `낫싱`;
+      if(strikeAndBallCounts[0] === 0 && strikeAndBallCounts[1] !== 0)
+        return `${strikeAndBallCounts[1]}볼`;
+      if(strikeAndBallCounts[0] !== 0 && strikeAndBallCounts[1] === 0)
+        return `${strikeAndBallCounts[0]}스트라이크`;
+      return `${strikeAndBallCounts[1]}볼 ${strikeAndBallCounts[0]}스트라이크`;
     }
 
     // 숫자 비교 후 볼, 스트라이크 확인
     compareNumbers(userNumbers, computerNumbers) {
-      let results = [0, 0]; // 스트라이크, 볼
+      let strikeAndBallCounts = [0, 0]; // 스트라이크, 볼
 
       for(let i = 0; i < 3; i++) {
         if(userNumbers[i] === computerNumbers[i]) 
-          results[0]++;
+          strikeAndBallCounts[0]++;
         else if(computerNumbers.includes(userNumbers[i]))
-          results[1]++;
+          strikeAndBallCounts[1]++;
       }
 
-      return results;
+      return strikeAndBallCounts;
     }
 
     // 컴퓨터 숫자 생성
@@ -102,27 +101,26 @@
     // 게임 종료
     endGame(result) {
       alert(result + " 축하드립니다!");
-
       const restartButton = document.querySelector("#game-restart-button");
-      const submitButton = document.querySelector("#submit");
 
-      submitButton.style.display = 'none';
-      restartButton.style.display = 'block';
+      this.toggleButtons(false);
 
       restartButton.addEventListener('click', () => this.restart());
+    }
+
+    toggleButtons(visible) {
+      document.querySelector("#submit").style.display = visible ? 'block' : 'none';
+      document.querySelector("#game-restart-button").style.display = visible ? 'none' : 'block';
     }
 
     // 재시작
     restart() {
       this.computerNumbers = this.makeComputerNumbers();
-
-      const submitButton = document.querySelector("#submit");
-      const restartButton = document.querySelector("#game-restart-button");
+      
       const output = document.querySelector("#result");
-
-      submitButton.style.display = 'block';
-      restartButton.style.display = 'none';
       output.innerHTML = '';
+
+      this.toggleButtons(true);
     }
 
     // 결과 확인
