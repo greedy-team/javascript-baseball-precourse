@@ -2,7 +2,7 @@ import createResultMessage from './createResultMessage.js';
 export default function compareAnswer(computerInput, userInput) {
   let strikeCount = 0;
   let ballCount = 0;
-  const countAnswer = (computerNumber, computerIdx) => {
+  const countStrikeAndBall = (computerNumber, computerIdx) => {
     userInput.forEach((userNumber, userIdx) => {
       if (computerNumber === userNumber && computerIdx !== userIdx) {
         ballCount += 1;
@@ -12,7 +12,7 @@ export default function compareAnswer(computerInput, userInput) {
     });
   };
   computerInput.forEach((computerNumber, computerIdx) => {
-    countAnswer(computerNumber, computerIdx);
+    countStrikeAndBall(computerNumber, computerIdx);
   });
   const message = createResultMessage(strikeCount, ballCount);
   return message;
