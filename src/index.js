@@ -1,5 +1,10 @@
 const submitBtn = document.getElementById("submit");
 const input = document.getElementById("user-input");
+const result = document.getElementById("result");
+const restartBtn = document.getElementById("game-restart-button");
+restartBtn.addEventListener("click", () => {
+  location.reload();
+});
 submitBtn.addEventListener("click", BaseballGame);
 
 let pickedNumber;
@@ -18,8 +23,6 @@ while (true) {
   )
     break;
 }
-console.log(pickedNumber);
-// console.log(typeof computerInput);
 
 let userInput = "";
 
@@ -37,7 +40,7 @@ function validateInput(userInput) {
   const checkedInput = Number(userInput);
 
   if (isNaN(checkedInput) || userInput[0] === "0" || userInput.length != 3) {
-    alert("1~9로 이루어진 세 자리 숫자를 입력해주세요.");
+    alert("1~9까지의 수를 중복없이 3개 입력해주세요.");
     input.value = ""; // 입력창을 비움
     return "";
   } else return checkedInput;
@@ -59,25 +62,6 @@ function countStrikeBall(computerString, userString) {
   return [strikeCnt, ballCnt];
 }
 
-function countBall(computerCharacter, userString, i) {
-  let ballCnt = 0;
-
-  // if (computerString[0] == userString[1] || computerString[0] == userString[2]) {
-  //   ballCnt++;
-  //   console.log("경우1");
-  // }
-  // if (computerString[1] == userString[0] || computerString[1] == userString[2]) {
-  //   ballCnt++;
-  //   console.log("경우2");
-  // }
-  // if (computerString[2] == userString[0] || computerString[2] == userString[1]) {
-  //   ballCnt++;
-  //   console.log("경우3");
-  // }
-
-  return ballCnt;
-}
-
 function BaseballGame() {
   this.play = function (computerInput, userInput) {
     let result = "";
@@ -89,6 +73,7 @@ function BaseballGame() {
     const [strikeCnt, ballCnt] = countStrikeBall(computerString, userString);
 
     if (strikeCnt === 0 && ballCnt === 0) result = "낫싱";
+    else if (strikeCnt === 3) result = "정답입니다!";
     else if (strikeCnt !== 0 && ballCnt === 0) result = `${strikeCnt}스트라이크`;
     else if (strikeCnt === 0 && ballCnt !== 0) result = `${ballCnt}볼`;
     else result = `${ballCnt}볼 ${strikeCnt}스트라이크`;
@@ -100,5 +85,9 @@ function BaseballGame() {
   if (userInput === "") return; // 잘못된 입력이 들어왔을 때는 경고창만 띄우고 아무것도 하지 않음
 
   this.result = this.play(computerInput, userInput);
-  console.log(this.result);
+
+  result.innerText = this.result; // 결과 표시
+  if (this.result === "정답입니다!") {
+    restartBtn.hidden = false; // 재시작 버튼 표시
+  }
 }
