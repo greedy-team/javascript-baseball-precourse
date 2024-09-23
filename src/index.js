@@ -1,3 +1,4 @@
+//index.js
 import createNumber from './createNumbers.js';
 import userInput from './userInput.js';
 import compareAnswer from './compareAnswer.js';
@@ -36,7 +37,20 @@ export default class BaseballGame {
       }
     });
   }
+
+  reset() {
+    this.isEnd = true;
+    resultText.innerText =
+      '🎉정답을 맞추셨습니다🎉 게임을 새로 시작하겠습니까?';
+    restartButton.style.visibility = 'visible';
+  }
 }
 
 let game = new BaseballGame();
 game.start();
+
+restartButton.addEventListener('click', () => {
+  game = new BaseballGame();
+  game.start();
+  userText.value = '';
+});
