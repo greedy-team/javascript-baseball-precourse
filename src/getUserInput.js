@@ -1,4 +1,4 @@
-export default function userInput(inputValue) {
+export default function getUserInput(inputValue) {
   const arrInput = inputValue.split('');
   const set = new Set(arrInput);
   if (inputValue.length !== 3 || isNaN(inputValue)) {

@@ -7,7 +7,7 @@ export default function createNumber() {
       randomNumbers.push(number);
     }
   }
-  const computerInput = randomNumbers.join("");
+  const computerInput = randomNumbers.join('');
 
   return computerInput;
 }
