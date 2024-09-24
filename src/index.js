@@ -1,4 +1,4 @@
-class BaseballGame {
+export default class BaseballGame {
   constructor() {
     this.gamestart();
   }
@@ -59,31 +59,25 @@ class BaseballGame {
       return false;
     }
   }
-
-  play(UserNum, ComNum) {
-    let strike = 0, ball = 0;
-
+  Numsplit(UserNum,ComNum){
     // UserNum 자리수 분리
     let un1 = ~~(UserNum / 100);
     let un2 = ~~(UserNum / 10 % 10);
     let un3 = UserNum % 10;
-
     // ComNum 자리수 분리
     let n1 = ~~(ComNum / 100);
     let n2 = ~~(ComNum / 10 % 10);
     let n3 = ComNum % 10;
-
-    // 스트라이크 및 볼 체크
-    if (n1 == un1) strike++;
-    else if (n1 == un2 || n1 == un3) ball++;
-
-    if (n2 == un2) strike++;
-    else if (n2 == un1 || n2 == un3) ball++;
-
-    if (n3 == un3) strike++;
-    else if (n3 == un1 || n3 == un2) ball++;
-
-    // 결과 출력
+    return [n1,n2,n3,un1,un2,un3];
+  }
+  play(arr) {
+    let strike = 0, ball = 0;
+    if (arr[0] == arr[3]) strike++;
+    else if (arr[0] == arr[4] || arr[0] == arr[5]) ball++;
+    if (arr[1] == arr[4]) strike++;
+    else if (arr[1] == arr[3] || arr[1] == arr[5]) ball++;
+    if (arr[2] == arr[5]) strike++;
+    else if (arr[2] == arr[3] || arr[2] == arr[4]) ball++;
     if (strike === 3) {
       return 3;
     } else if (strike > 0 && ball > 0) {
@@ -98,7 +92,7 @@ class BaseballGame {
   }
   gameovervar(result){
     if(result===3){
-      document.querySelector("#result").innerHTML = "정답을 맞추셨습니다";
+      document.querySelector("#result").innerHTML = `<div style="font-size: 20px;"><b>🎉정답을 맞추셨습니다🎉</b></div><br>게임을 새로 시작하시겠습니까?`;
       document.getElementById('game-restart-button').style.display ='block';	
     }
     else {
@@ -116,11 +110,10 @@ class BaseballGame {
     document.querySelector('#submit').addEventListener('click', (event) => {
       event.preventDefault();
       let UserNum = document.querySelector("#user-input").value;
-
       UserNum = parseInt(UserNum, 10);
       if (this.UserNumvar(UserNum)) {
         console.log("컴퓨터 번호: ", ComNum);
-        this.gameovervar(this.play(UserNum, ComNum));
+        this.gameovervar(this.play(this.Numsplit(UserNum, ComNum)));
       } else {
         alert("다시 입력해주세요");
       }
