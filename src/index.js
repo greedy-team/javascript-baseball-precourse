@@ -95,7 +95,7 @@
     // 결과 표시
     printResult(result) {
       const output = document.querySelector("#result");
-      output.insertAdjacentHTML('beforeend', `<div>${result}</div>`);
+      output.innerHTML =result;
     }
 
     // 게임 종료
@@ -108,6 +108,7 @@
       restartButton.addEventListener('click', () => this.restart());
     }
 
+    // 버튼 활성화, 비활성화
     toggleButtons(visible) {
       document.querySelector("#submit").style.display = visible ? 'block' : 'none';
       document.querySelector("#game-restart-button").style.display = visible ? 'none' : 'block';
