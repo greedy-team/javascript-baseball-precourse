@@ -1,5 +1,5 @@
 export default function getUserInput(inputValue) {
-  const arrInput = inputValue.split('');
+  const arrInput = [...inputValue];
   const set = new Set(arrInput);
   if (inputValue.length !== 3 || isNaN(inputValue)) {
     window.alert('3자리 숫자로 입력하세요.');

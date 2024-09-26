@@ -26,17 +26,23 @@ export default class BaseballGame {
     }
   }
 
+  process() {
+    if (!this.isEnd) {
+      this.userInputNumbers = getUserInput(userText.value);
+      const result = this.play(
+        this.computerInputNumbers,
+        this.userInputNumbers
+      );
+      this.viewMessage(result);
+    }
+  }
+
   start() {
-    let result;
     resultText.innerHTML = null;
     restartButton.style.visibility = 'hidden';
     submitButton.addEventListener('click', (event) => {
       event.preventDefault();
-      if (!this.isEnd) {
-        this.userInputNumbers = getUserInput(userText.value);
-        result = this.play(this.computerInputNumbers, this.userInputNumbers);
-        this.viewMessage(result);
-      }
+      this.process();
     });
   }
 
