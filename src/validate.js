@@ -15,5 +15,6 @@ export function validateUserInput(userInput) {
 export function validateInput(input) {
   input = String(input);
 
-  if (input[0] !== input[1] && input[0] !== input[2] && input[1] !== input[2]) return true; // 중복되지 않는 숫자 3개
+  // Set으로 중복 제거 후 원본 길이와 비교
+  return new Set(input).size === input.length;
 }
