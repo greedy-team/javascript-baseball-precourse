@@ -27,7 +27,8 @@
     compareNumbers(userNumbers, computerNumbers) {
       let strikeAndBallCounts = {
         strike : 0,
-        ball : 0}; // 스트라이크, 볼
+        ball : 0
+      };
 
       for(let i = 0; i < 3; i++) {
         if(userNumbers[i] === computerNumbers[i]) 
@@ -41,20 +42,17 @@
 
     // 컴퓨터 숫자 생성
     makeComputerNumbers() {
-      let numbers = [];
+      let computerNumbers = [];
 
-      while(true) {
-        numbers = [
+      while(!this.validateComputerDifferentNumber(computerNumbers)) {
+        computerNumbers = [
           this.makeRandomNumber(),
           this.makeRandomNumber(),
           this.makeRandomNumber()
         ];
-
-        if(this.validateComputerDifferentNumber(numbers))
-          break;
       }
 
-      return numbers;
+      return computerNumbers;
     }
 
     // 1 ~ 9 랜덤 숫자 생성
