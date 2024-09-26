@@ -14,24 +14,26 @@
 
     // 볼, 스트라이크르 문자열로 변경
     extractResult(strikeAndBallCounts) {
-      if(strikeAndBallCounts[0] === 0 && strikeAndBallCounts[1] === 0)
-        return `낫싱`;
-      if(strikeAndBallCounts[0] === 0 && strikeAndBallCounts[1] !== 0)
-        return `${strikeAndBallCounts[1]}볼`;
-      if(strikeAndBallCounts[0] !== 0 && strikeAndBallCounts[1] === 0)
-        return `${strikeAndBallCounts[0]}스트라이크`;
-      return `${strikeAndBallCounts[1]}볼 ${strikeAndBallCounts[0]}스트라이크`;
+      if(strikeAndBallCounts.ball === 0 && strikeAndBallCounts.strike === 0)
+        return "낫싱";
+      if(strikeAndBallCounts.ball !== 0 && strikeAndBallCounts.strike === 0)
+        return `${strikeAndBallCounts.ball}볼`;
+      if(strikeAndBallCounts.ball === 0 && strikeAndBallCounts.strike !== 0)
+        return `${strikeAndBallCounts.strike}스트라이크`;
+      return `${strikeAndBallCounts.ball}볼 ${strikeAndBallCounts.strike}스트라이크`;
     }
 
     // 숫자 비교 후 볼, 스트라이크 확인
     compareNumbers(userNumbers, computerNumbers) {
-      let strikeAndBallCounts = [0, 0]; // 스트라이크, 볼
+      let strikeAndBallCounts = {
+        strike : 0,
+        ball : 0}; // 스트라이크, 볼
 
       for(let i = 0; i < 3; i++) {
         if(userNumbers[i] === computerNumbers[i]) 
-          strikeAndBallCounts[0]++;
+          strikeAndBallCounts.strike += 1;
         else if(computerNumbers.includes(userNumbers[i]))
-          strikeAndBallCounts[1]++;
+          strikeAndBallCounts.ball += 1;
       }
 
       return strikeAndBallCounts;
@@ -68,7 +70,7 @@
     // 3개의 숫자가 서로 다른 수인지 검증
     validateDifferentNumber(userNumbers) {
       if (new Set(userNumbers).size !== 3) {
-        alert('잘못된 입력입니다. 중복되지 않는 서로 다른 3개의 숫자를 입력하세요.');
+        alert("잘못된 입력입니다. 중복되지 않는 서로 다른 3개의 숫자를 입력하세요.");
         return false;
       }
       return true;
@@ -95,7 +97,7 @@
     // 결과 표시
     printResult(result) {
       const output = document.querySelector("#result");
-      output.innerHTML =result;
+      output.innerHTML = result;
     }
 
     // 게임 종료
