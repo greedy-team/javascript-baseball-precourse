@@ -1,13 +1,12 @@
 export default function createResultMessage(strikeCount, ballCount) {
-  const ballMessage = ballCount !== 0 ? `${ballCount}볼 ` : false;
-  const strikeMessage = strikeCount !== 0 ? `${strikeCount}스트라이크` : false;
-  let message = '낫싱';
-  if (ballMessage && strikeMessage) {
-    message = ballMessage.concat(strikeMessage);
-  } else if (!strikeMessage && ballMessage) {
-    message = ballMessage;
-  } else if (!ballMessage && strikeMessage) {
-    message = strikeMessage;
+  const ballMessage = ballCount !== 0 ? `${ballCount}볼 ` : '';
+  const strikeMessage = strikeCount !== 0 ? `${strikeCount}스트라이크` : '';
+  if (ballMessage !== '' && strikeMessage !== '') {
+    return ballMessage.concat(strikeMessage);
+  } else if (strikeMessage === '' && ballMessage !== '') {
+    return ballMessage;
+  } else if (ballMessage === '' && strikeMessage !== '') {
+    return strikeMessage;
   }
-  return message;
+  return '낫싱';
 }

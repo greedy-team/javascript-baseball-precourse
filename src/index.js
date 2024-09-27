@@ -5,7 +5,7 @@ import compareAnswer from './compareAnswer.js';
 const resultText = document.getElementById('result');
 const submitButton = document.getElementById('submit');
 const userText = document.getElementById('user-input');
-const restartButton = document.querySelector('#game-restart-button');
+const restartButton = document.getElementById('game-restart-button');
 
 export default class BaseballGame {
   constructor() {
@@ -16,6 +16,7 @@ export default class BaseballGame {
 
   play(computerInputNumbers, userInputNumbers) {
     if (userInputNumbers) {
+      console.log(userInputNumbers);
       computerInputNumbers = [...computerInputNumbers];
       userInputNumbers = [...userInputNumbers];
       const resultMessage = compareAnswer(
@@ -26,35 +27,35 @@ export default class BaseballGame {
     }
   }
 
-  process() {
+  playSingleRound() {
     if (!this.isEnd) {
       this.userInputNumbers = getUserInput(userText.value);
       const result = this.play(
         this.computerInputNumbers,
         this.userInputNumbers
       );
-      this.viewMessage(result);
+      this.viewResultMessage(result);
     }
   }
 
-  start() {
-    resultText.innerHTML = null;
+  gameSettingAndStart() {
+    resultText.innerText = null;
     restartButton.style.visibility = 'hidden';
     submitButton.addEventListener('click', (event) => {
       event.preventDefault();
-      this.process();
+      this.playSingleRound();
     });
   }
 
-  viewMessage(result) {
+  viewResultMessage(result) {
     if (result && result !== '3스트라이크') {
       resultText.innerText = result;
     } else if (result === '3스트라이크') {
-      this.reset();
+      this.EndgameAndReset();
     }
   }
 
-  reset() {
+  EndgameAndReset() {
     resultText.innerText =
       '🎉정답을 맞추셨습니다🎉 게임을 새로 시작하겠습니까?';
     restartButton.style.visibility = 'visible';
@@ -63,10 +64,10 @@ export default class BaseballGame {
 }
 
 let game = new BaseballGame();
-game.start();
+game.gameSettingAndStart();
 
 restartButton.addEventListener('click', () => {
   game = new BaseballGame();
-  game.start();
+  game.gameSettingAndStart();
   userText.value = '';
 });
