@@ -16,20 +16,15 @@ export default class BaseballGame {
   }
 
   play(computerInputNumbers, userInputNumbers) {
-    if (userInputNumbers) {
-      const resultMessage = compareAnswer(
-        computerInputNumbers,
-        userInputNumbers
-      );
-      return resultMessage;
-    }
+    const resultMessage = compareAnswer(computerInputNumbers, userInputNumbers);
+    return resultMessage;
   }
 
   playSingleRound() {
-    if (!this.isEnd) {
-      this.userInputNumbers = getUserInput(userText.value);
-      const computerInputs = [...this.computerInputNumbers];
+    this.userInputNumbers = getUserInput(userText.value);
+    if (this.userInputNumbers) {
       const userInputs = [...this.userInputNumbers];
+      const computerInputs = [...this.computerInputNumbers];
       const result = this.play(computerInputs, userInputs);
       this.viewResultMessage(result);
     }
@@ -40,7 +35,9 @@ export default class BaseballGame {
     restartButton.style.visibility = 'hidden';
     submitButton.addEventListener('click', (event) => {
       event.preventDefault();
-      this.playSingleRound();
+      if (!this.isEnd) {
+        this.playSingleRound();
+      }
     });
   }
 
