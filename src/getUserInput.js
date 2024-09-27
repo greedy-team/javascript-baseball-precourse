@@ -1,7 +1,7 @@
 export default function getUserInput(inputValue) {
   const arrInput = [...inputValue];
   const set = new Set(arrInput);
-  if (arrInput.find((input) => Number.isInteger(input))) {
+  if (arrInput.some((input) => !Number.isInteger(parseInt(input)))) {
     window.alert('정수를 입력해주세요');
     return null;
   } else if (inputValue.length !== 3 || isNaN(inputValue)) {

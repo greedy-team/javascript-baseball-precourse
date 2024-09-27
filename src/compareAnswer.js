@@ -14,6 +14,5 @@ export default function compareAnswer(computerInput, userInput) {
     }
   });
 
-  const message = createResultMessage(strikeCount, ballCount);
-  return message;
+  return createResultMessage(strikeCount, ballCount);
 }
