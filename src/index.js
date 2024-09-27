@@ -12,13 +12,11 @@ export default class BaseballGame {
     this.computerInputNumbers = createNumber();
     this.userInputNumbers = '';
     this.isEnd = false;
+    console.log(this.computerInputNumbers);
   }
 
   play(computerInputNumbers, userInputNumbers) {
     if (userInputNumbers) {
-      console.log(userInputNumbers);
-      computerInputNumbers = [...computerInputNumbers];
-      userInputNumbers = [...userInputNumbers];
       const resultMessage = compareAnswer(
         computerInputNumbers,
         userInputNumbers
@@ -30,10 +28,9 @@ export default class BaseballGame {
   playSingleRound() {
     if (!this.isEnd) {
       this.userInputNumbers = getUserInput(userText.value);
-      const result = this.play(
-        this.computerInputNumbers,
-        this.userInputNumbers
-      );
+      const computerInputs = [...this.computerInputNumbers];
+      const userInputs = [...this.userInputNumbers];
+      const result = this.play(computerInputs, userInputs);
       this.viewResultMessage(result);
     }
   }
@@ -48,7 +45,7 @@ export default class BaseballGame {
   }
 
   viewResultMessage(result) {
-    if (result && result !== '3스트라이크') {
+    if (result !== '3스트라이크') {
       resultText.innerText = result;
     } else if (result === '3스트라이크') {
       this.EndgameAndReset();
