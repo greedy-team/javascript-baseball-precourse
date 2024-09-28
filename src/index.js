@@ -110,7 +110,7 @@
       this.toggleButtons(true);
     }
 
-    checkResult(result) {
+    isPlayerWinner(result) {
       return result === "3스트라이크";
     }
 
@@ -137,7 +137,7 @@
         let result = this.play(userNumbers, this.computerNumbers);
         this.printResult(result);
 
-        if(this.checkResult(result)){
+        if(this.isPlayerWinner(result)){
           this.endGame(result);
         }
       });
