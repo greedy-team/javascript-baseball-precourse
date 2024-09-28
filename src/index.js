@@ -84,7 +84,7 @@ function countStrikeBall(computerString, userString) {
       strikeCnt += 1;
       continue;
     }
-    if (computerString.includes(userString[i])) cnt += 1;
+    if (computerString.includes(userString[i])) ballCnt += 1;
   }
 
   return [strikeCnt, ballCnt];
