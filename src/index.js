@@ -75,7 +75,7 @@
     }
 
     validateNumbers(userNumbers) {
-      if (!/^\d{3}$/.test(userNumbers)) {
+      if (!/^[1-9]{3}$/.test(userNumbers)) {
         alert('잘못된 입력입니다. 숫자만 입력하세요.');
         return false;
       }
@@ -91,6 +91,7 @@
       setTimeout(function() {
         alert(result + " 축하드립니다!");
       }, 1);
+
       alert(result + " 축하드립니다!");
       const restartButton = document.querySelector("#game-restart-button");
 
