@@ -75,8 +75,9 @@
     }
 
     validateNumbers(userNumbers) {
+      // [1-9] 1부터 9의 숫자, {3} 3자리 수를 의미
       if (!/^[1-9]{3}$/.test(userNumbers)) {
-        alert('잘못된 입력입니다. 숫자만 입력하세요.');
+        alert('잘못된 입력입니다. 1부터 9까지의 숫자만 입력하세요.');
         return false;
       }
       return true;
@@ -84,7 +85,7 @@
 
     printResult(result) {
       const output = document.querySelector("#result");
-      output.innerHTML = result;
+      output.textContent = result;
     }
 
     endGame(result) {
@@ -92,7 +93,6 @@
         alert(result + " 축하드립니다!");
       }, 1);
 
-      alert(result + " 축하드립니다!");
       const restartButton = document.querySelector("#game-restart-button");
 
       this.toggleButtons(false);
@@ -109,7 +109,7 @@
       this.computerNumbers = this.makeComputerNumbers();
       
       const output = document.querySelector("#result");
-      output.innerHTML = '';
+      output.textContent = '';
 
       this.toggleButtons(true);
     }
