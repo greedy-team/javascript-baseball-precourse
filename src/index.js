@@ -10,6 +10,10 @@ restartBtn.addEventListener("click", () => {
 
 submitBtn.addEventListener("click", BaseballGame);
 
+let computerInput;
+let pickedNumber;
+let userInput = "";
+
 function BaseballGame() {
   this.play = function (computerInput, userInput) {
     let result = "";
@@ -17,17 +21,15 @@ function BaseballGame() {
     getUserInput(event);
     const userString = String(userInput);
     const computerString = String(computerInput);
-    // const computerString = String(425);
 
     const [strikeCnt, ballCnt] = countStrikeBall(computerString, userString);
 
-    if (strikeCnt === 0 && ballCnt === 0) result = "낫싱";
-    else if (strikeCnt === 3) result = "정답입니다!";
-    else if (strikeCnt !== 0 && ballCnt === 0) result = `${strikeCnt}스트라이크`;
-    else if (strikeCnt === 0 && ballCnt !== 0) result = `${ballCnt}볼`;
-    else result = `${ballCnt}볼 ${strikeCnt}스트라이크`;
+    if (strikeCnt === 0 && ballCnt === 0) return (result = "낫싱");
+    if (strikeCnt === 3) return (result = "정답입니다!");
+    if (strikeCnt !== 0 && ballCnt === 0) return (result = `${strikeCnt}스트라이크`);
+    if (strikeCnt === 0 && ballCnt !== 0) return (result = `${ballCnt}볼`);
 
-    return result;
+    return (result = `${ballCnt}볼 ${strikeCnt}스트라이크`);
   };
 
   userInput = getUserInput(event);
@@ -43,9 +45,6 @@ function BaseballGame() {
 }
 
 // computerinput(정답)을 얻음
-let computerInput;
-let pickedNumber;
-
 while (true) {
   pickedNumber = MissionUtils.Random.pickNumberInRange(100, 999);
 
@@ -57,7 +56,6 @@ while (true) {
 }
 console.log(computerInput);
 
-let userInput = "";
 // userInput을 얻는 함수
 function getUserInput(event) {
   event.preventDefault();
@@ -86,7 +84,7 @@ function countStrikeBall(computerString, userString) {
       strikeCnt += 1;
       continue;
     }
-    if (computerString[i] == userString[(i + 1) % 3] || computerString[i] == userString[(i + 2) % 3]) ballCnt += 1;
+    if (computerString.includes(userString[i])) ballCnt += 1;
   }
 
   return [strikeCnt, ballCnt];
