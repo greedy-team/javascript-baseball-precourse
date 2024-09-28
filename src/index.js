@@ -88,6 +88,9 @@
     }
 
     endGame(result) {
+      setTimeout(function() {
+        alert(result + " 축하드립니다!");
+      }, 1);
       alert(result + " 축하드립니다!");
       const restartButton = document.querySelector("#game-restart-button");
 
@@ -134,7 +137,7 @@
           return;
         }
 
-        let result = this.play(userNumbers, this.computerNumbers);
+        const result = this.play(userNumbers, this.computerNumbers);
         this.printResult(result);
 
         if(this.isPlayerWinner(result)){
