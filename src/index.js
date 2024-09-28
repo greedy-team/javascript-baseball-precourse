@@ -10,14 +10,14 @@
       return this.extractResult(strikeAndBallCounts);
     }
 
-    extractResult(strikeAndBallCounts) {
-      if(strikeAndBallCounts.ball === 0 && strikeAndBallCounts.strike === 0)
+    extractResult({ ball, strike }) {
+      if(ball === 0 && strike === 0)
         return "낫싱";
-      if(strikeAndBallCounts.ball !== 0 && strikeAndBallCounts.strike === 0)
-        return `${strikeAndBallCounts.ball}볼`;
-      if(strikeAndBallCounts.ball === 0 && strikeAndBallCounts.strike !== 0)
-        return `${strikeAndBallCounts.strike}스트라이크`;
-      return `${strikeAndBallCounts.ball}볼 ${strikeAndBallCounts.strike}스트라이크`;
+      if(ball !== 0 && strike === 0)
+        return `${ball}볼`;
+      if(ball === 0 && strike !== 0)
+        return `${strike}스트라이크`;
+      return `${ball}볼 ${strike}스트라이크`;
     }
 
     compareNumbers(userNumbers, computerNumbers) {
