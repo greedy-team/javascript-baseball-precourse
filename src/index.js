@@ -1,29 +1,25 @@
   export default class BaseballGame {
 
-    // BaseballGame 생성자
     constructor() {
       this.computerNumbers = [];
       this.gameStart();
     }
 
-    // 게임의 결과인 볼, 스트라이크, 낫싱 반환
     play(computerNumbers, userNumbers) {
       const strikeAndBallCounts = this.compareNumbers(userNumbers, computerNumbers);
       return this.extractResult(strikeAndBallCounts);
     }
 
-    // 볼, 스트라이크르 문자열로 변경
-    extractResult(strikeAndBallCounts) {
-      if(strikeAndBallCounts.ball === 0 && strikeAndBallCounts.strike === 0)
+    extractResult({ ball, strike }) {
+      if(ball === 0 && strike === 0)
         return "낫싱";
-      if(strikeAndBallCounts.ball !== 0 && strikeAndBallCounts.strike === 0)
-        return `${strikeAndBallCounts.ball}볼`;
-      if(strikeAndBallCounts.ball === 0 && strikeAndBallCounts.strike !== 0)
-        return `${strikeAndBallCounts.strike}스트라이크`;
-      return `${strikeAndBallCounts.ball}볼 ${strikeAndBallCounts.strike}스트라이크`;
+      if(ball !== 0 && strike === 0)
+        return `${ball}볼`;
+      if(ball === 0 && strike !== 0)
+        return `${strike}스트라이크`;
+      return `${ball}볼 ${strike}스트라이크`;
     }
 
-    // 숫자 비교 후 볼, 스트라이크 확인
     compareNumbers(userNumbers, computerNumbers) {
       let strikeAndBallCounts = {
         strike : 0,
@@ -40,7 +36,6 @@
       return strikeAndBallCounts;
     }
 
-    // 컴퓨터 숫자 생성
     makeComputerNumbers() {
       let computerNumbers = [];
 
@@ -55,17 +50,14 @@
       return computerNumbers;
     }
 
-    // 1 ~ 9 랜덤 숫자 생성
     makeRandomNumber() {
       return MissionUtils.Random.pickNumberInRange(1, 9);
     }
 
-    // 컴퓨터의 서로 다른 3자리 숫자를 서로 다른지 검증
     validateComputerDifferentNumber(computerNumbers) {
       return new Set(computerNumbers).size === 3;
     }
 
-    // 3개의 숫자가 서로 다른 수인지 검증
     validateDifferentNumber(userNumbers) {
       if (new Set(userNumbers).size !== 3) {
         alert("잘못된 입력입니다. 중복되지 않는 서로 다른 3개의 숫자를 입력하세요.");
@@ -74,7 +66,6 @@
       return true;
     }
 
-    // 사용자 입력 숫자 길이 검증
     validateLength(userNumbers) {
       if (userNumbers.length !== 3) {
         alert('잘못된 입력입니다. 3자리 숫자를 입력하세요.');
@@ -83,24 +74,25 @@
       return true;
     }
 
-    // 사용자 숫자 형식 검증
     validateNumbers(userNumbers) {
-      if (!/^\d{3}$/.test(userNumbers)) {
-        alert('잘못된 입력입니다. 숫자만 입력하세요.');
+      // [1-9] 1부터 9의 숫자, {3} 3자리 수를 의미
+      if (!/^[1-9]{3}$/.test(userNumbers)) {
+        alert('잘못된 입력입니다. 1부터 9까지의 숫자만 입력하세요.');
         return false;
       }
       return true;
     }
 
-    // 결과 표시
     printResult(result) {
       const output = document.querySelector("#result");
-      output.innerHTML = result;
+      output.textContent = result;
     }
 
-    // 게임 종료
     endGame(result) {
-      alert(result + " 축하드립니다!");
+      setTimeout(function() {
+        alert(result + " 축하드립니다!");
+      }, 1);
+
       const restartButton = document.querySelector("#game-restart-button");
 
       this.toggleButtons(false);
@@ -108,28 +100,24 @@
       restartButton.addEventListener('click', () => this.restart());
     }
 
-    // 버튼 활성화, 비활성화
     toggleButtons(visible) {
       document.querySelector("#submit").style.display = visible ? 'block' : 'none';
       document.querySelector("#game-restart-button").style.display = visible ? 'none' : 'block';
     }
 
-    // 재시작
     restart() {
       this.computerNumbers = this.makeComputerNumbers();
       
       const output = document.querySelector("#result");
-      output.innerHTML = '';
+      output.textContent = '';
 
       this.toggleButtons(true);
     }
 
-    // 결과 확인
-    checkResult(result) {
+    isPlayerWinner(result) {
       return result === "3스트라이크";
     }
 
-    // 게임 시작
     gameStart() {
       const input = document.querySelector("#user-input");
       const submitButton = document.querySelector("#submit");
@@ -137,7 +125,7 @@
       this.computerNumbers = this.makeComputerNumbers();
 
       submitButton.addEventListener('click', (event) => {
-        event.preventDefault(); // 기본 동작 방지
+        event.preventDefault();
         
         console.log(this.computerNumbers);
 
@@ -150,10 +138,10 @@
           return;
         }
 
-        let result = this.play(userNumbers, this.computerNumbers);
+        const result = this.play(userNumbers, this.computerNumbers);
         this.printResult(result);
 
-        if(this.checkResult(result)){
+        if(this.isPlayerWinner(result)){
           this.endGame(result);
         }
       });
