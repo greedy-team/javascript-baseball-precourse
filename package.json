@@ -2,8 +2,9 @@
   "name": "javascript-baseball-precourse",
   "version": "1.0.0",
   "description": "우아한테크코스 프리코스 숫자 야구 게임 미션",
-  "dependencies": {
-    "@woowacourse/mission-utils": "^2.1.1"
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "8.7.0"
   },
   "scripts": {
     "test": "cypress run --browser chrome"
@@ -23,8 +24,5 @@
   "engines": {
     "npm": ">=6.0.0",
     "node": ">=14.0.0"
-  },
-  "devDependencies": {
-    "cypress": "^8.7.0"
   }
 }
