@@ -27,15 +27,15 @@ export default class BaseballGame {
     let n3 = ComNum % 10;
     return [n1,n2,n3,un1,un2,un3];
   }
-  play(arr) {
+  play(UserNum,ComNum) {
     let strike = 0
     let ball = 0;
-    if (arr[0] == arr[3]) strike+=1;
-    else if (arr[0] == arr[4] || arr[0] == arr[5]) ball+=1;
-    if (arr[1] == arr[4]) strike+=1;
-    else if (arr[1] == arr[3] || arr[1] == arr[5]) ball+=1;
-    if (arr[2] == arr[5]) strike+=1;
-    else if (arr[2] == arr[3] || arr[2] == arr[4]) ball+=1;
+    if (UserNum[0] == ComNum[0]) strike+=1;
+    else if (UserNum[0] == ComNum[1] || UserNum[0] == ComNum[2]) ball+=1;
+    if (UserNum[1] == ComNum[1]) strike+=1;
+    else if (UserNum[1] == ComNum[0] || UserNum[1] == ComNum[2]) ball+=1;
+    if (UserNum[2] == ComNum[2]) strike+=1;
+    else if (UserNum[2] == ComNum[0] || UserNum[2] == ComNum[1]) ball+=1;
     if (strike === 3) {
       return 3;
     } else if (strike > 0 && ball > 0) {
@@ -71,7 +71,9 @@ export default class BaseballGame {
       UserNum = parseInt(UserNum, 10);
       if (ValidateNum(UserNum)) {
         console.log("컴퓨터 번호: ", ComNum);
-        this.gameovervar(this.play(this.Numsplit(UserNum, ComNum)));
+        UserNum=String(UserNum);
+        ComNum=String(ComNum);
+        this.gameovervar(this.play(UserNum, ComNum));
       } else {
         alert("다시 입력해주세요");
       }
