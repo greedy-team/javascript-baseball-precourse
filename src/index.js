@@ -85,4 +85,4 @@ export default class BaseballGame {
   }
 }
 
-let baseballGame = new BaseballGame();
+new BaseballGame();
