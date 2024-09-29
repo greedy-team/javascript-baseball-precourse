@@ -36,17 +36,12 @@ export default class BaseballGame {
     else if (UserNum[1] == ComNum[0] || UserNum[1] == ComNum[2]) ball+=1;
     if (UserNum[2] == ComNum[2]) strike+=1;
     else if (UserNum[2] == ComNum[0] || UserNum[2] == ComNum[1]) ball+=1;
-    if (strike === 3) {
-      return 3;
-    } else if (strike > 0 && ball > 0) {
-      return `${ball}볼 ${strike}스트라이크`;
-    } else if (strike > 0) {
-      return `${strike}스트라이크`;
-    } else if (ball > 0) {
-      return `${ball}볼`;
-    } else {
-      return "낫싱";
-    }
+
+    if (strike === 3) return 3;
+    if (ball===0 && strike === 0) return "낫싱";
+    if (strike > 0 && ball > 0) return `${ball}볼 ${strike}스트라이크`;
+    if (strike > 0) return `${strike}스트라이크`;
+    if (ball > 0) return `${ball}볼`;
   }
   gameovervar(result){
     if(result===3){
