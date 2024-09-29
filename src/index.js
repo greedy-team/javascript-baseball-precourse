@@ -15,27 +15,6 @@ export default class BaseballGame {
     }
   }
 
-  UserNumvarlen3(UserNum) { // user num 길이 판별
-    return String(UserNum).length === 3;
-  }
-
-  UserNumvarnum19(UserNum) { // user num 1~9 숫자인지 판별
-    let numArray = String(UserNum).split('');
-    for (let i = 0; i < numArray.length; i++) {
-      let num = parseInt(numArray[i], 10);
-      if (num > 9 || num < 1) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  UserNumvardiff(UserNum) { // user num 다 다른 수인지 판별
-    let numArray = String(UserNum).split('');
-    let numSet = new Set(numArray);
-    return numArray.length === numSet.size;
-  }
-
 
   Numsplit(UserNum,ComNum){
     // UserNum 자리수 분리
