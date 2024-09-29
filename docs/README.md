@@ -14,5 +14,6 @@
     2. 숫자만 같고 위치가 틀리면 ball
 
 4. ball과 strike 결과 출력
+    1.ball과 strike 둘다 있다면 ball 먼저 출력
 
 5. 게임 종료 후 재시작 버튼 누르면 reset
