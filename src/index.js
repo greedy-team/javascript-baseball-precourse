@@ -15,18 +15,6 @@ export default class BaseballGame {
     }
   }
 
-
-  Numsplit(UserNum,ComNum){
-    // UserNum 자리수 분리
-    let un1 = ~~(UserNum / 100);
-    let un2 = ~~(UserNum / 10 % 10);
-    let un3 = UserNum % 10;
-    // ComNum 자리수 분리
-    let n1 = ~~(ComNum / 100);
-    let n2 = ~~(ComNum / 10 % 10);
-    let n3 = ComNum % 10;
-    return [n1,n2,n3,un1,un2,un3];
-  }
   play(UserNum,ComNum) {
     let strike = 0
     let ball = 0;
