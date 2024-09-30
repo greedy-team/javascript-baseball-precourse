@@ -11,8 +11,10 @@ restartBtn.addEventListener("click", () => {
 submitBtn.addEventListener("click", BaseballGame);
 
 let computerInput;
+let randomNumber = [0, 0, 0];
 let pickedNumber;
 let userInput = "";
+let i;
 
 function BaseballGame() {
   this.play = function (computerInput, userInput) {
@@ -44,16 +46,17 @@ function BaseballGame() {
   }
 }
 
-// computerinput(정답)을 얻음
-while (true) {
-  pickedNumber = MissionUtils.Random.pickNumberInRange(100, 999);
+// computerInput(정답)을 얻음
+randomNumber[0] = MissionUtils.Random.pickNumberInRange(1, 9);
+for (i = 1; i < 3; i++) {
+  pickedNumber = MissionUtils.Random.pickNumberInRange(1, 9);
 
-  // 중복되지 않는 숫자 3개
-  if (validateInput(pickedNumber)) {
-    computerInput = pickedNumber;
-    break;
-  }
+  // 이미 뽑은 숫자와 겹치는 숫자가 없는 경우
+  if (!randomNumber.includes(pickedNumber)) {
+    randomNumber[i] = pickedNumber;
+  } else i -= 1; // 이미 뽑은 숫자와 겹치는 숫자가 있는 경우
 }
+computerInput = randomNumber[0] * 100 + randomNumber[1] * 10 + randomNumber[2];
 console.log(computerInput);
 
 // userInput을 얻는 함수
