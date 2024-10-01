@@ -16,10 +16,9 @@ export default class BaseballGameController {
             alert(result + " 축하드립니다!");
         }, 1);
 
-        const restartButton = document.querySelector("#game-restart-button");
-
         this.BaseballGameView.toggleButtons(false);
 
+        const restartButton = document.querySelector("#game-restart-button");
         restartButton.addEventListener('click', () => this.restart());
     }
 
@@ -27,6 +26,7 @@ export default class BaseballGameController {
         this.BaseballGameView.resetInput();
         this.BaseballGameView.resetResult();
         this.BaseballGameView.toggleButtons(true);
+        this.BaseballGame.resetComputerNumbers();
         this.gameStart();
     }
 
@@ -34,7 +34,7 @@ export default class BaseballGameController {
         const input = document.querySelector("#user-input");
         const submitButton = document.querySelector("#submit");
 
-        this.BaseballGame.makeComputerNumbers();
+        this.BaseballGame.setComputerNumbers();
 
         submitButton.addEventListener('click', (event) => {
             event.preventDefault();

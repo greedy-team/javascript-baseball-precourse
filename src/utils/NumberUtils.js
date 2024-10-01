@@ -10,7 +10,6 @@ export default class NumberUtils {
     validateNumbers(userInput) {
         // [1-9] 1부터 9의 숫자, {3} 3자리 수를 의미
         if (!/^[1-9]{3}$/.test(userInput)) {
-            alert('잘못된 입력입니다. 1부터 9까지의 숫자만 입력하세요.');
             return false;
         }
         return true;
@@ -22,5 +21,23 @@ export default class NumberUtils {
 
     inputConvertNumbers(userInput) {
         return userInput.split('').map(Number);
+    }
+
+    makeNumbers() {
+        let numbers = [];
+
+        while (!this.validateDifferentNumber(numbers)) {
+          numbers = [
+            this.makeRandomNumber(),
+            this.makeRandomNumber(),
+            this.makeRandomNumber()
+          ];
+        }
+
+        return numbers;
+    }
+
+    makeRandomNumber() {
+        return MissionUtils.Random.pickNumberInRange(1, 9);
     }
 }

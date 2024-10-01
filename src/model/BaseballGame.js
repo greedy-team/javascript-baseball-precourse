@@ -38,19 +38,12 @@ export default class BaseballGame {
           return strikeAndBallCounts;
     }
 
-    makeComputerNumbers() {
-        while (!this.NumberUtils.validateDifferentNumber(this.computerNumbers)) {
-          this.computerNumbers = [
-            this.makeRandomNumber(),
-            this.makeRandomNumber(),
-            this.makeRandomNumber()
-          ];
-        }
-
+    setComputerNumbers() {
+        this.computerNumbers = this.NumberUtils.makeNumbers();
         console.log(this.computerNumbers);
     }
 
-    makeRandomNumber() {
-        return MissionUtils.Random.pickNumberInRange(1, 9);
+    resetComputerNumbers() {
+        this.computerNumbers = [];
     }
 }
