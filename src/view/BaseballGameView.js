@@ -5,13 +5,18 @@ export default class BaseballGameView {
         document.querySelector("#game-restart-button").style.display = visible ? 'none' : 'block';
     }
 
+    printResult(result) {
+        const output = document.querySelector("#result");
+        output.textContent = result;
+    }
+
     resetResult() {
         const output = document.querySelector("#result");
         output.textContent = '';
     }
 
-    printResult(result) {
-        const output = document.querySelector("#result");
-        output.textContent = result;
+    resetInput() {
+        const input = document.querySelector("#user-input");
+        input.value = '';
     }
 }

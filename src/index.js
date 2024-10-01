@@ -73,6 +73,7 @@
 
     restart() {
       this.computerNumbers = this.makeComputerNumbers();
+      this.BaseballGameView.resetInput();
       this.BaseballGameView.resetResult();
       this.BaseballGameView.toggleButtons(true);
     }
