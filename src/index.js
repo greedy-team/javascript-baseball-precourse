@@ -24,7 +24,7 @@
     }
 
     restart() {
-      this.BaseballGame.scomputerNumbers = this.BaseballGame.makeComputerNumbers();
+      this.BaseballGame.makeComputerNumbers();
       this.BaseballGameView.resetInput();
       this.BaseballGameView.resetResult();
       this.BaseballGameView.toggleButtons(true);
@@ -34,7 +34,7 @@
       const input = document.querySelector("#user-input");
       const submitButton = document.querySelector("#submit");
 
-      this.BaseballGame.computerNumbers = this.BaseballGame.makeComputerNumbers();
+      this.BaseballGame.makeComputerNumbers();
 
       submitButton.addEventListener('click', (event) => {
         event.preventDefault();
@@ -50,7 +50,7 @@
           return;
         }
 
-        const result = this.BaseballGame.play(userNumbers, this.BaseballGame.computerNumbers);
+        const result = this.BaseballGame.play(userNumbers);
         this.BaseballGameView.printResult(result);
 
         if(this.NumberUtils.isPlayerWinner(result)){

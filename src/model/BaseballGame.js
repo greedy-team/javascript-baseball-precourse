@@ -7,8 +7,8 @@ export default class BaseballGame {
         this.NumberUtils = new NumberUtils();
     }
 
-    play(computerNumbers, userNumbers) {
-        const strikeAndBallCounts = this.compareNumbers(userNumbers, computerNumbers);
+    play(userNumbers) {
+        const strikeAndBallCounts = this.compareNumbers(userNumbers);
         return this.extractResult(strikeAndBallCounts);
     }
 
@@ -22,16 +22,16 @@ export default class BaseballGame {
         return `${ball}볼 ${strike}스트라이크`;
     }
 
-    compareNumbers(userNumbers, computerNumbers) {
+    compareNumbers(userNumbers) {
         let strikeAndBallCounts = {
             strike : 0,
             ball : 0
         };
 
         for(let i = 0; i < 3; i++) {
-            if(userNumbers[i] === computerNumbers[i]) 
+            if(userNumbers[i] === this.computerNumbers[i]) 
               strikeAndBallCounts.strike += 1;
-            else if(computerNumbers.includes(userNumbers[i]))
+            else if(this.computerNumbers.includes(userNumbers[i]))
               strikeAndBallCounts.ball += 1;
           }
     
@@ -39,17 +39,13 @@ export default class BaseballGame {
     }
 
     makeComputerNumbers() {
-        let computerNumbers = [];
-  
-        while(!this.NumberUtils.validateDifferentNumber(computerNumbers)) {
-          computerNumbers = [
+        while(!this.NumberUtils.validateDifferentNumber(this.computerNumbers)) {
+          this.computerNumbers = [
             this.makeRandomNumber(),
             this.makeRandomNumber(),
             this.makeRandomNumber()
           ];
         }
-  
-        return computerNumbers;
     }
 
     makeRandomNumber() {
