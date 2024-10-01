@@ -1,4 +1,4 @@
-import verifyUserNumbers from '../utils/verifyUserNumbers.js';
+import VerifyUserNumbers from '../utils/VerifyUserNumbers.js';
 export default class BaseballGameController {
   constructor(view, model) {
     this.view = view;
@@ -20,7 +20,7 @@ export default class BaseballGameController {
     const userInput = this.view.userInput.value;
     this.model.getUserNumber(userInput);
     const { userNumbers } = this.model;
-    if (!verifyUserNumbers.validateNumber(userNumbers)) {
+    if (!VerifyUserNumbers.validateNumber(userNumbers)) {
       return null;
     }
     this.renderResultMessage(userNumbers);

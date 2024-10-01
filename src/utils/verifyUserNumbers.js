@@ -1,4 +1,4 @@
-export default class verifyUserNumbers {
+export default class VerifyUserNumbers {
   static validateNumber(numbers) {
     const set = new Set(numbers);
     if (numbers.length !== 3) {
