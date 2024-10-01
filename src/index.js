@@ -1,5 +1,5 @@
-import controller from './controller/controller.js';
-import view from './view/view.js';
-import model from './model/model.js';
+import BaseballGameController from './controller/BaseballGameController.js';
+import BaseballGameView from './view/BaseballGameView.js';
+import BaseBallGameModel from './model/BaseballGameModel.js';
 
-new controller(new view(), new model());
+new BaseballGameController(new BaseballGameView(), new BaseBallGameModel());

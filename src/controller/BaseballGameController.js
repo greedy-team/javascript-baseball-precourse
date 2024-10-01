@@ -1,5 +1,5 @@
 import verifyUserNumbers from '../utils/verifyUserNumbers.js';
-export default class Controller {
+export default class BaseballGameController {
   constructor(view, model) {
     this.view = view;
     this.model = model;

@@ -1,4 +1,4 @@
-export default class View {
+export default class BaseballGameView {
   constructor() {
     this.userInput = document.querySelector('#user-input');
     this.resultText = document.querySelector('#result');
@@ -24,10 +24,12 @@ export default class View {
   }
 
   restartGame() {
-    this.restartButton.addEventListener('click', this.startGame);
     this.resultText.innerText =
       '🎉정답을 맞추셨습니다🎉 게임을 새로 시작하시겠습니까?';
     this.restartButton.style.visibility = 'visible';
     this.userInput.value = '';
+    this.restartButton.addEventListener('click', () => {
+      this.startGame();
+    });
   }
 }
