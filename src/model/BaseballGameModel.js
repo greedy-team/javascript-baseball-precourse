@@ -2,8 +2,6 @@ export default class BaseballGameModel {
   constructor() {
     this.computerNumbers = [];
     this.userNumbers = [];
-    this.strikeCount = 0;
-    this.ballCount = 0;
   }
 
   getUserNumber(userNumbers) {
@@ -12,9 +10,8 @@ export default class BaseballGameModel {
     return this.userNumbers;
   }
 
-  getComputerNumber() {
-    this.createComputerNumbers();
-    return this.computerNumbers;
+  initComputerNumbers() {
+    this.computerNumbers = [];
   }
 
   createComputerNumbers() {
@@ -24,41 +21,41 @@ export default class BaseballGameModel {
         this.computerNumbers.push(number);
       }
     }
+    return this.computerNumbers;
   }
 
   countStrikeAndBall(computerInput, userInput) {
+    let strikeCount = 0;
+    let ballCount = 0;
     userInput.forEach((userNumber, userIdx) => {
       if (computerInput.includes(userNumber)) {
         const computerIdx = computerInput.indexOf(userNumber);
         if (computerIdx === userIdx) {
-          this.strikeCount += 1;
+          strikeCount += 1;
         } else {
-          this.ballCount += 1;
+          ballCount += 1;
         }
       }
     });
+    return [strikeCount, ballCount];
   }
 
-  createResultMessage() {
-    const ballMessage = `${this.ballCount}볼 `;
-    const strikeMessage = `${this.strikeCount}스트라이크`;
-    if (this.ballCount !== 0 && this.strikeCount !== 0) {
+  createResultMessage(userInput) {
+    const computerInput = this.createComputerNumbers();
+    const [strikeCount, ballCount] = this.countStrikeAndBall(
+      computerInput,
+      userInput
+    );
+    console.log(computerInput, userInput);
+    const ballMessage = `${ballCount}볼 `;
+    const strikeMessage = `${strikeCount}스트라이크`;
+    if (ballCount !== 0 && strikeCount !== 0) {
       return ballMessage.concat(strikeMessage);
-    } else if (this.ballCount !== 0 && this.strikeCount === 0) {
+    } else if (ballCount !== 0 && strikeCount === 0) {
       return ballMessage;
-    } else if (this.strikeCount !== 0 && this.ballCount === 0) {
+    } else if (strikeCount !== 0 && ballCount === 0) {
       return strikeMessage;
     }
     return '낫싱';
-  }
-
-  resetCount() {
-    this.ballCount = 0;
-    this.strikeCount = 0;
-  }
-
-  resetGame() {
-    this.computerNumbers = [];
-    this.userNumbers = [];
   }
 }
