@@ -46,6 +46,8 @@ export default class BaseballGame {
             this.makeRandomNumber()
           ];
         }
+
+        console.log(this.computerNumbers);
     }
 
     makeRandomNumber() {
