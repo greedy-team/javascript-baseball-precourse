@@ -24,4 +24,8 @@ export default class NumberUtils {
         }
         return true;
     }
+
+    isPlayerWinner(result) {
+        return result === "3스트라이크";
+    }
 }

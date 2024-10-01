@@ -1,10 +1,12 @@
   import NumberUtils from "./utils/NumberUtils.js";
+  import BaseballGameView from "./view/BaseBallGameView.js";
 
   export default class BaseballGame {
 
     constructor() {
       this.computerNumbers = [];
       this.NumberUtils = new NumberUtils();
+      this.BaseballGameView = new BaseballGameView();
       this.gameStart();
     }
 
@@ -57,11 +59,6 @@
       return MissionUtils.Random.pickNumberInRange(1, 9);
     }
 
-    printResult(result) {
-      const output = document.querySelector("#result");
-      output.textContent = result;
-    }
-
     endGame(result) {
       setTimeout(function() {
         alert(result + " 축하드립니다!");
@@ -69,27 +66,15 @@
 
       const restartButton = document.querySelector("#game-restart-button");
 
-      this.toggleButtons(false);
+      this.BaseballGameView.toggleButtons(false);
 
       restartButton.addEventListener('click', () => this.restart());
     }
 
-    toggleButtons(visible) {
-      document.querySelector("#submit").style.display = visible ? 'block' : 'none';
-      document.querySelector("#game-restart-button").style.display = visible ? 'none' : 'block';
-    }
-
     restart() {
       this.computerNumbers = this.makeComputerNumbers();
-      
-      const output = document.querySelector("#result");
-      output.textContent = '';
-
-      this.toggleButtons(true);
-    }
-
-    isPlayerWinner(result) {
-      return result === "3스트라이크";
+      this.BaseballGameView.resetResult();
+      this.BaseballGameView.toggleButtons(true);
     }
 
     gameStart() {
@@ -113,9 +98,9 @@
         }
 
         const result = this.play(userNumbers, this.computerNumbers);
-        this.printResult(result);
+        this.BaseballGameView.printResult(result);
 
-        if(this.isPlayerWinner(result)){
+        if(this.NumberUtils.isPlayerWinner(result)){
           this.endGame(result);
         }
       });
