@@ -56,4 +56,9 @@ export default class BaseballGameModel {
     this.ballCount = 0;
     this.strikeCount = 0;
   }
+
+  resetGame() {
+    this.computerNumbers = [];
+    this.userNumbers = [];
+  }
 }

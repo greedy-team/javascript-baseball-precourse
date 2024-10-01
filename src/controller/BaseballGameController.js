@@ -20,6 +20,7 @@ export default class BaseballGameController {
     const resultMessage = this.model.createResultMessage();
     if (resultMessage === '3스트라이크') {
       this.view.restartGame();
+      this.model.resetGame();
     } else {
       this.view.renderResult(resultMessage);
     }

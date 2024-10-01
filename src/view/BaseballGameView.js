@@ -29,7 +29,7 @@ export default class BaseballGameView {
     this.restartButton.style.visibility = 'visible';
     this.userInput.value = '';
     this.restartButton.addEventListener('click', () => {
-      this.startGame();
+      this.settingGame();
     });
   }
 }
