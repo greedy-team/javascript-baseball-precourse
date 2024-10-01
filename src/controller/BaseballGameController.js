@@ -3,7 +3,7 @@ export default class BaseballGameController {
   constructor(view, model) {
     this.view = view;
     this.model = model;
-    this.view.startGame(this.startGame.bind(this));
+    this.view.submitButton.addEventListener('click', this.startGame.bind(this));
   }
 
   createComputerNumbers() {
@@ -26,17 +26,23 @@ export default class BaseballGameController {
     }
   }
 
-  startGame() {
-    const computerNubers = this.createComputerNumbers();
+  playSingleRound(computerNumbers, userNumbers) {
+    console.log(computerNumbers, userNumbers);
+    this.countStrikeAndBall(computerNumbers, userNumbers);
+    this.renderResultMessage();
+    this.model.resetCount();
+  }
+
+  startGame(event) {
+    event.preventDefault();
+    this.view.settingGame();
+    const computerNumbers = this.createComputerNumbers();
     const userInput = this.view.userInput.value;
     this.model.getUserNumber(userInput);
     const { userNumbers } = this.model;
     if (!verifyUserNumbers.validateNumber(userNumbers)) {
       return;
     }
-    console.log(computerNubers);
-    this.countStrikeAndBall(computerNubers, userNumbers);
-    this.renderResultMessage();
-    this.model.resetCount();
+    this.playSingleRound(computerNumbers, userNumbers);
   }
 }

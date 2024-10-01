@@ -15,14 +15,6 @@ export default class BaseballGameView {
     this.restartButton.style.visibility = 'hidden';
   }
 
-  startGame(startGame) {
-    this.settingGame();
-    this.submitButton.addEventListener('click', (event) => {
-      event.preventDefault();
-      startGame();
-    });
-  }
-
   restartGame() {
     this.resultText.innerText =
       '🎉정답을 맞추셨습니다🎉 게임을 새로 시작하시겠습니까?';
