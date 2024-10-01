@@ -25,4 +25,35 @@ export default class Model {
       }
     }
   }
+
+  countStrikeAndBall(computerInput, userInput) {
+    userInput.forEach((userNumber, userIdx) => {
+      if (computerInput.includes(userNumber)) {
+        const computerIdx = computerInput.indexOf(userNumber);
+        if (computerIdx === userIdx) {
+          this.strikeCount += 1;
+        } else {
+          this.ballCount += 1;
+        }
+      }
+    });
+  }
+
+  createResultMessage() {
+    const ballMessage = `${this.ballCount}볼 `;
+    const strikeMessage = `${this.strikeCount}스트라이크`;
+    if (this.ballCount !== 0 && this.strikeCount !== 0) {
+      return ballMessage.concat(strikeMessage);
+    } else if (this.ballCount !== 0 && this.strikeCount === 0) {
+      return ballMessage;
+    } else if (this.strikeCount !== 0 && this.ballCount === 0) {
+      return strikeMessage;
+    }
+    return '낫싱';
+  }
+
+  resetCount() {
+    this.ballCount = 0;
+    this.strikeCount = 0;
+  }
 }
