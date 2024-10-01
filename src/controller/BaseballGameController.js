@@ -37,23 +37,33 @@ export default class BaseballGameController {
     this.BaseballGame.makeComputerNumbers();
 
     submitButton.addEventListener('click', (event) => {
-      event.preventDefault();
+        event.preventDefault();
 
-      const userInput = input.value;
-      const userNumbers = userInput.split('').map(Number);
+        const userInput = input.value;
+        const userNumbers = this.NumberUtils.inputConvertNumbers(userInput);
 
-      if (!this.NumberUtils.validateLength(userNumbers) ||
-          !this.NumberUtils.validateNumbers(userInput) ||
-          !this.NumberUtils.validateDifferentNumber(userNumbers)) {
-        return;
-      }
+        if (!this.validateUserInput(userInput, userNumbers)) {
+            return;
+        }
 
-      const result = this.BaseballGame.play(userNumbers);
-      this.BaseballGameView.printResult(result);
+        const result = this.BaseballGame.play(userNumbers);
+        this.BaseballGameView.printResult(result);
 
-      if(this.NumberUtils.isPlayerWinner(result)){
+        if (this.NumberUtils.isPlayerWinner(result)){
         this.endGame(result);
-      }
+        }
     });
+  }
+
+  validateUserInput(userInput, userNumbers) {
+    if (!this.NumberUtils.validateNumbers(userInput)) {
+        alert("잘못된 입력입니다. 중복되지 않는 서로 다른 3개의 숫자를 입력하세요.");
+        return false;
+    }
+    else if(!this.NumberUtils.validateDifferentNumber(userNumbers)) {
+        alert('잘못된 입력입니다. 1부터 9까지의 숫자만 입력하세요.');
+        return false;
+    }
+    return true;
   }
 }

@@ -13,11 +13,11 @@ export default class BaseballGame {
     }
 
     extractResult({ ball, strike }) {
-        if(ball === 0 && strike === 0)
+        if (ball === 0 && strike === 0)
             return "낫싱";
-        if(ball !== 0 && strike === 0)
+        if (ball !== 0 && strike === 0)
             return `${ball}볼`;
-        if(ball === 0 && strike !== 0)
+        if (ball === 0 && strike !== 0)
             return `${strike}스트라이크`;
         return `${ball}볼 ${strike}스트라이크`;
     }
@@ -29,9 +29,9 @@ export default class BaseballGame {
         };
 
         for(let i = 0; i < 3; i++) {
-            if(userNumbers[i] === this.computerNumbers[i]) 
+            if (userNumbers[i] === this.computerNumbers[i]) 
               strikeAndBallCounts.strike += 1;
-            else if(this.computerNumbers.includes(userNumbers[i]))
+            else if (this.computerNumbers.includes(userNumbers[i]))
               strikeAndBallCounts.ball += 1;
           }
     
@@ -39,7 +39,7 @@ export default class BaseballGame {
     }
 
     makeComputerNumbers() {
-        while(!this.NumberUtils.validateDifferentNumber(this.computerNumbers)) {
+        while (!this.NumberUtils.validateDifferentNumber(this.computerNumbers)) {
           this.computerNumbers = [
             this.makeRandomNumber(),
             this.makeRandomNumber(),
