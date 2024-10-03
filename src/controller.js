@@ -1,6 +1,6 @@
 import {BaseballGameModel} from "./model.js";
 import {clearInputField, inputField, showRestartButton, showResult} from "./view.js";
-import {validateInput, validateUserInput} from "./validate.js";
+import {checkDuplicateNumbers, validateUserInput} from "./validate.js";
 
 export class BaseballGameController {
   constructor() {
@@ -12,7 +12,7 @@ export class BaseballGameController {
     event.preventDefault();
 
     let userInput = inputField.value;
-    if (!validateInput(userInput)) {
+    if (!checkDuplicateNumbers(userInput)) {
       alert("1~9까지의 수를 중복없이 3개 입력해주세요.");
       clearInputField();
       return "";

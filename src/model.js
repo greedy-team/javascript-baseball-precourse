@@ -6,13 +6,15 @@ export class BaseballGameModel {
 
   // computerInput(정답)을 얻는 메서드
   getComputerInput() {
-    let randomNumber = [0, 0, 0];
-    randomNumber[0] = MissionUtils.Random.pickNumberInRange(1, 9);
+    let randomNumber = [];
+    randomNumber.push(MissionUtils.Random.pickNumberInRange(1, 9));
+
     for (let i = 1; i < 3; i++) {
-      let pickedNumber = MissionUtils.Random.pickNumberInRange(1, 9);
-      if (!randomNumber.includes(pickedNumber)) randomNumber[i] = pickedNumber;
+      const pickedNumber = MissionUtils.Random.pickNumberInRange(1, 9);
+      if (!randomNumber.includes(pickedNumber)) randomNumber.push(pickedNumber);
       else i -= 1;
     }
+
     console.log(randomNumber[0] * 100 + randomNumber[1] * 10 + randomNumber[2]);
     return randomNumber[0] * 100 + randomNumber[1] * 10 + randomNumber[2];
   }
