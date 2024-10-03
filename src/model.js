@@ -9,13 +9,12 @@ export function ValidateNum(input) { //모델
 export function play(UserNum,ComNum) { //모델
   let strike = 0
   let ball = 0;
-  if (UserNum[0] == ComNum[0]) strike+=1;
-  else if (UserNum[0] == ComNum[1] || UserNum[0] == ComNum[2]) ball+=1;
-  if (UserNum[1] == ComNum[1]) strike+=1;
-  else if (UserNum[1] == ComNum[0] || UserNum[1] == ComNum[2]) ball+=1;
-  if (UserNum[2] == ComNum[2]) strike+=1;
-  else if (UserNum[2] == ComNum[0] || UserNum[2] == ComNum[1]) ball+=1;
-
+  for(let i =0;i<3;i++){
+    if(UserNum[i]==ComNum[i])
+      strike+=1;
+    else if(ComNum.includes(UserNum[i]))
+      ball+=1;
+  }
 
   if (strike === 3) return 3;
   if (ball===0 && strike === 0) return "낫싱";
