@@ -1,3 +1,4 @@
+const restartButton = document.querySelector('#game-restart-button');
 export default class BaseballGameView {
   constructor() {
     this.userInput = document.querySelector('#user-input');
@@ -20,8 +21,12 @@ export default class BaseballGameView {
       '🎉정답을 맞추셨습니다🎉 게임을 새로 시작하시겠습니까?';
     this.restartButton.style.visibility = 'visible';
     this.userInput.value = '';
-    this.restartButton.addEventListener('click', () => {
-      this.settingGame();
-    });
+    this.restartButton.addEventListener(
+      'click',
+      () => {
+        this.settingGame();
+      },
+      { once: true }
+    );
   }
 }

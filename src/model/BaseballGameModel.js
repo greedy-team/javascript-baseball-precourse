@@ -47,14 +47,12 @@ export default class BaseballGameModel {
       userInput
     );
     console.log(computerInput, userInput);
-    const ballMessage = `${ballCount}볼 `;
-    const strikeMessage = `${strikeCount}스트라이크`;
     if (ballCount !== 0 && strikeCount !== 0) {
-      return ballMessage.concat(strikeMessage);
+      return `${ballCount}볼 ${strikeCount}스트라이크`;
     } else if (ballCount !== 0 && strikeCount === 0) {
-      return ballMessage;
+      return `${ballCount}볼 `;
     } else if (strikeCount !== 0 && ballCount === 0) {
-      return strikeMessage;
+      return `${strikeCount}스트라이크`;
     }
     return '낫싱';
   }
