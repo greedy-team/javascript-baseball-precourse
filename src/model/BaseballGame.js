@@ -23,7 +23,7 @@ export default class BaseballGame {
     }
 
     compareNumbers(userNumbers) {
-        let strikeAndBallCounts = {
+        const strikeAndBallCounts = {
             strike : 0,
             ball : 0
         };

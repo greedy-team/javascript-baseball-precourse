@@ -1,6 +1,6 @@
 import NumberUtils from "../utils/NumberUtils.js";
 import BaseballGameView from "../view/BaseBallGameView.js";
-import BaseballGame from "../model/BaseBallGame.js";
+import BaseballGame from "../model/BaseballGame.js";
 
 export default class BaseballGameController {
 
