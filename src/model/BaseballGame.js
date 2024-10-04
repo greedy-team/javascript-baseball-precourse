@@ -40,7 +40,6 @@ export default class BaseballGame {
 
     setComputerNumbers() {
         this.computerNumbers = this.NumberUtils.makeNumbers();
-        console.log(this.computerNumbers);
     }
 
     resetComputerNumbers() {
