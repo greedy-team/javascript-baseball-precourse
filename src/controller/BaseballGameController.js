@@ -12,12 +12,8 @@ export default class BaseballGameController {
     }
 
     endGame(result) {
-        setTimeout(function() {
-            alert(result + " 축하드립니다!");
-        });
-
+        this.BaseballGameView.printCongurateWinner(result);
         this.BaseballGameView.toggleButtons(false);
-
         const restartButton = document.querySelector("#game-restart-button");
         restartButton.addEventListener('click', () => this.restart());
     }

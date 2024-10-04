@@ -19,4 +19,8 @@ export default class BaseballGameView {
         const input = document.querySelector("#user-input");
         input.value = '';
     }
+
+    printCongurateWinner(result) {
+        alert(result + " 축하드립니다!");
+    }
 }
