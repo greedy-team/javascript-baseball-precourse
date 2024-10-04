@@ -9,10 +9,7 @@ export default class NumberUtils {
 
     validateNumbers(userInput) {
         // [1-9] 1부터 9의 숫자, {3} 3자리 수를 의미
-        if (!/^[1-9]{3}$/.test(userInput)) {
-            return false;
-        }
-        return true;
+        return /^[1-9]{3}$/.test(userInput);
     }
 
     isPlayerWinner(result) {
