@@ -14,7 +14,7 @@ export default class BaseballGameController {
     endGame(result) {
         setTimeout(function() {
             alert(result + " 축하드립니다!");
-        }, 1);
+        });
 
         this.BaseballGameView.toggleButtons(false);
 
