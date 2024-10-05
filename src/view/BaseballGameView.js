@@ -1,4 +1,3 @@
-const restartButton = document.querySelector('#game-restart-button');
 export default class BaseballGameView {
   constructor() {
     this.userInput = document.querySelector('#user-input');
