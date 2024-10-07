@@ -1,6 +1,6 @@
 export function ValidateNum(input) { //모델 
   let setinput = new Set(input);
-  if (isNaN(Number(input)) || input.includes("0")|| setinput.size !=3 || input.length !== 3) {
+  if (isNaN(Number(input)) || input.includes("0")|| setinput.size !==3 || input.length !== 3) {
     return false;
   }
   return true;
