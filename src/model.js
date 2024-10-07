@@ -24,12 +24,9 @@ export function play(UserNum,ComNum) { //모델
 }
 
 export function getRandomNum() { // 랜덤한 수 받기  //모델
-  while(true){
-    let ComNum = MissionUtils.Random.pickNumberInRange(100,999);
-    ComNum=String(ComNum);
-    if(ValidateNum(ComNum)){
-      return ComNum;
-      break;
-    }
+  let ComNum = new Set();
+  while(ComNum.size!==3){
+    ComNum.add(MissionUtils.Random.pickNumberInRange(1,9));
   }
+  return Array.from(ComNum).map(String).join('');
 }
