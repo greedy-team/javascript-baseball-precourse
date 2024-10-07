@@ -1,18 +1,18 @@
-export function ValidateNum(input) { //모델 
-  let setinput = new Set(input);
-  if (isNaN(Number(input)) || input.includes("0")|| setinput.size !==3 || input.length !== 3) {
+export function validateNum(input) { //모델 
+  let setInput = new Set(input);
+  if (isNaN(Number(input)) || input.includes("0")|| setInput.size !==3 || input.length !== 3) {
     return false;
   }
   return true;
 }
 
-export function play(UserNum,ComNum) { //모델
+export function play(userNum,comNum) { //모델
   let strike = 0
   let ball = 0;
   for(let i =0;i<3;i++){
-    if(UserNum[i]==ComNum[i])
+    if(userNum[i]==comNum[i])
       strike+=1;
-    else if(ComNum.includes(UserNum[i]))
+    else if(comNum.includes(userNum[i]))
       ball+=1;
   }
 
@@ -24,9 +24,9 @@ export function play(UserNum,ComNum) { //모델
 }
 
 export function getRandomNum() { // 랜덤한 수 받기  //모델
-  let ComNum = new Set();
-  while(ComNum.size!==3){
-    ComNum.add(MissionUtils.Random.pickNumberInRange(1,9));
+  let comNum = new Set();
+  while(comNum.size!==3){
+    comNum.add(MissionUtils.Random.pickNumberInRange(1,9));
   }
-  return Array.from(ComNum).map(String).join('');
+  return Array.from(comNum).map(String).join('');
 }
