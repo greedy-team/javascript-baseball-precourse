@@ -60,7 +60,7 @@ function compareInputWithAnswer(){
 
 function checkUserInput(userInput){
     let flag = isNaN(userInput); //isNaN = 숫자입력되면 false
-    if(flag === true || userInput.length>3){
+    if(flag === true || userInput.length!=3){
         alert("잘못된 값을 입력했습니다.");
         return true;
     }
