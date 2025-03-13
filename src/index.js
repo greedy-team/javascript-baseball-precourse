@@ -25,6 +25,9 @@ function play(event){
     event.preventDefault(); //새로고침 되는거 막아줌
     userInput = document.getElementById("user-input").value;
     // console.log(userInput);
+    if(checkUserInput(userInput)){
+        return;
+    }
 
     let strikeCount = 0;
     let ballCount = 0;
@@ -42,11 +45,19 @@ function play(event){
     if(r==="3스트라이크"){
         displayGameover();
     }
-    else{
+    else {
         console.log(r);
         displayResult(r);
     }
     
+}
+
+function checkUserInput(userInput){
+    let flag = isNaN(userInput); //isNaN = 숫자입력되면 false
+    if(flag === true || userInput.length>3){
+        alert("잘못된 값을 입력했습니다.");
+        return true;
+    }
 }
 
 function result (strikeCount, ballCount){
