@@ -15,9 +15,13 @@ const generateRandomNumbers = () => {
   return [...numbers];
 };
 
-const initResult = () => {
+const clearResult = () => {
   resultElement.innerHTML = "";
   hideRestartButton();
+};
+
+const clearInput = () => {
+  userInputElement.value = "";
 };
 
 const initEventListeners = () => {
@@ -31,14 +35,14 @@ const initEventListeners = () => {
 
 const gameStart = () => {
   computerNumbers = generateRandomNumbers();
-  initResult();
+  clearResult();
   initEventListeners();
 };
 
 const handleUserInput = () => {
   const userInput = userInputElement.value;
   if (!isValidInput(userInput)) {
-    alert("잘못된 입력입니다! 1~9까지의 수를 중복없이 3개 입력해주세요.");
+    alert("⚠️ 잘못된 입력입니다! 1~9까지의 수를 중복없이 3개 입력해주세요.");
     return;
   }
 
@@ -62,8 +66,8 @@ const isValidInput = (input) => /^[1-9]{3}$/.test(input) && new Set(input).size 
 
 const restartGame = () => {
   computerNumbers = generateRandomNumbers();
-  userInputElement.value = "";
-  initResult();
+  clearInput();
+  clearResult();
 };
 
 const showRestartButton = () => {
