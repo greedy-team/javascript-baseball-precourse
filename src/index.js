@@ -40,10 +40,11 @@ function play(event){
 
     const r = result(strikeCount, ballCount);
     if(r==="3스트라이크"){
-        // gameover();
+        displayGameover();
     }
     else{
         console.log(r);
+        displayResult(r);
     }
     
 }
@@ -65,7 +66,32 @@ function result (strikeCount, ballCount){
 }
 
 
+function displayGameover(){
+    document.querySelector("#result").style.display = "none";
+    document.querySelector(".success").style.display = "block";
 
+    const submitBtn = document.querySelector("#submit");
+    submitBtn.disabled = true; 
+   // 종료시 확인 버튼 멈추기
+
+    const restart = document.querySelector("#game-restart-button");
+    restart.addEventListener("click", replay);
+}
+
+function displayResult(r) {
+    let gameResult = document.querySelector("#result");
+    gameResult.style.display = "block";
+    gameResult.textContent = r;
+}
+
+function replay(){
+
+    const submitBtn = document.querySelector("#submit");
+    submitBtn.disabled = false;
+    
+    document.querySelector(".success").style.display = "none";
+    
+    appStart();
+}
 
 appStart();
-
