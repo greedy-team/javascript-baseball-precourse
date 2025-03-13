@@ -41,3 +41,60 @@ function vaildTypedNumber() {
     if(vaildInput.length !== 3) return false;
     return vaildInput.split("");
 }
+
+// 스트라이크 카운팅 함수
+function countStrike(pitcher, batter) {
+    let count = 0;
+
+    for(let i = 0; i < 3; i++) {
+        if (pitcher[i] === batter[i]) count++;
+    }
+
+    return count;
+}
+
+// 볼 카운팅 함수
+function countBall(pitcher, batter) {
+    let count = 0;
+
+    for(let i = 0; i < 3; i++) {
+        let newBatter = batter.filter((_, index) => index != i);
+        if(newBatter.includes(pitcher[i])) count++;
+    }
+
+    return count;
+}
+
+// 오답 힌트 판별 함수
+function play(pitcher, batter) {
+    let strike = countStrike(pitcher, batter);
+    let ball = countBall(pitcher, batter);
+
+    if (strike == 3) successJudge();
+    else if((strike + ball) == 0) return "낫싱";
+    else if (strike == 0) return `${ball}볼`;
+    else if (ball == 0) return `${strike}스트라이크 `;
+    else return `${ball}볼 ${strike}스트라이크`;
+}
+
+// 정답 메시지 함수
+function successJudge() {
+    restartBt.style.display = "block";
+    resultMessage.innerHTML = `🎉<strong>정답을 맞추셨습니다</strong>🎉<br><br>게임을 다시 시작하시겠습니까?<br><br>`
+}
+
+// "확인"버튼, 게임 플레이 함수
+function start() {
+    const batter = vaildTypedNumber();
+
+    if(!batter) {
+        alert("올바른 숫자를 입력해주세요!");
+        return;
+    }
+
+    const message = play(pitcher, batter);
+
+    if(message !== undefined) {
+        resultMessage.innerText = message;
+    }
+}
