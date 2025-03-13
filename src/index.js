@@ -23,3 +23,21 @@ function findVaildNumber(vaildString, randomNumber) {
     if(vaildString.includes(randomNumber)) return vaildString;
     else return vaildString.concat(randomNumber);
 }
+
+// 사용자의 입력 유효성 검사
+function vaildTypedNumber() {
+    const input = document.getElementById("user-input").value.split("");
+    let vaildInput = "";
+    for(let i = 0; i < input.length; i++) {
+        // 숫자인지 검사
+        if(isNaN(Number(input[i]))) {
+            console.log(Number(input[i]));
+            return false
+        };
+        // 숫자 중복 검사
+        vaildInput = findVaildNumber(vaildInput, input[i]);
+    }
+    // 3자리 숫자인지 검사
+    if(vaildInput.length !== 3) return false;
+    return vaildInput.split("");
+}
