@@ -98,3 +98,23 @@ function start() {
         resultMessage.innerText = message;
     }
 }
+
+// 게임 초기화 함수
+function restart() {
+    pitcher = randomString();
+    document.getElementById("user-input").value = "";
+    resultMessage.innerHTML = "";
+    restartBt.style.display = "none";
+}
+
+// "확인"버튼 클릭 시
+button.addEventListener("click", function(e) {
+    e.preventDefault();
+    start();
+})
+
+// "재시작"버튼 클릭 시
+restartBt.addEventListener("click", function(e) {
+    e.preventDefault();
+    restart();
+})
