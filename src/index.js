@@ -21,6 +21,9 @@ function createNewNumbers(){
     return numbers; //문자열
 }
 
+let strikeCount;
+let ballCount;
+
 function play(event){
     event.preventDefault(); //새로고침 되는거 막아줌
     userInput = document.getElementById("user-input").value;
@@ -29,8 +32,21 @@ function play(event){
         return;
     }
 
-    let strikeCount = 0;
-    let ballCount = 0;
+    compareInputWithAnswer();
+
+    const r = result(strikeCount, ballCount);
+    if(r==="3스트라이크"){
+        displayGameover();
+    }
+    else {
+        // console.log(r);
+        displayResult(r);
+    }
+}
+
+function compareInputWithAnswer(){
+    strikeCount=0;
+    ballCount=0;
 
     for(let i=0;i<3;i++){
         if(userInput[i] === computerNumbers[i]){  //스트라이크
@@ -40,16 +56,6 @@ function play(event){
             ballCount++;
         }
     }
-
-    const r = result(strikeCount, ballCount);
-    if(r==="3스트라이크"){
-        displayGameover();
-    }
-    else {
-        console.log(r);
-        displayResult(r);
-    }
-    
 }
 
 function checkUserInput(userInput){
