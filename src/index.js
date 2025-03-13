@@ -65,3 +65,36 @@ function isDuplicate(inputNumber) {
     const uniqueChars = new Set(inputNumber);
     return uniqueChars.size == inputNumber.length;
 }
+
+function clickOkButton(randomNumber) {
+    document.getElementById('submit').addEventListener('click', function (e) {
+        e.preventDefault();
+        let inputNumber = document.getElementById('user-input').value;
+        if (!isValidInput(inputNumber)) {
+            return;
+        }
+        let result = play(inputNumber, randomNumber);
+        document.getElementById('result').innerHTML = result;
+    });
+}
+
+function clickRestartButton(randomNumber) {
+    document.getElementById('game-restart-button').addEventListener('click', function (e) {
+        e.preventDefault();
+        randomNumber = randomString();
+        document.getElementById('user-input').value = '';
+        document.getElementById('result').innerHTML = '';
+        alert("게임이 재시작되었습니다!");
+        showRestartButton();
+    });
+}
+
+function showRestartButton() {
+    const restartButton = document.getElementById('game-restart-button');
+    if (restartButton.hidden) {
+        restartButton.hidden = false;
+    }
+    else {
+        restartButton.hidden = true;
+    }
+}
