@@ -98,3 +98,11 @@ function showRestartButton() {
         restartButton.hidden = true;
     }
 }
+
+function baseballGame() {
+    let randomNumber = randomString();
+    clickOkButton(randomNumber);
+    clickRestartButton(randomNumber);
+}
+
+baseballGame();
