@@ -9,7 +9,7 @@ export function appStart(){
     form.addEventListener("submit", (event) =>{
         event.preventDefault(); //새로고침 되는거 막아줌
         let userInput = document.getElementById("user-input").value;
-        game.play(userInput);
+        game.gamePlay(userInput);
     });
 }
 

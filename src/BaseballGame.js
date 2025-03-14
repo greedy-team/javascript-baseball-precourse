@@ -5,6 +5,7 @@ export default class BaseballGame{
     constructor(){
         this.computerNumbers = this.createNewNumbers();
     }
+
     createNewNumbers(){
 
         let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3);
@@ -14,7 +15,7 @@ export default class BaseballGame{
         return numbers; //문자열
     }
 
-    play(userInput){
+    gamePlay(userInput){
         // console.log(userInput);
         if(this.checkUserInput(userInput)){
             return ;    //숫자 아니면 끝내기
@@ -41,11 +42,11 @@ export default class BaseballGame{
             }
         }
     
-        const res = this.result(strikeCount, ballCount);
+        const res = this.play(strikeCount, ballCount);
         return res;
     }
 
-    result (strikeCount, ballCount){
+    play (strikeCount, ballCount){
         let result = "";
     
         if(ballCount>0){
