@@ -58,7 +58,7 @@ export function isValidInput(inputNumber) {
 }
 
 function isNumeric(inputNumber) {
-    return /^[0-9]+$/.test(inputNumber);
+    return /^[1-9]+$/.test(inputNumber);
 }
 
 function isDuplicate(inputNumber) {
