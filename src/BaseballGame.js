@@ -7,13 +7,20 @@ export default class BaseballGame{
     }
 
     createNewNumbers(){
+        let numbers = [];
+            while (numbers.length < 3) {
+                let num = MissionUtils.Random.pickNumberInRange(1,9);
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            // let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3);
+            numbers = numbers.join("");
+            console.log(numbers);
 
-        let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3);
-        numbers = numbers.join("");
-    
-        console.log(numbers);
         return numbers; //문자열
     }
+    
 
     gamePlay(userInput){
         // console.log(userInput);
