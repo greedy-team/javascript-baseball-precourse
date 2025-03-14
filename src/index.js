@@ -28,6 +28,8 @@ function gameStart(event) {
         return;
     }
     const message = new BaseballGame().play(answer, user);
+    showMessage(message);
+}
 
 function checkValidation(value) {
     if(!checkIsNumber(value)) return false; 
@@ -47,6 +49,15 @@ function checkDuplicate(value) {
 function checkNumberLength(value) {
     return value.length === 3;
 }
+
+function showMessage(message) {
+    if(message === "🎉정답을 맞추셨습니다🎉") {
+        resultMessage.innerHTML = `🎉<strong>정답을 맞추셨습니다</strong>🎉<br><br>게임을 다시 시작하시겠습니까?<br><br>`; 
+        showRestartButton();
+    }
+    else {
+        resultMessage.textContent = message;
+    }
 }
 
 function showRestartButton() {
