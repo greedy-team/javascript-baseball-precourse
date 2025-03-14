@@ -1,5 +1,5 @@
 //UI 업데이트
-import {replay} from"./index.js"
+import {appStart} from"./index.js"
 
 export function displayGameover(){
     document.querySelector("#result").style.display = "none";
@@ -22,4 +22,12 @@ export function displayResult(result) {
     gameResult.textContent = result;
 }
 
+function replay(){
 
+    const submitBtn = document.querySelector("#submit");
+    submitBtn.disabled = false;
+    
+    document.querySelector(".success").style.display = "none";
+    
+    appStart();
+}
