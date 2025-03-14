@@ -1,3 +1,5 @@
+import BaseballGame from "./BaseBallGame.js";
+
 const userInput = document.querySelector("#user-input");
 const submitButton = document.querySelector("#submit");
 const resultMessage = document.querySelector("#result");
@@ -25,6 +27,7 @@ function gameStart(event) {
         alert("잘못된 값을 입력했습니다! 다시 입력해주세요.");
         return;
     }
+    const message = new BaseballGame().play(answer, user);
 
 function checkValidation(value) {
     if(!checkIsNumber(value)) return false; 
