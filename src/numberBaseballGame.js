@@ -8,8 +8,14 @@ restartBt.style.display = "none";
 
 // 정답 메시지 함수
 export function successJudge() {
+    // bold체를 위한 요소 생성
+    const strong = document.createElement("strong");    
     restartBt.style.display = "block";
-    resultMessage.innerHTML = `🎉<strong>정답을 맞추셨습니다</strong>🎉<br><br>게임을 다시 시작하시겠습니까?<br><br>`
+
+    strong.innerText = "🎉정답을 맞추셨습니다🎉";
+    resultMessage.innerText = ""
+    resultMessage.appendChild(strong);
+    resultMessage.innerText += "\n게임을 다시 시작하시겠습니까?\n"
 }
 
 // "확인"버튼, 게임 플레이 함수
@@ -31,6 +37,6 @@ export function start(pitcher) {
 // 게임 초기화 함수
 export function restart() {
     document.getElementById("user-input").value = "";
-    resultMessage.innerHTML = "";
+    resultMessage.innerText = "";
     restartBt.style.display = "none";
 }
