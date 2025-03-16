@@ -32,7 +32,7 @@ export function play(pitcher, batter) {
 function countStrike(pitcher, batter) {
     let count = 0;
     for (let i = 0; i < 3; i++) {
-        if (pitcher[i] === batter[i]) {
+        if (pitcher[i] == batter[i]) {
             count++;
         }
     }
