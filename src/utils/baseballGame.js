@@ -11,9 +11,8 @@ function findValidNumber(validString, randomNumber) {
     if (validString.includes(randomNumber)) {
         return validString;
     }
-    else {
-        return validString + randomNumber;
-    }
+    return validString + randomNumber;
+
 }
 
 export function play(stringRandomNumber, stringInputNumber) {
@@ -26,7 +25,7 @@ export function play(stringRandomNumber, stringInputNumber) {
     else if ((strike + ball) == 0) { return "낫싱"; }
     else if (ball == 0) { return `${strike}스트라이크`; }
     else if (strike == 0) { return `${ball}볼`; }
-    else { return `${ball}볼 ${strike}스트라이크`; }
+    return `${ball}볼 ${strike}스트라이크`;
 }
 
 function countStrike(stringRandomNumber, stringInputNumber) {
@@ -71,9 +70,7 @@ export function showRestartButton() {
     if (restartButton.hidden) {
         restartButton.hidden = false;
     }
-    else {
-        restartButton.hidden = true;
-    }
+    restartButton.hidden = true;
 }
 
 export function baseballGame() {
