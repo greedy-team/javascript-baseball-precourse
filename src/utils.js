@@ -3,7 +3,7 @@ import { successJudge } from "./numberBaseballGame.js";
 // 숫자의 중복 검사 함수
 function findVaildNumber(vaildString, randomNumber) {
     if(vaildString.includes(randomNumber)) return vaildString;
-    else return vaildString.concat(randomNumber);
+    return vaildString.concat(randomNumber);
 }
 
 // 컴퓨터의 랜덤 숫자 생성 함수
@@ -21,10 +21,9 @@ export function randomString() {
 export function vaildTypedNumber() {
     const input = document.getElementById("user-input").value.split("");
     let vaildInput = "";
-    for(let i = 0; i < input.length; i++) {
+    for(let i = 0; i < input.length; i+=1) {
         // 숫자인지 검사
         if(isNaN(Number(input[i]))) {
-            console.log(Number(input[i]));
             return false
         };
         // 숫자 중복 검사
@@ -40,7 +39,7 @@ export function vaildTypedNumber() {
 function countStrike(pitcher, batter) {
     let count = 0;
 
-    for(let i = 0; i < 3; i++) {
+    for(let i = 0; i < 3; i+=1) {
         if (pitcher[i] === batter[i]) count++;
     }
 
@@ -51,7 +50,7 @@ function countStrike(pitcher, batter) {
 function countBall(pitcher, batter) {
     let count = 0;
 
-    for(let i = 0; i < 3; i++) {
+    for(let i = 0; i < 3; i+=1) {
         let newBatter = batter.filter((_, index) => index != i);
         if(newBatter.includes(pitcher[i])) count++;
     }
@@ -64,9 +63,9 @@ export function play(pitcher, batter) {
     let strike = countStrike(pitcher, batter);
     let ball = countBall(pitcher, batter);
 
-    if (strike == 3) successJudge();
-    else if((strike + ball) == 0) return "낫싱";
-    else if (strike == 0) return `${ball}볼`;
-    else if (ball == 0) return `${strike}스트라이크 `;
+    if (strike === 3) successJudge();
+    else if((strike + ball) === 0) return "낫싱";
+    else if (strike === 0) return `${ball}볼`;
+    else if (ball === 0) return `${strike}스트라이크 `;
     else return `${ball}볼 ${strike}스트라이크`;
 }
