@@ -17,8 +17,8 @@ function findValidNumber(validString, randomNumber) {
 }
 
 export function play(stringRandomNumber, stringInputNumber) {
-    let strike = countStrike(stringRandomNumber, stringInputNumber);
-    let ball = countBall(stringRandomNumber, stringInputNumber);
+    const strike = countStrike(stringRandomNumber, stringInputNumber);
+    const ball = countBall(stringRandomNumber, stringInputNumber);
     if (strike == 3) {
         showRestartButton();
         return `<span style="font-size: 18px; font-weight: bold;">🎉정답을 맞추셨습니다🎉</span><br><br><span style="font-size: 18px;">게임을 새로 시작하시겠습니까?<br></span>`;
@@ -77,7 +77,7 @@ export function showRestartButton() {
 }
 
 export function baseballGame() {
-    let randomNumber = randomString();
+    const randomNumber = randomString();
     clickOkButton(randomNumber);
     clickRestartButton(randomNumber);
 }
@@ -85,11 +85,11 @@ export function baseballGame() {
 function clickOkButton(randomNumber) {
     document.getElementById('submit').addEventListener('click', function (e) {
         e.preventDefault();
-        let inputNumber = document.getElementById('user-input').value;
+        const inputNumber = document.getElementById('user-input').value;
         if (!isValidInput(inputNumber)) {
             return;
         }
-        let result = play(inputNumber, randomNumber);
+        const result = play(inputNumber, randomNumber);
         document.getElementById('result').innerHTML = result;
     });
 }
