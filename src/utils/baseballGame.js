@@ -16,9 +16,9 @@ function findValidNumber(validString, randomNumber) {
     }
 }
 
-export function play(pitcher, batter) {
-    let strike = countStrike(pitcher, batter);
-    let ball = countBall(pitcher, batter);
+export function play(stringRandomNumber, stringInputNumber) {
+    let strike = countStrike(stringRandomNumber, stringInputNumber);
+    let ball = countBall(stringRandomNumber, stringInputNumber);
     if (strike == 3) {
         showRestartButton();
         return `<span style="font-size: 18px; font-weight: bold;">🎉정답을 맞추셨습니다🎉</span><br><br><span style="font-size: 18px;">게임을 새로 시작하시겠습니까?<br></span>`;
@@ -29,20 +29,20 @@ export function play(pitcher, batter) {
     else { return `${ball}볼 ${strike}스트라이크`; }
 }
 
-function countStrike(pitcher, batter) {
+function countStrike(stringRandomNumber, stringInputNumber) {
     let count = 0;
     for (let i = 0; i < 3; i++) {
-        if (pitcher[i] == batter[i]) {
+        if (stringRandomNumber[i] == stringInputNumber[i]) {
             count++;
         }
     }
     return count;
 }
 
-function countBall(pitcher, batter) {
+function countBall(stringRandomNumber, stringInputNumber) {
     let count = 0;
     for (let i = 0; i < 3; i++) {
-        if (batter.includes(pitcher[i]) && pitcher[i] !== batter[i]) {
+        if (stringInputNumber.includes(stringRandomNumber[i]) && stringRandomNumber[i] !== stringInputNumber[i]) {
             count++;
         }
     }
