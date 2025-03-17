@@ -1,18 +1,19 @@
+import html from 'es6-string-html';
+
 export function randomString() {
     let validString = "";
     while (validString.length < 3) {
         const randomNumber = MissionUtils.Random.pickNumberInRange(1, 9);
-        validString = findValidNumber(validString, randomNumber);
+        validString = createUniqueNumberString(validString, randomNumber);
     }
     return validString;
 }
 
-function findValidNumber(validString, randomNumber) {
+function createUniqueNumberString(validString, randomNumber) {
     if (validString.includes(randomNumber)) {
         return validString;
     }
     return validString + randomNumber;
-
 }
 
 export function play(stringRandomNumber, stringInputNumber) {
@@ -20,7 +21,8 @@ export function play(stringRandomNumber, stringInputNumber) {
     const ball = countBall(stringRandomNumber, stringInputNumber);
     if (strike === 3) {
         showRestartButton();
-        return `<span style="font-size: 18px; font-weight: bold;">🎉정답을 맞추셨습니다🎉</span><br><br><span style="font-size: 18px;">게임을 새로 시작하시겠습니까?<br></span>`;
+        return html`<span style="font-size: 18px; font-weight: bold;">🎉정답을 맞추셨습니다🎉</span><br><br><span style="font-size: 18px;">게임을 새로 시작하시겠습니까?<br></span>
+        `;
     }
     else if ((strike + ball) === 0) { return "낫싱"; }
     else if (ball === 0) { return `${strike}스트라이크`; }
@@ -79,7 +81,7 @@ export function baseballGame() {
     clickRestartButton(randomNumber);
 }
 
-function clickkButton(randomNumber) {
+function clickOkButton(randomNumber) {
     document.getElementById('submit').addEventListener('click', function (e) {
         e.preventDefault();
         const inputNumber = document.getElementById('user-input').value;
