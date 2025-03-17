@@ -14,13 +14,13 @@ function initGame() {
 initGame();
 
 // "확인"버튼 클릭 시
-button.addEventListener("click", function(e) {
+button.addEventListener("click", (e) => {
     e.preventDefault();
     start(pitcher);
 })
 
 // "재시작"버튼 클릭 시
-restartBt.addEventListener("click", function(e) {
+restartBt.addEventListener("click", (e) => {
     e.preventDefault();
     initGame();
     restart();
