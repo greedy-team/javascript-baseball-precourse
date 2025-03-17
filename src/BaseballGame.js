@@ -28,7 +28,7 @@ export default class BaseballGame{
             return ;    //숫자 아니면 끝내기
         }
     
-        let result = this.compareInputWithAnswer(userInput);
+        const result = this.compareInputWithAnswer(userInput);
         
         if(result==="3스트라이크"){
             displayGameover();
@@ -57,25 +57,28 @@ export default class BaseballGame{
         let result = "";
     
         if(ballCount>0){
-            result += ballCount+"볼 ";
+            return result += ballCount+"볼 ";
         }
         if(strikeCount>0){
-            result += strikeCount+"스트라이크";
+            return result += strikeCount+"스트라이크";
         }
-        if(ballCount === 0 && strikeCount === 0){
-            result = "낫싱";
-        }
-    
-        return result;
+        return result = "낫싱";
     }
 
     checkUserInput(userInput){
-        let flag = isNaN(userInput); //isNaN = 숫자입력되면 false
-        if(flag || userInput.length!=3){
-            alert("잘못된 값을 입력했습니다.");
+        const flag = isNaN(userInput); //isNaN = 숫자입력되면 false
+        if(flag){
+            alert("잘못된 값을 입력했습니다.\n숫자를 입력해주세요.");
+            return true;
+        }
+        if(userInput.length!==3){
+            alert("잘못된 값을 입력했습니다.\n세자리 숫자를 입력해주세요");
+            return true;
+        }
+        if(new Set(userInput).size !== 3){
+            alert("잘못된 값을 입력했습니다.\n중복되지않는 세자리 숫자를 입력해주세요.");
             return true;
         }
         return false;
     }
-
 }
