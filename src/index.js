@@ -6,19 +6,10 @@ const submitButton = document.querySelector('#submit');
 const resultMessage = document.querySelector('#result');
 const restartButton = document.querySelector('#game-restart-button');
 
-let answer = createRandomNumber();
+const game = new BaseballGame();
 
 submitButton.addEventListener('click', gameStart);
 restartButton.addEventListener('click', restartGame);
-
-function createRandomNumber() {
-    const numbers = [];
-    while (numbers.length < 3) {
-        const num = MissionUtils.Random.pickNumberInRange(1, 9);
-        if (!numbers.includes(num)) numbers.push(num);
-    }
-    return numbers.join("");
-}
 document.getElementById('user-input').focus();
 
 function gameStart(event) {
@@ -29,7 +20,7 @@ function gameStart(event) {
         alert("잘못된 값을 입력했습니다! 다시 입력해주세요.");
         return;
     }
-    const message = new BaseballGame().play(answer, user);
+    const message = game.play(user);
     showMessage(message);
 }
 
@@ -75,8 +66,8 @@ function showSubmitButton() {
 }
 
 function restartGame() {
-    answer = createRandomNumber();
     showSubmitButton();
+    game.setAnswer();
     resultMessage.innerHTML = '';
     userInput.value = '';
 }

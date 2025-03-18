@@ -1,13 +1,36 @@
 import { CORRECT, NOTHING, NUMBER_OF_MAXIMUM_LENGTH, STRIKE_COUNTS_FOR_ANSWER } from './constants.js';
 
 export default class BaseballGame {
-    play(answer, user) {
+    #answer;
+
+    constructor() {
+        this.setAnswer();
+    }
+
+    setAnswer() {
+        this.#answer = this.#createRandomNumberToString();
+    }
+
+    getAnswer() {
+        return this.#answer;
+    }
+
+    #createRandomNumberToString() {
+        const numbers = [];
+        while (numbers.length < NUMBER_OF_MAXIMUM_LENGTH) {
+            const num = MissionUtils.Random.pickNumberInRange(1, 9);
+            if (!numbers.includes(num)) numbers.push(num);
+        }
+        return numbers.join('');
+    }
+
+    play(user) {
         let strike = 0;
         let ball = 0;
 
-        for (let i = 0; i < 3; i++) {
-            if (answer[i] === user[i]) strike++;
-            else if (user.includes(answer[i])) ball++;
+        for (let i = 0; i < NUMBER_OF_MAXIMUM_LENGTH; i++) {
+            if (this.#answer[i] === user[i]) strike++;
+            else if (user.includes(this.#answer[i])) ball++;
         }
         return this.getResultMessage(strike, ball);
     }
