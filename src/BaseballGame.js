@@ -23,7 +23,6 @@ export default class BaseballGame{
     
 
     handleUserInput(userInput){
-        // console.log(userInput);
         if(this.checkUserInput(userInput)){
             return ;
         }
@@ -33,7 +32,6 @@ export default class BaseballGame{
         if(comparisionResult==="3스트라이크"){
             displaySuccessMessage();
         }else {
-            // console.log(result);
             displayResultMessage(comparisionResult);
         }
     }
@@ -49,8 +47,7 @@ export default class BaseballGame{
             }
         }
     
-        const resultMessage = this.play(strikeCount, ballCount);
-        return resultMessage;
+        return this.play(strikeCount, ballCount);
     }
 
     play (strikeCount, ballCount){
