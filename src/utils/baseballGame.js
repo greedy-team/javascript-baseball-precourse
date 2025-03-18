@@ -4,7 +4,6 @@ export function createUniqueNumberString() {
         const randomNumber = MissionUtils.Random.pickNumberInRange(1, 9);
         validString = addUniqueNumberToString(validString, randomNumber);
     }
-    console.log(validString);
     return validString;
 }
 
