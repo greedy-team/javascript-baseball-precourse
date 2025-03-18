@@ -1,14 +1,14 @@
-export function getUniqueRandomString() {
+export function createUniqueNumberString() {
     let validString = "";
     while (validString.length < 3) {
         const randomNumber = MissionUtils.Random.pickNumberInRange(1, 9);
-        validString = createUniqueNumberString(validString, randomNumber);
+        validString = addUniqueNumberToString(validString, randomNumber);
     }
     console.log(validString);
     return validString;
 }
 
-function createUniqueNumberString(validString, randomNumber) {
+function addUniqueNumberToString(validString, randomNumber) {
     if (validString.includes(randomNumber)) {
         return validString;
     }
@@ -75,7 +75,7 @@ export function showRestartButton() {
 }
 
 export function baseballGame() {
-    const randomNumber = getUniqueRandomString();
+    const randomNumber = createUniqueNumberString();
     setOkButtonClickEvent(randomNumber);
     clickRestartButton(randomNumber);
 }
@@ -101,7 +101,7 @@ function clickRestartButton(randomNumber) {
     const $result = document.getElementById('result');
     $restartButton.addEventListener('click', function (e) {
         e.preventDefault();
-        randomNumber = getUniqueRandomString();
+        randomNumber = createUniqueNumberString();
         $userInput.value = '';
         $result.innerHTML = '';
         alert("게임이 재시작되었습니다!");
