@@ -1,11 +1,10 @@
-import html from 'es6-string-html';
-
 export function randomString() {
     let validString = "";
     while (validString.length < 3) {
         const randomNumber = MissionUtils.Random.pickNumberInRange(1, 9);
         validString = createUniqueNumberString(validString, randomNumber);
     }
+    console.log(validString);
     return validString;
 }
 
@@ -21,7 +20,7 @@ export function play(stringRandomNumber, stringInputNumber) {
     const ball = countBall(stringRandomNumber, stringInputNumber);
     if (strike === 3) {
         showRestartButton();
-        return html`<span style="font-size: 18px; font-weight: bold;">🎉정답을 맞추셨습니다🎉</span><br><br><span style="font-size: 18px;">게임을 새로 시작하시겠습니까?<br></span>
+        return `<span style="font-size: 18px; font-weight: bold;">🎉정답을 맞추셨습니다🎉</span><br><br><span style="font-size: 18px;">게임을 새로 시작하시겠습니까?<br></span>
         `;
     }
     else if ((strike + ball) === 0) { return "낫싱"; }
@@ -69,10 +68,10 @@ function isDuplicate(inputNumber) {
 
 export function showRestartButton() {
     const $restartButton = document.getElementById('game-restart-button');
-    if ($restartButton.hidden) {
-        $restartButton.hidden = false;
+    if (!$restartButton.hidden) {
+        $restartButton.hidden = true;
     }
-    $restartButton.hidden = true;
+    $restartButton.hidden = false;
 }
 
 export function baseballGame() {
@@ -106,6 +105,6 @@ function clickRestartButton(randomNumber) {
         $userInput.value = '';
         $result.innerHTML = '';
         alert("게임이 재시작되었습니다!");
-        showRestartButton();
+        $restartButton.hidden = true;
     });
 }
