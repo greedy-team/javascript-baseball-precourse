@@ -16,31 +16,40 @@ function gameStart(event) {
     event.preventDefault();
 
     const user = userInput.value.trim();
-    if (!checkValidation(user)) {
-        alert("잘못된 값을 입력했습니다! 다시 입력해주세요.");
+    const messages = [];
+
+    if (!checkUserInputValidation(user, messages)) {
+        showAlertMessage(messages);
         return;
     }
     const message = game.play(user);
     showMessage(message);
 }
 
-function checkValidation(value) {
-    if(!checkIsNumber(value)) return false; 
-    if(!checkDuplicate(value)) return false;
-    if(!checkNumberLength(value)) return false;
-    return true;
+function showAlertMessage(messages) {
+    const message = messages.join('');
+    alert(`${message}` + INPUT_AGAIN_MESSAGE);
 }
 
-function checkIsNumber(value) {
-    return /^[1-9]{3}$/.test(value);    
+function checkUserInputValidation(value, messages) {
+    let isValid = true;
+    if (!checkStringLengthIsThree(value)) {
+        if (!messages.includes(STRING_LENGTH_ERROR_MESSAGE)) messages.push(STRING_LENGTH_ERROR_MESSAGE);
+        isValid = false;
+    }
+    if (!checkDuplicate(value)) {
+        if (!messages.includes(DUPLICATE_ERROR_MESSAGE)) messages.push(DUPLICATE_ERROR_MESSAGE);
+        isValid = false;
+    }
+    return isValid;
+}
+
+function checkStringLengthIsThree(value) {
+    return /^[1-9]{3}$/.test(value);
 }
 
 function checkDuplicate(value) {
-    return new Set(value).size === 3;
-}
-
-function checkNumberLength(value) {
-    return value.length === 3;
+    return new Set(value).size === value.length;
 }
 
 function showMessage(message) {
