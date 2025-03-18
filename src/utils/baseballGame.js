@@ -68,11 +68,11 @@ function isDuplicate(inputNumber) {
 }
 
 export function showRestartButton() {
-    const restartButton = document.getElementById('game-restart-button');
-    if (restartButton.hidden) {
-        restartButton.hidden = false;
+    const $restartButton = document.getElementById('game-restart-button');
+    if ($restartButton.hidden) {
+        $restartButton.hidden = false;
     }
-    restartButton.hidden = true;
+    $restartButton.hidden = true;
 }
 
 export function baseballGame() {
@@ -82,23 +82,29 @@ export function baseballGame() {
 }
 
 function clickOkButton(randomNumber) {
-    document.getElementById('submit').addEventListener('click', function (e) {
+    const $submitButton = document.getElementById('submit');
+    const $userInput = document.getElementById('user-input');
+    const $result = document.getElementById('result');
+    $submitButton.addEventListener('click', function (e) {
         e.preventDefault();
-        const inputNumber = document.getElementById('user-input').value;
+        const inputNumber = $userInput.value;
         if (!isValidInput(inputNumber)) {
             return;
         }
         const result = play(inputNumber, randomNumber);
-        document.getElementById('result').innerHTML = result;
+        $result.innerHTML = result;
     });
 }
 
 function clickRestartButton(randomNumber) {
-    document.getElementById('game-restart-button').addEventListener('click', function (e) {
+    const $restartButton = document.getElementById('game-restart-button');
+    const $userInput = document.getElementById('user-input');
+    const $result = document.getElementById('result');
+    $restartButton.addEventListener('click', function (e) {
         e.preventDefault();
         randomNumber = randomString();
-        document.getElementById('user-input').value = '';
-        document.getElementById('result').innerHTML = '';
+        $userInput.value = '';
+        $result.innerHTML = '';
         alert("게임이 재시작되었습니다!");
         showRestartButton();
     });
