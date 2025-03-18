@@ -7,7 +7,6 @@ export function displayGameover(){
 
     const submitBtn = document.querySelector("#submit");
     submitBtn.disabled = true; 
-   // 종료시 확인 버튼 멈추기
 
     const restart = document.querySelector("#game-restart-button");
     restart.addEventListener("click", (event)=>{

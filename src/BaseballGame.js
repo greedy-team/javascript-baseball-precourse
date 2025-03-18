@@ -14,18 +14,18 @@ export default class BaseballGame{
                     numbers.push(num);
                 }
             }
-            // let numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3);
+            
             numbers = numbers.join("");
             console.log(numbers);
 
-        return numbers; //문자열
+        return numbers;
     }
     
 
     gamePlay(userInput){
         // console.log(userInput);
         if(this.checkUserInput(userInput)){
-            return ;    //숫자 아니면 끝내기
+            return ;
         }
     
         const result = this.compareInputWithAnswer(userInput);
@@ -66,7 +66,7 @@ export default class BaseballGame{
     }
 
     checkUserInput(userInput){
-        const flag = isNaN(userInput); //isNaN = 숫자입력되면 false
+        const flag = isNaN(userInput);
         if(flag){
             alert("잘못된 값을 입력했습니다.\n숫자를 입력해주세요.");
             return true;
