@@ -1,4 +1,4 @@
-export function randomString() {
+export function getUniqueRandomString() {
     let validString = "";
     while (validString.length < 3) {
         const randomNumber = MissionUtils.Random.pickNumberInRange(1, 9);
@@ -75,12 +75,12 @@ export function showRestartButton() {
 }
 
 export function baseballGame() {
-    const randomNumber = randomString();
-    clickOkButton(randomNumber);
+    const randomNumber = getUniqueRandomString();
+    setOkButtonClickEvent(randomNumber);
     clickRestartButton(randomNumber);
 }
 
-function clickOkButton(randomNumber) {
+function setOkButtonClickEvent(randomNumber) {
     const $submitButton = document.getElementById('submit');
     const $userInput = document.getElementById('user-input');
     const $result = document.getElementById('result');
@@ -101,7 +101,7 @@ function clickRestartButton(randomNumber) {
     const $result = document.getElementById('result');
     $restartButton.addEventListener('click', function (e) {
         e.preventDefault();
-        randomNumber = randomString();
+        randomNumber = getUniqueRandomString();
         $userInput.value = '';
         $result.innerHTML = '';
         alert("게임이 재시작되었습니다!");
