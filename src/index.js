@@ -53,30 +53,30 @@ function checkDuplicate(value) {
 }
 
 function showMessage(message) {
-        showRestartButton();
     if (message === CORRECT) {
         resultMessage.innerHTML = '🎉<strong>정답을 맞추셨습니다</strong>🎉<br><br>게임을 다시 시작하시겠습니까?<br><br>';
+        toggleButtonState();
+        toggleUserInputState();
     }
     else {
         resultMessage.textContent = message;
     }
 }
 
-function showRestartButton() {
-    submitButton.disabled = true;
-    restartButton.disabled = false;
-    restartButton.style.display = "block";
+function toggleButtonState() {
+    submitButton.disabled = !submitButton.disabled;
+    restartButton.disabled = !restartButton.disabled;
+    restartButton.style.display = restartButton.style.display === 'none' ? 'block' : 'none';
 }
 
-function showSubmitButton() {
-    submitButton.disabled = false;
-    restartButton.disabled = true;
-    restartButton.style.display = "none";
+function toggleUserInputState() {
+    userInput.disabled = !userInput.disabled;
 }
 
 function restartGame() {
-    showSubmitButton();
     game.setAnswer();
     resultMessage.innerHTML = '';
     userInput.value = '';
+    toggleButtonState();
+    toggleUserInputState();
 }
