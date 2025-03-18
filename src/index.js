@@ -7,7 +7,33 @@ const userInputElement = document.querySelector("#user-input");
 let computerNumbers;
 const baseballGame = new BaseballGame();
 
-const isValidInput = (input) => /^[1-9]{3}$/.test(input) && new Set(input).size === 3;
+const isValidUserInput = (userInput) => {
+  if (/^$/.test(userInput)) { 
+    alert("⚠️ 빈 입력입니다.");
+    return false;
+  }
+  if (/\s/.test(userInput)) { 
+    alert("⚠️ 입력에 공백이 포함되어 있습니다.");
+    return false;
+  }
+  if (userInput.length > 3) {
+    alert("⚠️ 입력이 3자리를 초과합니다.");
+    return false;
+  }
+  if (userInput.length < 3) {
+    alert("⚠️ 입력이 3자리 미만입니다.");
+    return false;
+  }
+  if (!/^[1-9]{3}$/.test(userInput)) { 
+    alert("⚠️ 입력에 1~9 이외의 문자가 포함되어 있습니다.");
+    return false;
+  }
+  if (new Set(userInput).size !== 3) {
+    alert("⚠️ 중복된 숫자가 존재합니다.");
+    return false;
+  }
+  return true;
+};
 
 const generateRandomNumbers = () => {
   const numbers = new Set();
@@ -47,10 +73,7 @@ const updateGameResult = (result) => {
 
 const handleUserInput = () => {
   const userInput = userInputElement.value;
-  if (!isValidInput(userInput)) {
-    alert("⚠️ 잘못된 입력입니다! 1~9까지의 수를 중복 없이 3개 입력해주세요.");
-    return;
-  }
+  if (!isValidUserInput(userInput)) return;
 
   const userNumbers = userInput.split("").map(Number);
   const result = baseballGame.play(computerNumbers, userNumbers);
