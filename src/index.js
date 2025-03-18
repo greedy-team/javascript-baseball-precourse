@@ -19,6 +19,7 @@ function createRandomNumber() {
     }
     return numbers.join("");
 }
+document.getElementById('user-input').focus();
 
 function gameStart(event) {
     event.preventDefault();
