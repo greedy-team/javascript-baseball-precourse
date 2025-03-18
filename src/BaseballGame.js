@@ -1,40 +1,40 @@
 //게임진행
-import {displayGameover, displayResult} from "./GameView.js"
+import {displaySuccessMessage, displayResultMessage} from "./GameView.js"
 
 export default class BaseballGame{
     constructor(){
-        this.computerNumbers = this.createNewNumbers();
+        this.computerNumbers = this.getRandomNumberString();
     }
 
-    createNewNumbers(){
-        let numbers = [];
-            while (numbers.length < 3) {
+    getRandomNumberString(){
+        let randomNumber = [];
+            while (randomNumber.length < 3) {
                 let num = MissionUtils.Random.pickNumberInRange(1,9);
-                if (!numbers.includes(num)) {
-                    numbers.push(num);
+                if (!randomNumber.includes(num)) {
+                    randomNumber.push(num);
                 }
             }
             
-            numbers = numbers.join("");
-            console.log(numbers);
+            randomNumber = randomNumber.join("");
+            console.log(randomNumber);
 
-        return numbers;
+        return randomNumber;
     }
     
 
-    gamePlay(userInput){
+    handleUserInput(userInput){
         // console.log(userInput);
         if(this.checkUserInput(userInput)){
             return ;
         }
     
-        const result = this.compareInputWithAnswer(userInput);
+        const comparisionResult = this.compareInputWithAnswer(userInput);
         
-        if(result==="3스트라이크"){
-            displayGameover();
+        if(comparisionResult==="3스트라이크"){
+            displaySuccessMessage();
         }else {
             // console.log(result);
-            displayResult(result);
+            displayResultMessage(comparisionResult);
         }
     }
 
@@ -49,25 +49,28 @@ export default class BaseballGame{
             }
         }
     
-        const res = this.play(strikeCount, ballCount);
-        return res;
+        const resultMessage = this.play(strikeCount, ballCount);
+        return resultMessage;
     }
 
     play (strikeCount, ballCount){
-        let result = "";
+        let resultMessage = "";
     
         if(ballCount>0){
-            return result += ballCount+"볼 ";
+            resultMessage += ballCount+"볼 ";
         }
         if(strikeCount>0){
-            return result += strikeCount+"스트라이크";
+            resultMessage += strikeCount+"스트라이크";
         }
-        return result = "낫싱";
+        else{
+            resultMessage = "낫싱";
+        }
+        return resultMessage;
     }
 
     checkUserInput(userInput){
-        const flag = isNaN(userInput);
-        if(flag){
+        const isNotNumber = isNaN(userInput);
+        if(isNotNumber){
             alert("잘못된 값을 입력했습니다.\n숫자를 입력해주세요.");
             return true;
         }

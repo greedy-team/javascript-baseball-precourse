@@ -1,32 +1,32 @@
 //UI 업데이트
-import {appStart} from"./index.js"
+import {gameStart} from"./index.js"
 
-export function displayGameover(){
+export function displaySuccessMessage(){
     document.querySelector("#result").style.display = "none";
     document.querySelector(".success").style.display = "block";
 
     const submitBtn = document.querySelector("#submit");
     submitBtn.disabled = true; 
 
-    const restart = document.querySelector("#game-restart-button");
-    restart.addEventListener("click", (event)=>{
+    const replay = document.querySelector("#game-restart-button");
+    replay.addEventListener("click", (event)=>{
         event.preventDefault();
-        replay();
+        gameReplay();
     });
 }
 
-export function displayResult(result) {
+export function displayResultMessage(comparisionResult) {
     let gameResult = document.querySelector("#result");
     gameResult.style.display = "block";
-    gameResult.textContent = result;
+    gameResult.textContent = comparisionResult;
 }
 
-function replay(){
+function gameReplay(){
 
     const submitBtn = document.querySelector("#submit");
     submitBtn.disabled = false;
     
     document.querySelector(".success").style.display = "none";
     
-    appStart();
+    gameStart();
 }

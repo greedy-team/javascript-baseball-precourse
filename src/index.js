@@ -1,7 +1,7 @@
 //실행
 import BaseballGame from "./BaseballGame.js";
 
-export function appStart(){
+export function gameStart(){
     
     const game = new BaseballGame();
 
@@ -9,9 +9,9 @@ export function appStart(){
     form.addEventListener("submit", (event) =>{
         event.preventDefault();
         let userInput = document.getElementById("user-input").value;
-        game.gamePlay(userInput);
+        game.handleUserInput(userInput);
     });
 }
 
-appStart();
+gameStart();
 
