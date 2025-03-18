@@ -1,9 +1,10 @@
-import BaseballGame from "./BaseBallGame.js";
+import BaseballGame from './BaseBallGame.js';
+import { CORRECT, DUPLICATE_ERROR_MESSAGE, INPUT_AGAIN_MESSAGE, STRING_LENGTH_ERROR_MESSAGE } from './constants.js';
 
-const userInput = document.querySelector("#user-input");
-const submitButton = document.querySelector("#submit");
-const resultMessage = document.querySelector("#result");
-const restartButton = document.querySelector("#game-restart-button");
+const userInput = document.querySelector('#user-input');
+const submitButton = document.querySelector('#submit');
+const resultMessage = document.querySelector('#result');
+const restartButton = document.querySelector('#game-restart-button');
 
 let answer = createRandomNumber();
 
@@ -51,9 +52,9 @@ function checkNumberLength(value) {
 }
 
 function showMessage(message) {
-    if(message === "🎉정답을 맞추셨습니다🎉") {
-        resultMessage.innerHTML = `🎉<strong>정답을 맞추셨습니다</strong>🎉<br><br>게임을 다시 시작하시겠습니까?<br><br>`; 
         showRestartButton();
+    if (message === CORRECT) {
+        resultMessage.innerHTML = '🎉<strong>정답을 맞추셨습니다</strong>🎉<br><br>게임을 다시 시작하시겠습니까?<br><br>';
     }
     else {
         resultMessage.textContent = message;
@@ -74,7 +75,7 @@ function showSubmitButton() {
 
 function restartGame() {
     answer = createRandomNumber();
-    resultMessage.innerHTML = "";
-    userInput.value = "";
     showSubmitButton();
+    resultMessage.innerHTML = '';
+    userInput.value = '';
 }
