@@ -8,15 +8,14 @@ export default class BaseballGame{
 
     getRandomNumberString(){
         let randomNumber = [];
-            while (randomNumber.length < 3) {
-                let num = MissionUtils.Random.pickNumberInRange(1,9);
-                if (!randomNumber.includes(num)) {
+        while (randomNumber.length < 3) {
+            let num = MissionUtils.Random.pickNumberInRange(1,9);
+            if (!randomNumber.includes(num)) {
                     randomNumber.push(num);
-                }
             }
-            
-            randomNumber = randomNumber.join("");
-            console.log(randomNumber);
+        }
+        randomNumber = randomNumber.join("");
+        console.log(randomNumber);
 
         return randomNumber;
     }
@@ -54,12 +53,11 @@ export default class BaseballGame{
         let resultMessage = "";
     
         if(ballCount>0){
-            resultMessage += ballCount+"볼 ";
+            resultMessage += `${ballCount}볼 `;
         }
         if(strikeCount>0){
-            resultMessage += strikeCount+"스트라이크";
-        }
-        else{
+            resultMessage += `${strikeCount}스트라이크`;
+        }else{
             resultMessage = "낫싱";
         }
         return resultMessage;
