@@ -25,12 +25,12 @@ export default class NumberBaseballGameController {
         const user = userInput.value.trim();
         const messages = [];
 
-            this.#numberBaseballGameView.showErrorMessage(messages);
         if (!this.#numberBaseballGameModel.checkUserInputValidation(user, messages)) {
+            this.#numberBaseballGameView.showErrorMessage(messages);
             return;
         }
-        this.#numberBaseballGameView.showBaseballGameResultMessage(message);
         const message = this.#numberBaseballGameModel.play(user);
+        this.#numberBaseballGameView.showBaseballGameResultMessage(message);
     }
 
     restartGame() {
