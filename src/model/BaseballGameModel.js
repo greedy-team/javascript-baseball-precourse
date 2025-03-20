@@ -2,6 +2,8 @@ export default class BaseballGameModel {
   constructor() {
     this.computerNumbers = [];
     this.userNumbers = [];
+    this.strike = 0;
+    this.ball = 0;
   }
 
   generateRandomNumbers() {
@@ -15,7 +17,7 @@ export default class BaseballGameModel {
 
   checkUserInputFormat(userInput) {
     if (/^$/.test(userInput)) { 
-      return "오류 빈 입력입니다.";
+      return "빈 입력입니다.";
     }
     if (/\s/.test(userInput)) { 
       return "입력에 공백이 포함되어 있습니다.";
@@ -39,42 +41,28 @@ export default class BaseballGameModel {
     this.userNumbers = userInput.split("").map(Number);
   }
 
-  countStrikes() {
-    let strikeCount = 0;
-  
+  countStrikeAndBall() {
+    this.strike = 0;
+    this.ball = 0;
     for (let i = 0; i < this.userNumbers.length; i++) {
       if (this.userNumbers[i] === this.computerNumbers[i]) {
-        strikeCount++; 
+        this.strike++; 
+      }else if(this.computerNumbers.includes(this.userNumbers[i])){
+        this.ball++;
       }
     }
-  
-    return strikeCount;
-  }
-  
-  countBalls() {
-    let ballCount = 0;
-  
-    for (let i = 0; i < this.userNumbers.length; i++) {
-      if (this.userNumbers[i] !== this.computerNumbers[i] && this.computerNumbers.includes(this.userNumbers[i])) {
-        ballCount++;
-      }
-    }
-  
-    return ballCount;
   }
 
-  getResult(strikes, balls) {
-    if (strikes === 3) return "정답";
-    if (strikes === 0 && balls === 0) return "낫싱";
-    if (balls === 0) return `${strikes}스트라이크`;
-    if (strikes === 0) return `${balls}볼`;
-    return `${balls}볼 ${strikes}스트라이크`;
+  getResult() {
+    if (this.strike === 3) return "정답";
+    if (this.strike === 0 && this.ball === 0) return "낫싱";
+    if (this.ball === 0) return `${this.strike}스트라이크`;
+    if (this.strike === 0) return `${this.ball}볼`;
+    return `${this.ball}볼 ${this.strike}스트라이크`;
   }
 
   play() {
-    return this.getResult(
-      this.countStrikes(),
-      this.countBalls()
-    );
+    this.countStrikeAndBall();
+    return this.getResult();
   }
 }
