@@ -22,10 +22,5 @@ export function gameStart() {
 
 export function gameReplay() {
 
-    const submitBtn = document.querySelector("#submit");
-    submitBtn.disabled = false;
-
-    document.querySelector(".success").style.display = "none";
-
     gameStart();
 }

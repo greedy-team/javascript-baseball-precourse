@@ -11,8 +11,16 @@ export function displaySuccessMessage() {
     const replay = document.querySelector("#game-restart-button");
     replay.addEventListener("click", (event) => {
         event.preventDefault();
+        resetGameUI();
         gameReplay();
     });
+}
+
+function resetGameUI() {
+    const submitBtn = document.querySelector("#submit");
+    submitBtn.disabled = false;
+
+    document.querySelector(".success").style.display = "none";
 }
 
 export function displayResultMessage(comparisionResult) {
