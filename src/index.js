@@ -1,3 +1,3 @@
-import numberBaseballGameController from "./numberBaseballGameController.js";
+import NumberBaseballGameController from "./NumberBaseballGameController.js";
 
-new numberBaseballGameController();
+new NumberBaseballGameController();

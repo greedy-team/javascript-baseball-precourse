@@ -25,10 +25,6 @@ export default class NumberBaseballGameView {
         return this.#userInput;
     }
 
-    getResultMessageElement() {
-        return this.#resultMessage;
-    }
-
     setFocusOnUserInput() {
         this.#userInput.focus();
     }
