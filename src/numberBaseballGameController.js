@@ -12,8 +12,8 @@ export default class NumberBaseballGameController {
     }
 
     setupButtonEventListener() {
-        const submitButton = this.#numberBaseballGameView.getSubmitButtonElement();
-        const restartButton = this.#numberBaseballGameView.getrestartButtonElement();
+        const submitButton = this.#numberBaseballGameView.getSubmitButton();
+        const restartButton = this.#numberBaseballGameView.getrestartButton();
         submitButton.addEventListener('click', (event) => this.gameStart(event));
         restartButton.addEventListener('click', () =>  this.restartGame());
     }
@@ -21,15 +21,15 @@ export default class NumberBaseballGameController {
     gameStart(event) {
         event.preventDefault();
 
-        const userInput = this.#numberBaseballGameView.getUserInputElement();
+        const userInput = this.#numberBaseballGameView.getUserInput();
         const user = userInput.value.trim();
         const messages = [];
 
-            this.#numberBaseballGameView.showAlertMessage(messages);
+            this.#numberBaseballGameView.showErrorMessage(messages);
         if (!this.#numberBaseballGameModel.checkUserInputValidation(user, messages)) {
             return;
         }
-        this.#numberBaseballGameView.showMessage(message);
+        this.#numberBaseballGameView.showBaseballGameResultMessage(message);
         const message = this.#numberBaseballGameModel.play(user);
     }
 

@@ -53,10 +53,10 @@ export default class NumberBaseballGameModel {
             if (this.#answer[i] === user[i]) strike++;
             else if (user.includes(this.#answer[i])) ball++;
         }
-        return this.getResultMessage(strike, ball);
+        return this.getBaseballGameResultMessage(strike, ball);
     }
 
-    getResultMessage(strike, ball) {
+    getBaseballGameResultMessage(strike, ball) {
         if (strike === STRIKE_COUNTS_FOR_ANSWER) return CORRECT;
         if (strike === 0 && ball === 0) return NOTHING;
         if (ball === 0) return `${strike}스트라이크`;

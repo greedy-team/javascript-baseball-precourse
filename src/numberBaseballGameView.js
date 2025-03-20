@@ -14,15 +14,15 @@ export default class NumberBaseballGameView {
         this.showsetFocusOnUserInput();
     }
 
-    getSubmitButtonElement() {
+    getSubmitButton() {
         return this.#submitButton;
     }
 
-    getrestartButtonElement() {
+    getrestartButton() {
         return this.#restartButton;
     }
 
-    getUserInputElement() {
+    getUserInput() {
         return this.#userInput;
     }
 
@@ -30,12 +30,12 @@ export default class NumberBaseballGameView {
         this.#userInput.focus();
     }
 
-    showAlertMessage(messages) {
+    showErrorMessage(messages) {
         const errorMessage = messages.join('');
         alert(`${errorMessage}${INPUT_AGAIN_MESSAGE}`);
     }
 
-    showMessage(message) {
+    showBaseballGameResultMessage(message) {
         if (message === CORRECT) {
             this.clearResultMessageValue();
             this.showAnswerMessage();
