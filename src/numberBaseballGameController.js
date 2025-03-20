@@ -8,7 +8,6 @@ export default class NumberBaseballGameController {
     constructor() {
         this.#numberBaseballGameModel = new NumberBaseballGameModel();
         this.#numberBaseballGameView = new NumberBaseballGameView();
-        this.#numberBaseballGameView.setFocusOnUserInput();
         this.setupButtonEventListener();
     }
 

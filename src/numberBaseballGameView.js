@@ -11,6 +11,7 @@ export default class NumberBaseballGameView {
         this.#resultMessage = document.querySelector('#result');
         this.#submitButton = document.querySelector('#submit');
         this.#restartButton = document.querySelector('#game-restart-button');
+        this.showsetFocusOnUserInput();
     }
 
     getSubmitButtonElement() {
