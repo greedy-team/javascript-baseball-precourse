@@ -17,13 +17,13 @@ export default class NumberBaseballGameView {
     createResultMessage(result) {
         const { resultMessage, restartBt, userInput, submitBt } = this.elements;
 
-        if(result === true) {
-            resultMessage.innerText = "";
+        if (result === true) {
+            resultMessage.innerText = '';
             const strong = document.createElement("strong");
-            strong.textContent = "🎉정답을 맞추셨습니다🎉";
+            strong.textContent = '🎉정답을 맞추셨습니다🎉';
             resultMessage.appendChild(strong);
-            resultMessage.innerText += "\n\n게임을 다시 시작하시겠습니까?\n\n";
-            restartBt.style.display = "block";
+            resultMessage.innerText += '\n\n게임을 다시 시작하시겠습니까?\n\n';
+            restartBt.style.display = 'block';
             userInput.disabled = true;
             submitBt.disabled = true;
         } else {

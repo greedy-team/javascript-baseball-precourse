@@ -3,7 +3,6 @@
 export default class NumberBaseballGameModel {
     constructor() {
         this.createComputerNumberString = this.randomString();
-        //console.log(this.createComputerNumberString);
     }
 
     findVaildNumber(vaildString, randomNumber) {
@@ -12,36 +11,41 @@ export default class NumberBaseballGameModel {
     }
 
     randomString() {
-        let vaildString = "";
+        let vaildString = '';
+        
         while (vaildString.length < 3) {
             let randomNumber = MissionUtils.Random.pickNumberInRange(1, 9);
             vaildString = this.findVaildNumber(vaildString, randomNumber);
         }
+
         return vaildString;
     }
 
     
     vaildTypedNumber() {
         const input = document.getElementById("user-input").value.split("");
-        let vaildInput = "";
-        for(let i = 0; i < input.length; i+=1) {
-            if(isNaN(Number(input[i]))) {
+        let vaildInput = '';
+
+        input.forEach((inp) => {
+            if (isNaN(Number(inp))) {
                 return false
             };
-            vaildInput = this.findVaildNumber(vaildInput, input[i]);
-        }
-        if(vaildInput.length !== 3) {
+            vaildInput = this.findVaildNumber(vaildInput, inp);
+        });
+
+        if (vaildInput.length !== 3) {
             return false;
         } 
+
         return vaildInput.split("");
     }
 
     countStrike(computerNumber, inputNumber) {
         let count = 0;
-    
-        for(let i = 0; i < 3; i+=1) {
-            if (computerNumber[i] === inputNumber[i]) count++;
-        }
+
+        inputNumber.forEach((inpNum, index) => {
+            if (inpNum === computerNumber[index]) count += 1;
+        });
     
         return count;
     }
@@ -49,10 +53,10 @@ export default class NumberBaseballGameModel {
     countBall(computerNumber, inputNumber) {
         let count = 0;
     
-        for(let i = 0; i < 3; i+=1) {
-            let newInputNumber = inputNumber.filter((_, index) => index != i);
-            if(newInputNumber.includes(computerNumber[i])) count++;
-        }
+        inputNumber.forEach((_, index) => {
+            let newInputNumber = inputNumber.filter((_, idx) => idx != index);
+            if (newInputNumber.includes(computerNumber[index])) count += 1;
+        });
     
         return count;
     }
@@ -62,7 +66,7 @@ export default class NumberBaseballGameModel {
         const ball = this.countBall(this.createComputerNumberString, inputNumber);
     
         if (strike === 3) return true;
-        else if((strike + ball) === 0) return "낫싱";
+        else if ((strike + ball) === 0) return '낫싱';
         else if (strike === 0) return `${ball}볼`;
         else if (ball === 0) return `${strike}스트라이크 `;
         else return `${ball}볼 ${strike}스트라이크`;

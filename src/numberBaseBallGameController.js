@@ -21,15 +21,18 @@ export default class NumberBaseballGameController {
 
     start() {
         const { button, restartBt } = this.element;
-        restartBt.style.display = "none";
+        restartBt.style.display = 'none';
         button.addEventListener("click", (e) => {
             e.preventDefault();
+
             const inputNumber = this.model.vaildTypedNumber();
-            if(!inputNumber) {
+
+            if (!inputNumber) {
                 alert("올바른 3자리의 숫자를 입력해주세요!");
-                document.getElementById("user-input").value = "";
+                document.getElementById("user-input").value = '';
                 return ;
             }
+            
             const result = this.model.play(inputNumber);
             this.view.createResultMessage(result);
         })
@@ -41,9 +44,9 @@ export default class NumberBaseballGameController {
 
         restartBt.addEventListener("click", (e) => {
             e.preventDefault();
-            document.getElementById("user-input").value = "";
-            document.getElementById("result").innerText = "";
-            restartBt.style.display = "none";
+            document.getElementById("user-input").value = '';
+            document.getElementById("result").innerText = '';
+            restartBt.style.display = 'none';
             userInput.disabled = false;
             submitBt.disabled = false;
             this.model = new NumberBaseballGameModel();
