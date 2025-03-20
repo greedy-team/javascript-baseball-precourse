@@ -2,7 +2,7 @@
 import BaseballGame from "./BaseballGame.js";
 import { displaySuccessMessage, displayResultMessage } from "./GameView.js"
 
-export function gameStart() {
+function gameStart() {
 
     const game = new BaseballGame();
 
@@ -17,6 +17,16 @@ export function gameStart() {
             displayResultMessage(comparisionResult);
         }
     });
+}
+
+export function gameReplay() {
+
+    const submitBtn = document.querySelector("#submit");
+    submitBtn.disabled = false;
+
+    document.querySelector(".success").style.display = "none";
+
+    gameStart();
 }
 
 gameStart();

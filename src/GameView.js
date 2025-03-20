@@ -1,5 +1,5 @@
 //View
-import { gameStart } from "./index.js"
+import { gameReplay } from "./index.js"
 
 export function displaySuccessMessage() {
     document.querySelector("#result").style.display = "none";
@@ -19,14 +19,4 @@ export function displayResultMessage(comparisionResult) {
     let gameResult = document.querySelector("#result");
     gameResult.style.display = "block";
     gameResult.textContent = comparisionResult;
-}
-
-function gameReplay() {
-
-    const submitBtn = document.querySelector("#submit");
-    submitBtn.disabled = false;
-
-    document.querySelector(".success").style.display = "none";
-
-    gameStart();
 }
