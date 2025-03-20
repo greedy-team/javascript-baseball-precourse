@@ -1,7 +1,7 @@
 //컨트롤러
 
 import BaseballGame from "./BaseballGame.js";
-import { displaySuccessMessage, displayResultMessage } from "./GameView.js"
+import { displaySuccessMessage, displayResultMessage, resetGameUI } from "./GameView.js"
 
 export function gameStart() {
 
@@ -21,6 +21,6 @@ export function gameStart() {
 }
 
 export function gameReplay() {
-
+    resetGameUI();
     gameStart();
 }

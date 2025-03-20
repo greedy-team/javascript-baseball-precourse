@@ -11,12 +11,11 @@ export function displaySuccessMessage() {
     const replay = document.querySelector("#game-restart-button");
     replay.addEventListener("click", (event) => {
         event.preventDefault();
-        resetGameUI();
         gameReplay();
     });
 }
 
-function resetGameUI() {
+export function resetGameUI() {
     const submitBtn = document.querySelector("#submit");
     submitBtn.disabled = false;
 
