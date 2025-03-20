@@ -1,11 +1,12 @@
 //컨트롤러
 
 import BaseballGame from "./BaseballGame.js";
-import { displaySuccessMessage, displayResultMessage, resetGameUI } from "./GameView.js"
+import GameView from "./GameView.js"
 
 export function gameStart() {
 
     const game = new BaseballGame();
+    const view = new GameView();
 
     const form = document.querySelector("form");
     form.addEventListener("submit", (event) => {
@@ -13,14 +14,15 @@ export function gameStart() {
         let userInput = document.getElementById("user-input").value;
         let comparisionResult = game.handleUserInput(userInput);
         if (comparisionResult === "3스트라이크") {
-            displaySuccessMessage();
+            view.displaySuccessMessage();
         } else {
-            displayResultMessage(comparisionResult);
+            view.displayResultMessage(comparisionResult);
         }
     });
 }
 
 export function gameReplay() {
-    resetGameUI();
+    const view = new GameView();
+    view.resetGameUI();
     gameStart();
 }
