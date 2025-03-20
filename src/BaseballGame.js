@@ -18,8 +18,7 @@ export default class BaseballGame {
         return randomNumber;
     }
 
-    handleUserInput() {
-        let userInput = this.getUserInput();
+    handleUserInput(userInput) {
 
         if (this.checkUserInput(userInput)) {
             return;
@@ -27,11 +26,6 @@ export default class BaseballGame {
 
         const comparisionResult = this.compareInputWithAnswer(userInput);
         return comparisionResult;
-    }
-
-    getUserInput() {
-        let userInput = document.getElementById("user-input").value;
-        return userInput;
     }
 
     compareInputWithAnswer(userInput) {

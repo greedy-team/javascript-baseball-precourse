@@ -9,8 +9,8 @@ export function gameStart() {
     const form = document.querySelector("form");
     form.addEventListener("submit", (event) => {
         event.preventDefault();
-        // let userInput = document.getElementById("user-input").value;
-        let comparisionResult = game.handleUserInput();
+        let userInput = document.getElementById("user-input").value;
+        let comparisionResult = game.handleUserInput(userInput);
         if (comparisionResult === "3스트라이크") {
             displaySuccessMessage();
         } else {
