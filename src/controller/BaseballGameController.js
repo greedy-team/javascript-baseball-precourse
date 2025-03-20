@@ -2,7 +2,6 @@ export default class BaseballGameController {
     constructor(view, model) {
         this.view = view;
         this.model = model;
-        this.gameStart();
     }
 
     handleUserInput() {
