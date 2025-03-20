@@ -1,5 +1,5 @@
 //View
-import { gameReplay } from "./index.js"
+import { gameReplay } from "./GameController.js"
 
 export function displaySuccessMessage() {
     document.querySelector("#result").style.display = "none";
