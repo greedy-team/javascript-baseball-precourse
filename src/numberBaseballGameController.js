@@ -1,13 +1,13 @@
-import numberBaseballGameView from './numberBaseballGameView.js';
-import numberBaseballGameModel from './numberBaseballGameModel.js';
+import NumberBaseballGameView from './NumberBaseballGameView.js';
+import NumberBaseballGameModel from './NumberBaseballGameModel.js';
 
-export default class numberBaseballGameController {
+export default class NumberBaseballGameController {
     #numberBaseballGameView;
-    #numberBaseballGamemModel;
+    #numberBaseballGameModel;
 
     constructor() {
-        this.#numberBaseballGamemModel = new numberBaseballGameModel();
-        this.#numberBaseballGameView = new numberBaseballGameView();
+        this.#numberBaseballGameModel = new NumberBaseballGameModel();
+        this.#numberBaseballGameView = new NumberBaseballGameView();
         this.#numberBaseballGameView.setFocusOnUserInput();
         this.setupButtonEventListener();
     }
@@ -26,16 +26,16 @@ export default class numberBaseballGameController {
         const user = userInput.value.trim();
         const messages = [];
 
-        if (!this.#numberBaseballGamemModel.checkUserInputValidation(user, messages)) {
             this.#numberBaseballGameView.showAlertMessage(messages);
+        if (!this.#numberBaseballGameModel.checkUserInputValidation(user, messages)) {
             return;
         }
-        const message = this.#numberBaseballGamemModel.play(user);
         this.#numberBaseballGameView.showMessage(message);
+        const message = this.#numberBaseballGameModel.play(user);
     }
 
     restartGame() {
-        this.#numberBaseballGamemModel.setAnswer();
+        this.#numberBaseballGameModel.setAnswer();
         this.#numberBaseballGameView.clearResultMessageValue();
         this.#numberBaseballGameView.clearUserInputValue();
         this.#numberBaseballGameView.toggleButtonState();

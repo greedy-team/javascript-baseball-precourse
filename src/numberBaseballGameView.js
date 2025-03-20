@@ -1,6 +1,6 @@
 import { CORRECT, INPUT_AGAIN_MESSAGE } from './constants.js';
 
-export default class numberBaseballGameView {
+export default class NumberBaseballGameView {
     #userInput;
     #resultMessage;
     #submitButton;

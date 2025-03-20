@@ -1,6 +1,6 @@
 import { CORRECT, NOTHING, NUMBER_OF_MAXIMUM_LENGTH, STRIKE_COUNTS_FOR_ANSWER, STRING_LENGTH_ERROR_MESSAGE, DUPLICATE_ERROR_MESSAGE } from './constants.js';
 
-export default class numberBaseballGameModel {
+export default class NumberBaseballGameModel {
     #answer;
 
     constructor() {
