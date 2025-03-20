@@ -1,15 +1,15 @@
-//UI 업데이트
-import {gameStart} from"./index.js"
+//View
+import { gameStart } from "./index.js"
 
-export function displaySuccessMessage(){
+export function displaySuccessMessage() {
     document.querySelector("#result").style.display = "none";
     document.querySelector(".success").style.display = "block";
 
     const submitBtn = document.querySelector("#submit");
-    submitBtn.disabled = true; 
+    submitBtn.disabled = true;
 
     const replay = document.querySelector("#game-restart-button");
-    replay.addEventListener("click", (event)=>{
+    replay.addEventListener("click", (event) => {
         event.preventDefault();
         gameReplay();
     });
@@ -21,12 +21,12 @@ export function displayResultMessage(comparisionResult) {
     gameResult.textContent = comparisionResult;
 }
 
-function gameReplay(){
+function gameReplay() {
 
     const submitBtn = document.querySelector("#submit");
     submitBtn.disabled = false;
-    
+
     document.querySelector(".success").style.display = "none";
-    
+
     gameStart();
 }
