@@ -15,10 +15,14 @@ export function showRestartAlert() {
     alert("게임이 재시작되었습니다!");
 }
 
+export function showInvalidAlert() {
+    alert("잘못된 형식으로 입력하셨습니다.");
+}
+
 export function hideRestartButton() {
-    const $restartButton = document.getElementById('game-restart-button'); // [재시작] 버튼 
+    const $restartButton = document.getElementById('game-restart-button');
     if (!$restartButton.hidden) {
-        $restartButton.hidden = true;
+        return $restartButton.hidden = true;
     }
     $restartButton.hidden = false;
 }
