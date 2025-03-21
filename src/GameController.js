@@ -15,14 +15,19 @@ export function gameStart() {
         let comparisionResult = game.handleUserInput(userInput);
         if (comparisionResult === "3스트라이크") {
             view.displaySuccessMessage();
+            gameReplay();
         } else {
             view.displayResultMessage(comparisionResult);
         }
     });
 }
 
-export function gameReplay() {
-    const view = new GameView();
-    view.resetGameUI();
-    gameStart();
+function gameReplay() {
+    const replay = document.querySelector("#game-restart-button");
+    replay.addEventListener("click", (event) => {
+        event.preventDefault();
+        const view = new GameView();
+        view.resetGameUI();
+        gameStart();
+    });
 }

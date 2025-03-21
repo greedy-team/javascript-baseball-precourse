@@ -1,6 +1,4 @@
 //뷰
-
-import { gameReplay } from "./GameController.js"
 export default class GameView {
     displaySuccessMessage() {
         document.querySelector("#result").style.display = "none";
@@ -8,12 +6,6 @@ export default class GameView {
 
         const submitBtn = document.querySelector("#submit");
         submitBtn.disabled = true;
-
-        const replay = document.querySelector("#game-restart-button");
-        replay.addEventListener("click", (event) => {
-            event.preventDefault();
-            gameReplay();
-        });
     }
 
     resetGameUI() {
