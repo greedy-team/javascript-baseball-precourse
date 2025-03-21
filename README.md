@@ -67,7 +67,7 @@ play(123, 124); // '2스트라이크'
 
 ### 라이브러리
 
-- 컴퓨터의 랜덤 값은 반드시 JavaScript의 `Math.Random` 대신 [`MissionUtils` 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)의 `Random.pickNumberInRange`를 사용해 구한다.
+- 컴퓨터의 랜덤 값은 반드시 JavaScript의 `Math.random` 대신 [`MissionUtils` 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)의 `Random.pickNumberInRange`를 사용해 구한다.
 
   - `MissionUtils` 라이브러리 스크립트는 `index.html`에 이미 포함되어 전역 객체에 추가되어 있으므로, 따로 `import` 하지 않아도 구현 코드 어디에서든 사용할 수 있다.
 
