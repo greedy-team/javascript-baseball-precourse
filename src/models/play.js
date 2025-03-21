@@ -1,4 +1,4 @@
-import { showRestartAlert, hideRestartButton } from "../views/ui";
+import { hideRestartButton } from "../views/ui.js";
 
 export function play(stringRandomNumber, stringInputNumber) {
     const strike = countStrike(stringRandomNumber, stringInputNumber);
@@ -14,7 +14,6 @@ export function play(stringRandomNumber, stringInputNumber) {
     return `${ball}볼 ${strike}스트라이크`;
 }
 
-// 스트라이크 계산(model)
 function countStrike(stringRandomNumber, stringInputNumber) {
     let count = 0;
     for (let i = 0; i < 3; i++) {
@@ -25,7 +24,6 @@ function countStrike(stringRandomNumber, stringInputNumber) {
     return count;
 }
 
-// 볼 계산(model)
 function countBall(stringRandomNumber, stringInputNumber) {
     let count = 0;
     for (let i = 0; i < 3; i++) {
