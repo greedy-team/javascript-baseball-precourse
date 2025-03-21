@@ -19,9 +19,13 @@ export default class BaseballGameController {
         this.view.updateGameResult(result);
     }
 
-    restartGame() {
-        this.model.generateRandomNumbers();
+    setupGame(){
         this.view.clearGameUI();
+        this.model.generateRandomNumbers();
+    }
+
+    restartGame() {
+        this.setupGame();
     }
 
     initEventListeners() {
@@ -36,8 +40,7 @@ export default class BaseballGameController {
     }
 
     gameStart() {
-        this.model.generateRandomNumbers();
-        this.view.clearGameUI();
+        this.setupGame();
         this.initEventListeners();
     }
 }
