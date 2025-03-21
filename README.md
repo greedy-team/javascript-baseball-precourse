@@ -70,6 +70,7 @@ play(123, 124); // '2스트라이크'
 - 컴퓨터의 랜덤 값은 반드시 JavaScript의 `Math.random` 대신 [`MissionUtils` 라이브러리](https://github.com/woowacourse-projects/javascript-mission-utils#mission-utils)의 `Random.pickNumberInRange`를 사용해 구한다.
 
   - `MissionUtils` 라이브러리 스크립트는 `index.html`에 이미 포함되어 전역 객체에 추가되어 있으므로, 따로 `import` 하지 않아도 구현 코드 어디에서든 사용할 수 있다.
+  - 숫자야구 게임의 세 자리 숫자를 뽑기 위한 랜덤값을 뽑을 때 `Random.pickNumberInRange`를 세 번 호출하여 한 자리 수씩 확정하는 방법으로 구한다. 한 번에 세 자리 수를 확정하는 방법은 사용하지 않으며, 이는 테스트 코드의 통과를 위함이다.
 
   ```javascript
   // ex)
