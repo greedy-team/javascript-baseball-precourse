@@ -13,8 +13,6 @@ export default class BaseballGame {
             }
         }
         randomNumber = randomNumber.join("");
-        console.log(randomNumber);
-
         return randomNumber;
     }
 
