@@ -44,13 +44,13 @@ export default class BaseballGameModel {
   countStrikeAndBall() {
     this.strike = 0;
     this.ball = 0;
-    for (let i = 0; i < this.userNumbers.length; i++) {
-      if (this.userNumbers[i] === this.computerNumbers[i]) {
-        this.strike++; 
-      }else if(this.computerNumbers.includes(this.userNumbers[i])){
-        this.ball++;
+    this.userNumbers.forEach((userNum, index) => {
+      if (userNum === this.computerNumbers[index]) {
+        this.strike += 1;
+      } else if (this.computerNumbers.includes(userNum)) {
+        this.ball += 1;
       }
-    }
+    });
   }
 
   getResult() {
