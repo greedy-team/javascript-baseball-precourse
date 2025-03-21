@@ -64,11 +64,11 @@ export default class BaseballGame {
             alert("잘못된 값을 입력했습니다.\n숫자를 입력해주세요.");
             return true;
         }
-        if (userInput.length !== 3) {
+        else if (userInput.length !== 3) {
             alert("잘못된 값을 입력했습니다.\n세자리 숫자를 입력해주세요");
             return true;
         }
-        if (new Set(userInput).size !== 3) {
+        else if (new Set(userInput).size !== 3) {
             alert("잘못된 값을 입력했습니다.\n중복되지않는 세자리 숫자를 입력해주세요.");
             return true;
         }
