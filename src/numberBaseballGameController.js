@@ -8,33 +8,33 @@ export default class NumberBaseballGameController {
     constructor() {
         this.#numberBaseballGameModel = new NumberBaseballGameModel();
         this.#numberBaseballGameView = new NumberBaseballGameView();
-        this.setupButtonEventListener();
+        this.setButtonEventListener();
     }
 
-    setupButtonEventListener() {
+    setButtonEventListener() {
         const submitButton = this.#numberBaseballGameView.getSubmitButton();
         const restartButton = this.#numberBaseballGameView.getrestartButton();
-        submitButton.addEventListener('click', (event) => this.gameStart(event));
+        submitButton.addEventListener('click', (event) => this.startGame(event));
         restartButton.addEventListener('click', () =>  this.restartGame());
     }
 
-    gameStart(event) {
+    startGame(event) {
         event.preventDefault();
 
         const userInput = this.#numberBaseballGameView.getUserInput();
         const user = userInput.value.trim();
-        const messages = [];
+        const errorMessages = [];
 
-        if (!this.#numberBaseballGameModel.checkUserInputValidation(user, messages)) {
-            this.#numberBaseballGameView.showErrorMessage(messages);
+        if (!this.#numberBaseballGameModel.checkUserInputValidation(user, errorMessages)) {
+            this.#numberBaseballGameView.showErrorMessage(errorMessages);
             return;
         }
-        const message = this.#numberBaseballGameModel.play(user);
-        this.#numberBaseballGameView.showBaseballGameResultMessage(message);
+        const gameResultMessage = this.#numberBaseballGameModel.play(user);
+        this.#numberBaseballGameView.showGameResultMessage(gameResultMessage);
     }
 
     restartGame() {
-        this.#numberBaseballGameModel.setAnswer();
+        this.#numberBaseballGameModel.setNewAnswerString();
         this.#numberBaseballGameView.clearResultMessageValue();
         this.#numberBaseballGameView.clearUserInputValue();
         this.#numberBaseballGameView.toggleButtonState();

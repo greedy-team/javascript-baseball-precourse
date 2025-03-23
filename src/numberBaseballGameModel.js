@@ -4,10 +4,19 @@ export default class NumberBaseballGameModel {
     #answer;
 
     constructor() {
-        this.setAnswer();
+        this.setNewAnswerString();
     }
 
-    setAnswer() {
+    #createRandomNumberToString() {
+        const numbers = [];
+        while (numbers.length < NUMBER_OF_MAXIMUM_LENGTH) {
+            const num = MissionUtils.Random.pickNumberInRange(1, 9);
+            if (!numbers.includes(num)) numbers.push(num);
+        }
+        return numbers.join('');
+    }
+
+    setNewAnswerString() {
         this.#answer = this.#createRandomNumberToString();
     }
 
@@ -36,13 +45,6 @@ export default class NumberBaseballGameModel {
         return new Set(value).size === value.length;
     }
 
-    #createRandomNumberToString() {
-        const numbers = [];
-        while (numbers.length < NUMBER_OF_MAXIMUM_LENGTH) {
-            const num = MissionUtils.Random.pickNumberInRange(1, 9);
-            if (!numbers.includes(num)) numbers.push(num);
-        }
-        return numbers.join('');
     }
 
     play(user) {
@@ -53,10 +55,10 @@ export default class NumberBaseballGameModel {
             if (this.#answer[i] === user[i]) strike++;
             else if (user.includes(this.#answer[i])) ball++;
         }
-        return this.getBaseballGameResultMessage(strike, ball);
+        return this.getGameResultMessage(strike, ball);
     }
 
-    getBaseballGameResultMessage(strike, ball) {
+    getGameResultMessage(strike, ball) {
         if (strike === STRIKE_COUNTS_FOR_ANSWER) return CORRECT;
         if (strike === 0 && ball === 0) return NOTHING;
         if (ball === 0) return `${strike}스트라이크`;
