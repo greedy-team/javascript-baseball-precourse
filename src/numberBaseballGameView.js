@@ -48,9 +48,13 @@ export default class NumberBaseballGameView {
     }
 
     showAnswerMessage() {
-        const strongTag = document.createElement('strong');
-        strongTag.textContent = '정답을 맞추셨습니다';
-        this.#resultMessage.append('🎉', strongTag, '🎉', document.createElement('br'), document.createElement('br'), '게임을 다시 시작하시겠습니까?', document.createElement('br'), document.createElement('br'));
+        const template = `
+        <strong>🎉정답을 맞추셨습니다🎉</strong><br><br>
+        게임을 다시 시작하시겠습니까?<br><br>
+        `;
+
+        const fragment = document.createRange().createContextualFragment(`${template}`);
+        this.#resultMessage.append(fragment);
     }
 
     toggleButtonState() {
