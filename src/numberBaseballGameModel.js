@@ -24,27 +24,33 @@ export default class NumberBaseballGameModel {
         return this.#answer;
     }
 
-    checkUserInputValidation(value, messages) {
-        let isValid = true;
-        if (!this.checkThreeDigitStringWithoutZero(value)) {
-            if (!messages.includes(STRING_LENGTH_ERROR_MESSAGE)) messages.push(STRING_LENGTH_ERROR_MESSAGE);
-            isValid = false;
+    checkUserInputValidation(value, messageArray) {
+        if (!this.#checkThreeDigitStringWithoutZero(value) && !this.#checkDuplicatesInString(value)) {
+            this.#pushErrorMessageToArray(STRING_LENGTH_ERROR_MESSAGE, messageArray);
+            this.#pushErrorMessageToArray(DUPLICATE_ERROR_MESSAGE, messageArray);
+            return false;
         }
-        if (!this.checkDuplicatesInString(value)) {
-            if (!messages.includes(DUPLICATE_ERROR_MESSAGE)) messages.push(DUPLICATE_ERROR_MESSAGE);
-            isValid = false;
+        if (!this.#checkThreeDigitStringWithoutZero(value)) {
+            this.#pushErrorMessageToArray(STRING_LENGTH_ERROR_MESSAGE, messageArray);
+            return false;
         }
-        return isValid;
+        if (!this.#checkDuplicatesInString(value)) {
+            this.#pushErrorMessageToArray(DUPLICATE_ERROR_MESSAGE, messageArray);
+            return false;
+        }
+        return true;
     }
 
-    checkThreeDigitStringWithoutZero(value) {
+    #checkThreeDigitStringWithoutZero(value) {
         return /^[1-9]{3}$/.test(value);
     }
 
-    checkDuplicatesInString(value) {
+    #checkDuplicatesInString(value) {
         return new Set(value).size === value.length;
     }
 
+    #pushErrorMessageToArray(message, messageArray) {
+        if (!messageArray.includes(message)) messageArray.push(message);
     }
 
     play(user) {
