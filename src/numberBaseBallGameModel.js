@@ -22,8 +22,7 @@ export default class NumberBaseballGameModel {
     }
 
     
-    vaildTypedNumber() {
-        const input = document.getElementById("user-input").value.split("");
+    vaildTypedNumber(input) {
         let vaildInput = '';
 
         input.forEach((inp) => {

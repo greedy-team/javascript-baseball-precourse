@@ -11,17 +11,17 @@ export default class NumberBaseballGameController {
 
 
     start() {
-        const { submitBt, restartBt } = this.view.elements;
+        const { submitBt, restartBt, userInput } = this.view.elements;
         restartBt.style.display = 'none';
         
         submitBt.addEventListener("click", (e) => {
             e.preventDefault();
-
-            const inputNumber = this.model.vaildTypedNumber();
+            const userInputNumber = userInput.value.split("");
+            const inputNumber = this.model.vaildTypedNumber(userInputNumber);
 
             if (!inputNumber) {
                 alert("올바른 3자리의 숫자를 입력해주세요!");
-                document.getElementById("user-input").value = '';
+                userInput.value = '';
                 return ;
             }
             
