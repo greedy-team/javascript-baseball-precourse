@@ -43,8 +43,8 @@ export default class BaseballGameView {
         if (result === "정답") {
             this.resultElement.innerHTML = 
             "🎉<strong>정답을 맞추셨습니다!</strong>🎉<br><br>게임을 다시 시작하시겠습니까?<br>";
-            this.disableInput();
-            this.showRestartButton();
+            this.disableUserInput();
+            this.showRestartButton();            
         } else {
             this.resultElement.textContent = result;
         }
