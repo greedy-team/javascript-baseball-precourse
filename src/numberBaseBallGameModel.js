@@ -22,14 +22,14 @@ export default class NumberBaseballGameModel {
     }
 
     
-    vaildTypedNumber(input) {
+    vaildTypedNumber(userInputNumber) {
         let vaildInput = '';
 
-        input.forEach((inp) => {
-            if (isNaN(Number(inp))) {
+        userInputNumber.forEach((userInput) => {
+            if (isNaN(Number(userInput))) {
                 return false
             };
-            vaildInput = this.findVaildNumber(vaildInput, inp);
+            vaildInput = this.findVaildNumber(vaildInput, userInput);
         });
 
         if (vaildInput.length !== 3) {
@@ -53,7 +53,7 @@ export default class NumberBaseballGameModel {
         let count = 0;
     
         inputNumber.forEach((_, index) => {
-            let newInputNumber = inputNumber.filter((_, idx) => idx != index);
+            let newInputNumber = inputNumber.filter((_, idx) => idx !== index);
             if (newInputNumber.includes(computerNumber[index])) count += 1;
         });
     
@@ -68,6 +68,6 @@ export default class NumberBaseballGameModel {
         else if ((strike + ball) === 0) return '낫싱';
         else if (strike === 0) return `${ball}볼`;
         else if (ball === 0) return `${strike}스트라이크 `;
-        else return `${ball}볼 ${strike}스트라이크`;
+        return `${ball}볼 ${strike}스트라이크`;
     }
 }
