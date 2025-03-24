@@ -11,10 +11,10 @@ export default class NumberBaseballGameController {
 
 
     start() {
-        const { button, restartBt } = this.view.elements;
+        const { submitBt, restartBt } = this.view.elements;
         restartBt.style.display = 'none';
         
-        button.addEventListener("click", (e) => {
+        submitBt.addEventListener("click", (e) => {
             e.preventDefault();
 
             const inputNumber = this.model.vaildTypedNumber();
@@ -33,7 +33,7 @@ export default class NumberBaseballGameController {
     }
 
     restart() {
-        const { restartBt, userInput, submitBt } = this.view.element;
+        const { restartBt, userInput, submitBt } = this.view.elements;
 
         restartBt.addEventListener("click", (e) => {
             e.preventDefault();
