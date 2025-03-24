@@ -9,25 +9,27 @@ export default class NumberBaseballGameController {
         this.start();
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { userInput } = this.view.elements;
+        const userInputNumber = userInput.value.split("");
+        const inputNumber = this.model.vaildTypedNumber(userInputNumber);
+
+        if (!inputNumber) {
+            alert("올바른 3자리의 숫자를 입력해주세요!");
+            userInput.value = '';
+            return;
+        }
+
+        const result = this.model.play(inputNumber);
+        this.view.createResultMessage(result);
+    }
 
     start() {
-        const { submitBt, restartBt, userInput } = this.view.elements;
+        const { submitBt, restartBt } = this.view.elements;
         restartBt.style.display = 'none';
         
-        submitBt.addEventListener("click", (e) => {
-            e.preventDefault();
-            const userInputNumber = userInput.value.split("");
-            const inputNumber = this.model.vaildTypedNumber(userInputNumber);
-
-            if (!inputNumber) {
-                alert("올바른 3자리의 숫자를 입력해주세요!");
-                userInput.value = '';
-                return ;
-            }
-            
-            const result = this.model.play(inputNumber);
-            this.view.createResultMessage(result);
-        })
+        submitBt.addEventListener("click", this.handleSubmit);
 
         this.restart();
     }
@@ -37,7 +39,9 @@ export default class NumberBaseballGameController {
 
         restartBt.addEventListener("click", (e) => {
             e.preventDefault();
-            document.getElementById("user-input").value = '';
+            submitBt.removeEventListener("click", this.handleSubmit);
+
+            userInput.value = '';
             document.getElementById("result").innerText = '';
             restartBt.style.display = 'none';
             userInput.disabled = false;

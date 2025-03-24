@@ -17,7 +17,7 @@ export default class NumberBaseballGameModel {
             let randomNumber = MissionUtils.Random.pickNumberInRange(1, 9);
             vaildString = this.findVaildNumber(vaildString, randomNumber);
         }
-
+        console.log(vaildString);
         return vaildString;
     }
 
@@ -27,7 +27,7 @@ export default class NumberBaseballGameModel {
 
         userInputNumber.forEach((userInput) => {
             if (isNaN(Number(userInput))) {
-                return false
+                return false;
             };
             vaildInput = this.findVaildNumber(vaildInput, userInput);
         });
