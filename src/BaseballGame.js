@@ -31,10 +31,10 @@ export default class BaseballGame {
 
         for (let i = 0; i < 3; i++) {
             if (userInput[i] === this.computerNumbers[i]) {  //스트라이크
-                strikeCount++;
+                strikeCount += 1;
             }
             else if (this.computerNumbers.includes(userInput[i])) {   //볼
-                ballCount++;
+                ballCount += 1;
             }
         }
 
@@ -50,7 +50,7 @@ export default class BaseballGame {
         if (strikeCount > 0) {
             resultMessage += `${strikeCount}스트라이크`;
         }
-        if (ballCount == 0 && strikeCount == 0) {
+        if (ballCount === 0 && strikeCount === 0) {
             resultMessage = "낫싱";
         }
         return resultMessage;
