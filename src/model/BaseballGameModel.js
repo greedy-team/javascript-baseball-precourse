@@ -65,4 +65,11 @@ export default class BaseballGameModel {
     this.countStrikeAndBall();
     return this.getResult();
   }
+
+  reset() {
+    this.computerNumbers = [];
+    this.userNumbers = [];
+    this.strike = 0;
+    this.ball = 0;
+  }
 }
