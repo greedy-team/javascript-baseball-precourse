@@ -13,6 +13,8 @@ export default class GameView {
         submitBtn.disabled = false;
 
         document.querySelector(".success").style.display = "none";
+        const form = document.getElementById("user-input");
+        form.value = null;
     }
 
     displayResultMessage(comparisionResult) {
