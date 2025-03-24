@@ -6,22 +6,14 @@ export default class NumberBaseballGameController {
     constructor() {
         this.model = new NumberBaseballGameModel();
         this.view = new NumberBaseballGameView();
-        this.element = this.getDomElements();
         this.start();
     }
 
-    getDomElements() {
-        return {
-            button: document.getElementById("submit"),
-            restartBt: document.getElementById("game-restart-button"),
-            userInput: document.getElementById("user-input"),
-            submitBt: document.getElementById("submit"),
-        };
-    }
 
     start() {
-        const { button, restartBt } = this.element;
+        const { button, restartBt } = this.view.elements;
         restartBt.style.display = 'none';
+        
         button.addEventListener("click", (e) => {
             e.preventDefault();
 
@@ -36,11 +28,12 @@ export default class NumberBaseballGameController {
             const result = this.model.play(inputNumber);
             this.view.createResultMessage(result);
         })
+
         this.restart();
     }
 
     restart() {
-        const { restartBt, userInput, submitBt } = this.element;
+        const { restartBt, userInput, submitBt } = this.view.element;
 
         restartBt.addEventListener("click", (e) => {
             e.preventDefault();
