@@ -8,9 +8,9 @@ export function play(stringRandomNumber, stringInputNumber) {
         return `<span style="font-size: 18px; font-weight: bold;">🎉정답을 맞추셨습니다🎉</span><br><br><span style="font-size: 18px;">게임을 새로 시작하시겠습니까?<br></span>
         `;
     }
-    else if ((strike + ball) === 0) { return "낫싱"; }
-    else if (ball === 0) { return `${strike}스트라이크`; }
-    else if (strike === 0) { return `${ball}볼`; }
+    if ((strike + ball) === 0) { return "낫싱"; }
+    if (ball === 0) { return `${strike}스트라이크`; }
+    if (strike === 0) { return `${ball}볼`; }
     return `${ball}볼 ${strike}스트라이크`;
 }
 

@@ -4,11 +4,11 @@ import { play } from '../models/play.js';
 import { updateResult, clearInput, clearResult, showRestartAlert, hideRestartButton } from '../views/ui.js';
 import { showInvalidAlert } from "../views/ui.js";
 
-let randomNumber = createUniqueNumberString();
+let uniqueNumberString = createUniqueNumberString();
 
 export function baseballGame() {
-    setOkButtonClickEvent(randomNumber);
-    setRestartButtonClickEvent(randomNumber);
+    setOkButtonClickEvent(uniqueNumberString);
+    setRestartButtonClickEvent(uniqueNumberString);
 }
 
 function setOkButtonClickEvent() {
@@ -21,7 +21,7 @@ function handleOkButtonClick(event) {
     if (!isValidInput(inputNumber)) {
         showInvalidAlert();
     }
-    const result = play(inputNumber, randomNumber);
+    const result = play(inputNumber, uniqueNumberString);
     updateResult(result);
 }
 
@@ -31,7 +31,7 @@ function setRestartButtonClickEvent() {
 
 function handleRestartButtonClick(event) {
     event.preventDefault();
-    randomNumber = createUniqueNumberString();
+    uniqueNumberString = createUniqueNumberString();
     clearInput();
     clearResult();
     showRestartAlert();
