@@ -8,7 +8,6 @@ export function createUniqueNumberString() {
 }
 
 function addUniqueNumberToString(validString, randomNumber) {
-
     if (validString.includes(randomNumber)) {
         return validString;
     }
