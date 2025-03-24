@@ -30,8 +30,8 @@ export default class NumberBaseballGameView {
         this.#userInput.focus();
     }
 
-    alertErrorMessage(messages) {
-        const errorMessage = messages.join('');
+    alertErrorMessageArrayToString(messageArray) {
+        const errorMessage = messageArray.join('');
         alert(`${errorMessage}${INPUT_AGAIN_MESSAGE}`);
     }
 
@@ -40,7 +40,7 @@ export default class NumberBaseballGameView {
             this.clearResultMessageValue();
             this.showAnswerMessage();
             this.toggleButtonState();
-            this.toggleUserInputState();
+            this.#userInput.disabled = true;
         }
         else {
             this.#resultMessage.textContent = message;
@@ -53,7 +53,7 @@ export default class NumberBaseballGameView {
         게임을 다시 시작하시겠습니까?<br><br>
         `;
 
-        const fragment = document.createRange().createContextualFragment(`${template}`);
+        const fragment = document.createRange().createContextualFragment(template);
         this.#resultMessage.append(fragment);
     }
 
@@ -61,10 +61,6 @@ export default class NumberBaseballGameView {
         this.#submitButton.disabled = !this.#submitButton.disabled;
         this.#restartButton.disabled = !this.#restartButton.disabled;
         this.#restartButton.style.display = this.#restartButton.style.display === 'none' ? 'block' : 'none';
-    }
-
-    toggleUserInputState() {
-        this.#userInput.disabled = !this.#userInput.disabled;
     }
 
     clearUserInputValue() {

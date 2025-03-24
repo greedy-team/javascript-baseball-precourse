@@ -16,6 +16,7 @@ export default class NumberBaseballGameModel {
         return numbers.join('');
     }
 
+    // 대체 네이밍으로 initializeAnswer 도 괜찮아 보인다
     setNewAnswerString() {
         this.#answer = this.#createRandomNumberToString();
     }
@@ -24,28 +25,28 @@ export default class NumberBaseballGameModel {
         return this.#answer;
     }
 
-    checkUserInputValidation(value, messageArray) {
-        if (!this.#checkThreeDigitStringWithoutZero(value) && !this.#checkDuplicatesInString(value)) {
+    isValidUserInput(value, messageArray) {
+        if (!this.#isThreeDigitStringWithoutZero(value) && !this.#containsDuplicateChars(value)) {
             this.#pushErrorMessageToArray(STRING_LENGTH_ERROR_MESSAGE, messageArray);
             this.#pushErrorMessageToArray(DUPLICATE_ERROR_MESSAGE, messageArray);
             return false;
         }
-        if (!this.#checkThreeDigitStringWithoutZero(value)) {
+        if (!this.#isThreeDigitStringWithoutZero(value)) {
             this.#pushErrorMessageToArray(STRING_LENGTH_ERROR_MESSAGE, messageArray);
             return false;
         }
-        if (!this.#checkDuplicatesInString(value)) {
+        if (!this.#containsDuplicateChars(value)) {
             this.#pushErrorMessageToArray(DUPLICATE_ERROR_MESSAGE, messageArray);
             return false;
         }
         return true;
     }
 
-    #checkThreeDigitStringWithoutZero(value) {
+    #isThreeDigitStringWithoutZero(value) {
         return /^[1-9]{3}$/.test(value);
     }
 
-    #checkDuplicatesInString(value) {
+    #containsDuplicateChars(value) {
         return new Set(value).size === value.length;
     }
 
@@ -66,9 +67,9 @@ export default class NumberBaseballGameModel {
 
     getGameResultMessage(strike, ball) {
         if (strike === STRIKE_COUNTS_FOR_ANSWER) return CORRECT;
-        if (strike === 0 && ball === 0) return NOTHING;
-        if (ball === 0) return `${strike}스트라이크`;
-        if (strike === 0) return `${ball}볼`;
+        if (!strike && !ball) return NOTHING;
+        if (!ball) return `${strike}스트라이크`;
+        if (!strike) return `${ball}볼`;
         return `${ball}볼 ${strike}스트라이크`;
     }
 }
