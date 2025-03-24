@@ -18,7 +18,7 @@ export default class BaseballGame {
 
     handleUserInput(userInput) {
 
-        if (this.checkUserInput(userInput)) {
+        if (this.isInvalidUserInput(userInput)) {
             return;
         }
 
@@ -56,7 +56,7 @@ export default class BaseballGame {
         return resultMessage;
     }
 
-    checkUserInput(userInput) {
+    isInvalidUserInput(userInput) {
         const isNotNumber = isNaN(userInput);
         if (isNotNumber) {
             alert("잘못된 값을 입력했습니다.\n숫자를 입력해주세요.");
