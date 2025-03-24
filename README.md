@@ -148,11 +148,14 @@ npm run test
   - [이벤트](https://ko.javascript.info/introduction-browser-events)
   - [이벤트 위임](https://ko.javascript.info/event-delegation)
 
+<<<<<<< HEAD
 
 
 # [1주차] 숫자 야구 게임
 
 
+=======
+>>>>>>> upstream/developowl
 ## 기능 구현 목록
 
 [유효한 랜덤 숫자 생성 기능]
