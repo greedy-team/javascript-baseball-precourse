@@ -26,6 +26,7 @@ export default class BaseballGameController {
 
     restartGame() {
         this.setUpGame();
+        this.view.enableUserInput();
     }
 
     initEventListeners() {
