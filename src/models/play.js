@@ -15,21 +15,15 @@ export function play(stringRandomNumber, stringInputNumber) {
 }
 
 function countStrike(stringRandomNumber, stringInputNumber) {
-    let count = 0;
-    for (let i = 0; i < 3; i++) {
-        if (stringRandomNumber[i] === stringInputNumber[i]) {
-            count++;
-        }
-    }
-    return count;
+    return stringRandomNumber
+        .split("")
+        .filter((num, idx) => num === stringInputNumber[idx])
+        .length;
 }
 
 function countBall(stringRandomNumber, stringInputNumber) {
-    let count = 0;
-    for (let i = 0; i < 3; i++) {
-        if (stringInputNumber.includes(stringRandomNumber[i]) && stringRandomNumber[i] !== stringInputNumber[i]) {
-            count++;
-        }
-    }
-    return count;
+    return stringRandomNumber
+        .split("")
+        .filter((num, idx) => num === stringInputNumber[(idx + 1) % 3] || num === stringInputNumber[(idx + 2) % 3])
+        .length;
 }
