@@ -1,11 +1,11 @@
 export function isValidInput(inputNumber) {
-    if (!isNumeric(inputNumber) || !isDuplicate(inputNumber) || inputNumber.length !== 3) {
+    if (!isNumber1To9(inputNumber) || !isDuplicate(inputNumber) || inputNumber.length !== 3) {
         return false;
     }
     return true;
 }
 
-function isNumeric(inputNumber) {
+function isNumber1To9(inputNumber) {
     return /^[1-9]+$/.test(inputNumber);
 }
 
