@@ -19,12 +19,12 @@ export default class BaseballGameController {
         this.view.updateGameResult(result);
     }
 
-    setUpGame(){
+    setUpGame() {
         this.view.clearGameUI();
         this.model.generateRandomNumbers();
     }
 
-    restartGame(){
+    restartGame() {
         this.setUpGame();
     }
 
