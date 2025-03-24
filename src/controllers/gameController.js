@@ -1,7 +1,7 @@
 import { createUniqueNumberString } from '../models/uniqueNumberString.js';
 import { isValidInput } from '../models/inputValidation.js';
 import { play } from '../models/play.js';
-import { updateResult, clearInput, clearResult, showRestartAlert, hideRestartButton } from '../views/ui.js';
+import { updateResult, clearInput, clearResult, showRestartAlert, toggleRestartButton } from '../views/ui.js';
 import { showInvalidAlert } from "../views/ui.js";
 
 let uniqueNumberString = createUniqueNumberString();
@@ -35,5 +35,5 @@ function handleRestartButtonClick(event) {
     clearInput();
     clearResult();
     showRestartAlert();
-    hideRestartButton();
+    toggleRestartButton();
 }

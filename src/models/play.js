@@ -1,10 +1,10 @@
-import { hideRestartButton } from "../views/ui.js";
+import { toggleRestartButton } from "../views/ui.js";
 
 export function play(stringRandomNumber, stringInputNumber) {
     const strike = countStrike(stringRandomNumber, stringInputNumber);
     const ball = countBall(stringRandomNumber, stringInputNumber);
     if (strike === 3) {
-        hideRestartButton();
+        toggleRestartButton();
         return `<span style="font-size: 18px; font-weight: bold;">🎉정답을 맞추셨습니다🎉</span><br><br><span style="font-size: 18px;">게임을 새로 시작하시겠습니까?<br></span>
         `;
     }

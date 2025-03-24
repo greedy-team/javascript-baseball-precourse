@@ -19,10 +19,11 @@ export function showInvalidAlert() {
     alert("잘못된 형식으로 입력하셨습니다.");
 }
 
-export function hideRestartButton() {
+export function toggleRestartButton() {
     const $restartButton = document.getElementById('game-restart-button');
     if (!$restartButton.hidden) {
-        return $restartButton.hidden = true;
+        $restartButton.hidden = true;
+        return;
     }
     $restartButton.hidden = false;
 }
