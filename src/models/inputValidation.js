@@ -1,8 +1,5 @@
 export function isValidInput(inputNumber) {
-    if (!isNumber1To9(inputNumber) || !isDuplicate(inputNumber) || inputNumber.length !== 3) {
-        return false;
-    }
-    return true;
+    return isNumber1To9(inputNumber) && isDuplicate(inputNumber) && inputNumber.length === 3;
 }
 
 function isNumber1To9(inputNumber) {
