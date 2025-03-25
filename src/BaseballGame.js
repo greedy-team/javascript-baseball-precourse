@@ -1,82 +1,76 @@
-//게임진행
-import {displaySuccessMessage, displayResultMessage} from "./GameView.js"
-
-export default class BaseballGame{
-    constructor(){
+//Model
+export default class BaseballGame {
+    constructor() {
         this.computerNumbers = this.getRandomNumberString();
     }
 
-    getRandomNumberString(){
+    getRandomNumberString() {
         let randomNumber = [];
         while (randomNumber.length < 3) {
-            let num = MissionUtils.Random.pickNumberInRange(1,9);
+            let num = MissionUtils.Random.pickNumberInRange(1, 9);
             if (!randomNumber.includes(num)) {
-                    randomNumber.push(num);
+                randomNumber.push(num);
             }
         }
         randomNumber = randomNumber.join("");
-        console.log(randomNumber);
-
         return randomNumber;
     }
-    
 
-    handleUserInput(userInput){
-        if(this.checkUserInput(userInput)){
-            return ;
+    handleUserInput(userInput) {
+
+        if (this.isInvalidUserInput(userInput)) {
+            return;
         }
-    
+
         const comparisionResult = this.compareInputWithAnswer(userInput);
-        
-        if(comparisionResult==="3스트라이크"){
-            displaySuccessMessage();
-        }else {
-            displayResultMessage(comparisionResult);
-        }
+        return comparisionResult;
     }
 
-    compareInputWithAnswer(userInput){
-        let strikeCount=0, ballCount=0;
-    
-        for(let i=0;i<3;i++){
-            if(userInput[i] === this.computerNumbers[i]){  //스트라이크
-                strikeCount++;
-            }else if(this.computerNumbers.includes(userInput[i])){   //볼
-                ballCount++;
+    compareInputWithAnswer(userInput) {
+        let strikeCount = 0, ballCount = 0;
+
+        for (let i = 0; i < 3; i++) {
+            if (userInput[i] === this.computerNumbers[i]) {  //스트라이크
+                strikeCount += 1;
+            }
+            else if (this.computerNumbers.includes(userInput[i])) {   //볼
+                ballCount += 1;
             }
         }
-    
+
         return this.play(strikeCount, ballCount);
     }
 
-    play (strikeCount, ballCount){
+    play(strikeCount, ballCount) {
         let resultMessage = "";
-    
-        if(ballCount>0){
+
+        if (ballCount > 0) {
             resultMessage += `${ballCount}볼 `;
         }
-        if(strikeCount>0){
+        if (strikeCount > 0) {
             resultMessage += `${strikeCount}스트라이크`;
-        }else{
+        }
+        if (ballCount === 0 && strikeCount === 0) {
             resultMessage = "낫싱";
         }
         return resultMessage;
     }
 
-    checkUserInput(userInput){
+    isInvalidUserInput(userInput) {
         const isNotNumber = isNaN(userInput);
-        if(isNotNumber){
+        if (isNotNumber) {
             alert("잘못된 값을 입력했습니다.\n숫자를 입력해주세요.");
             return true;
         }
-        if(userInput.length!==3){
+        else if (userInput.length !== 3) {
             alert("잘못된 값을 입력했습니다.\n세자리 숫자를 입력해주세요");
             return true;
         }
-        if(new Set(userInput).size !== 3){
+        else if (new Set(userInput).size !== 3) {
             alert("잘못된 값을 입력했습니다.\n중복되지않는 세자리 숫자를 입력해주세요.");
             return true;
         }
         return false;
     }
 }
+

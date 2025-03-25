@@ -1,32 +1,35 @@
-//UI 업데이트
-import {gameStart} from"./index.js"
+//뷰
+export default class GameView {
+    displaySuccessMessage() {
+        document.querySelector("#result").style.display = "none";
+        document.querySelector(".success").style.display = "block";
 
-export function displaySuccessMessage(){
-    document.querySelector("#result").style.display = "none";
-    document.querySelector(".success").style.display = "block";
+        const submitBtn = document.querySelector("#submit");
+        submitBtn.disabled = true;
+    }
 
-    const submitBtn = document.querySelector("#submit");
-    submitBtn.disabled = true; 
+    resetGameUI() {
+        const submitBtn = document.querySelector("#submit");
+        submitBtn.disabled = false;
 
-    const replay = document.querySelector("#game-restart-button");
-    replay.addEventListener("click", (event)=>{
-        event.preventDefault();
-        gameReplay();
-    });
-}
+        document.querySelector(".success").style.display = "none";
+        const form = document.getElementById("user-input");
+        form.value = null;
+    }
 
-export function displayResultMessage(comparisionResult) {
-    let gameResult = document.querySelector("#result");
-    gameResult.style.display = "block";
-    gameResult.textContent = comparisionResult;
-}
+    displayResultMessage(comparisionResult) {
+        let gameResult = document.querySelector("#result");
+        gameResult.style.display = "block";
+        gameResult.textContent = comparisionResult;
+    }
 
-function gameReplay(){
-
-    const submitBtn = document.querySelector("#submit");
-    submitBtn.disabled = false;
-    
-    document.querySelector(".success").style.display = "none";
-    
-    gameStart();
+    getFormElement() {
+        return document.querySelector("form");
+    }
+    getRestartButton() {
+        return document.querySelector("#game-restart-button");
+    }
+    getUserInputValue() {
+        return document.getElementById("user-input").value;
+    }
 }
