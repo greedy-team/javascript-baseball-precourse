@@ -50,11 +50,32 @@ index.js
 - toggleRestartButton
   - 인자로 전달된 값에 따라 재시작 버튼을 보이거나 숨기는 기능
 
-## 피드백 적용목록
+[mvc 패턴 적용]
+
+- baseballGame.js, index.js 삭제
+- model 구현
+- view 구현
+- controller 구현
+- add 구현
+- html 수정
+
+## 0주차 피드백 적용목록
 
 - git check 명령어로 README.md 롤백
 - docs에 기능구현목록, 피드백 적용목록 README.md 생성
 - 필요없는 파일 삭제
 - 패키지 중복사용 수정(CDN을 통한 패키지 로드 사용)
 - 함수 네이밍 변경, 연산자 오타 수정
-- 함수 네이밍 개선
+- 엔터 입력시 웹 새로고침 문제 해결, 이제 엔터 시 입력 Submit
+
+## 1주차 피드백 적용목록
+
+- eslint를 통해 Airbnb 코드 컨벤션 준수
+- Code Spell Checker를 사용해 변수 스펠링 검수
+- 함수명 변경
+- model.js 캡슐화
+- 정답 맞췄을 때 버튼 눌리는 문제 해결
+- 함수명 변경
+- spread 연산자를 사용하지 않고 자료의 갯수 도출
+- 함수 화살표 함수로 변경
+- `form`블록의 특징을 이용해서 코드 간결화
