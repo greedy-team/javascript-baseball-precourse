@@ -22,4 +22,14 @@ export default class GameView {
         gameResult.style.display = "block";
         gameResult.textContent = comparisionResult;
     }
+
+    getFormElement() {
+        return document.querySelector("form");
+    }
+    getRestartButton() {
+        return document.querySelector("#game-restart-button");
+    }
+    getUserInputValue() {
+        return document.getElementById("user-input").value;
+    }
 }

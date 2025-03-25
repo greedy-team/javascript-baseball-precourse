@@ -16,16 +16,16 @@ export function gameStart() {
 }
 
 function setEventListeners() {
-    const form = document.querySelector("form");
+    const form = view.getFormElement();
     form.addEventListener("submit", processUserInput);
 
-    const replay = document.querySelector("#game-restart-button");
+    const replay = view.getRestartButton();
     replay.addEventListener("click", gameStart);
 }
 
 function processUserInput(event) {
     event.preventDefault();
-    let userInput = document.getElementById("user-input").value;
+    let userInput = view.getUserInputValue();
     let comparisionResult = game.handleUserInput(userInput);
     if (comparisionResult === "3스트라이크") {
         view.displaySuccessMessage();
