@@ -148,6 +148,14 @@ npm run test
   - [이벤트](https://ko.javascript.info/introduction-browser-events)
   - [이벤트 위임](https://ko.javascript.info/event-delegation)
 
+<<<<<<< HEAD
+
+
+# [1주차] 숫자 야구 게임
+
+
+=======
+>>>>>>> upstream/developowl
 ## 기능 구현 목록
 
 [유효한 랜덤 숫자 생성 기능]
@@ -170,3 +178,16 @@ npm run test
 
 [최종 실행 기능]
 - 각 기능을 통합한 메서드를 실행하는 메서드
+
+
+---
+
+
+# [2주차] 숫자 야구 게임 MVC 미션
+
+
+## [패키지 구분]
+
+- `Models` - 로직, 검증 등 비즈니스 관련 역할
+- `Controllers` - View <-> Model의 매핑 역할
+- `Views` - Model에서 발생한 결과를 사용자에게 보여주는 역할

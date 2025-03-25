@@ -1,3 +1,3 @@
-import { baseballGame } from './utils/baseballGame.js';
+import { baseballGame } from './controllers/gameController.js';
 
 baseballGame();
