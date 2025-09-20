@@ -30,6 +30,7 @@ export default function View({ onSubmit, onRestart }){
     }
 
     const displayGameWinView = () => {
+        resultText.innerText = "🎉 정답을 맞추셨습니다! 🎉";
         restartButton.style.display = 'block';
         restartSuggestionText.style.display = 'block';
     }
