@@ -1,11 +1,11 @@
 export default function View({ onSubmit, onRestart }){
-    const submitButton = document.getElementById("submit");
+    const submitButton = document.getElementById("form");
     const restartButton = document.getElementById("game-restart-button");
     const restartSuggestionText = document.getElementById("restart-suggestion-text");
     const resultText = document.getElementById("result");
     const userInput = document.getElementById("user-input");
 
-    submitButton.addEventListener("click", (event) => {
+    submitButton.addEventListener("submit", (event) => {
         event.preventDefault();
         if(onSubmit){
             onSubmit(userInput.value);
