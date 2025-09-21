@@ -1,5 +1,5 @@
-import BaseBallGame from './baseBallGame.js';
-import View from './view.js';
+import BaseBallGame from './baseBallGame';
+import View from './view';
 
 const baseBallGame = BaseBallGame();
 const view = View({
