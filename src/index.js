@@ -5,7 +5,7 @@ import GameView from './GameView.js';
 
 const baseballGame = new BaseballGame();
 baseballGame.setRandomAnswers();
-GameView.ToggleGameRestartButton(false);
+GameView.toggleGameRestartButton(false);
 
 document.querySelector('#submit').addEventListener('click', () => {
   const userInput = document.querySelector('#user-input').value;
@@ -16,19 +16,18 @@ document.querySelector('#submit').addEventListener('click', () => {
   } else {
     GameView.alertMessage('입력값이 형식에 맞지 않습니다!');
     gameResult = '';
-    GameView.ClearUserInputText();
+    GameView.clearUserInputText();
   }
 
   if (gameResult === '3스트라이크') {
-    gameResult = '축하합니다!\n정답을 맞추셨습니다!';
-    GameView.ToggleGameRestartButton(true);
+    GameView.toggleGameRestartButton(true);
   }
   GameView.showResult(gameResult);
 });
 
 document.querySelector('#game-restart-button').addEventListener('click', () => {
   baseballGame.setRandomAnswers();
-  GameView.ToggleGameRestartButton(false);
-  GameView.ClearUserInputText();
+  GameView.toggleGameRestartButton(false);
+  GameView.clearUserInputText();
   GameView.showResult('');
 });

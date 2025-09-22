@@ -1,29 +1,35 @@
 export default class GameView {
   /** @type { (bool) => void } */
-  static ToggleGameRestartButton(shouldShow) {
+  static toggleGameRestartButton(shouldShow) {
     const gameRestartButton = document.querySelector('#game-restart-button');
 
-    if (shouldShow === true) {
+    if (shouldShow) {
       gameRestartButton.style.display = 'block';
-    } else if (shouldShow === false) {
+    } else if (!shouldShow) {
       gameRestartButton.style.display = 'none';
     }
   }
 
   /** @type {() => void} */
-  static ClearUserInputText() {
+  static clearUserInputText() {
     document.querySelector('#user-input').value = '';
   }
 
   /** @type {(string) => void} */
-  static alertMessage(Message) {
+  static alertMessage(message) {
     /* eslint-disable no-alert */
-    alert(Message);
+    alert(message);
     /* eslint-enable no-alert */
   }
 
   /** @type {(string) => void} */
   static showResult(result) {
-    document.querySelector('#result').textContent = result;
+    let textToPrint = result;
+
+    if (result === '3스트라이크') {
+      textToPrint = '축하합니다!\n정답을 맞추셨습니다!';
+    }
+
+    document.querySelector('#result').textContent = textToPrint;
   }
 }

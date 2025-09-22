@@ -4,26 +4,24 @@ export default class BaseballGame {
 
   #userNumbers = [];
 
-  #strikeCount = 0;
-
-  #ballCount = 0;
-
-  #result = '';
+  #resultText = '';
 
   /** @type {(string) => bool} */
   play(userInput) {
-    if (this.#convertInput(userInput) === false) {
+    if (!this.#convertInput(userInput)) {
       return false;
     }
 
-    this.#compareUserNumberWithAnswerNumbers();
-    this.#makeResult();
+    const gameResult = this.#compareUserNumberWithAnswerNumbers();
+    this.#makeResult(gameResult);
     return true;
   }
 
   /** @type {{() => void}} */
   setRandomAnswers() {
-    while (this.#answerNumbers.length < 3) {
+    const ANSWER_SIZE = 3;
+
+    while (this.#answerNumbers.length < ANSWER_SIZE) {
       const randomNum = MissionUtils.Random.pickNumberInRange(1, 9);
       if (!this.#answerNumbers.includes(randomNum)) {
         this.#answerNumbers.push(randomNum);
@@ -33,43 +31,50 @@ export default class BaseballGame {
 
   /** @type { () => string} */
   getResult() {
-    return this.#result;
+    return this.#resultText;
   }
 
-  /** @type {() => void} */
+  /** @type {() => {Number, Number }} */
   #compareUserNumberWithAnswerNumbers() {
-    this.#ballCount = 0;
-    this.#strikeCount = 0;
+    let ballCount = 0;
+    let strikeCount = 0;
 
     this.#userNumbers.forEach((number, position) => {
       if (number === this.#answerNumbers[position]) {
-        this.#strikeCount += 1;
+        strikeCount += 1;
       } else if (this.#answerNumbers.includes(number)) {
-        this.#ballCount += 1;
+        ballCount += 1;
       }
     });
+    return { ballCount, strikeCount };
   }
 
-  /** @type {() => void} */
-  #makeResult() {
-    this.#result = '';
+  /** @type {({Number, Number }) => void} */
+  #makeResult(gameResult) {
+    this.#resultText = '';
 
-    if (this.#ballCount !== 0) {
-      this.#result += `${this.#ballCount}볼 `;
+    if (gameResult.ballCount !== 0) {
+      this.#resultText += `${gameResult.ballCount}볼 `;
     }
-    if (this.#strikeCount !== 0) {
-      this.#result += `${this.#strikeCount}스트라이크`;
+    if (gameResult.strikeCount !== 0) {
+      this.#resultText += `${gameResult.strikeCount}스트라이크`;
     }
-    if (this.#result === '') {
-      this.#result = '낫싱';
+    if (this.#resultText === '') {
+      this.#resultText = '낫싱';
     }
   }
 
   /** @type {(string) => bool} */
   #convertInput(userInput) {
+    const NUMBER_UPPER_BOUND = 999;
+    const NUMBER_LOWER_BOUND = 111;
+
     let digitNumber = Number(userInput);
 
-    if (!Number.isInteger(digitNumber) || digitNumber < 111 || digitNumber > 999) {
+    if (!Number.isInteger(digitNumber)) {
+      return false;
+    }
+    if (digitNumber < NUMBER_LOWER_BOUND || digitNumber > NUMBER_UPPER_BOUND) {
       return false;
     }
 
