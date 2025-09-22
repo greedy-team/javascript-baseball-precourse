@@ -1,4 +1,14 @@
 export default class GameView {
+  /** @type { () => HTMLButtonElement} */
+  static getSubmitButtonHandle() {
+    return document.querySelector('#submit');
+  }
+
+  /** @type { () => HTMLButtonElement} */
+  static getRestartButtonHandle() {
+    return document.querySelector('#game-restart-button');
+  }
+
   /** @type { (bool) => void } */
   static toggleGameRestartButton(shouldShow) {
     const gameRestartButton = document.querySelector('#game-restart-button');
@@ -8,6 +18,11 @@ export default class GameView {
     } else if (!shouldShow) {
       gameRestartButton.style.display = 'none';
     }
+  }
+
+  /** @type { () => string} */
+  static getUserInputText() {
+    return document.querySelector('#user-input').value;
   }
 
   /** @type {() => void} */
@@ -29,7 +44,6 @@ export default class GameView {
     if (result === '3스트라이크') {
       textToPrint = '축하합니다!\n정답을 맞추셨습니다!';
     }
-
     document.querySelector('#result').textContent = textToPrint;
   }
 }

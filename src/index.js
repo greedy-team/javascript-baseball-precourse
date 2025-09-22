@@ -5,10 +5,13 @@ import GameView from './GameView.js';
 
 const baseballGame = new BaseballGame();
 baseballGame.setRandomAnswers();
+
+const submitButtonHandle = GameView.getSubmitButtonHandle();
+const restartButtonHandle = GameView.getRestartButtonHandle();
 GameView.toggleGameRestartButton(false);
 
-document.querySelector('#submit').addEventListener('click', () => {
-  const userInput = document.querySelector('#user-input').value;
+submitButtonHandle.addEventListener('click', () => {
+  const userInput = GameView.getUserInputText();
   let gameResult = '';
 
   if (baseballGame.play(userInput) === true) {
@@ -25,7 +28,7 @@ document.querySelector('#submit').addEventListener('click', () => {
   GameView.showResult(gameResult);
 });
 
-document.querySelector('#game-restart-button').addEventListener('click', () => {
+restartButtonHandle.addEventListener('click', () => {
   baseballGame.setRandomAnswers();
   GameView.toggleGameRestartButton(false);
   GameView.clearUserInputText();
