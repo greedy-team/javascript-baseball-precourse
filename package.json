@@ -35,5 +35,8 @@
     "doc": "docs",
     "test": "test"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "@woowacourse/mission-utils": "^2.2.0"
+  }
 }
