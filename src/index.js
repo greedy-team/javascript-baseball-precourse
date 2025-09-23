@@ -1,44 +1,36 @@
-// @ts-check
 // eslint-disable-next-line import/extensions
 import BaseballGame from './BaseballGame.js';
 // eslint-disable-next-line import/extensions
-import { checkInput, printResult, getRandomNumbers } from './additionalFunctions.js';
+import GameView from './GameView.js';
 
-/** @type {number[]} */
-let answerNumbers = getRandomNumbers();
+const baseballGame = new BaseballGame();
+baseballGame.setRandomAnswers();
 
-/** @type {HTMLElement | null} */
-const gameRestartButton = document.querySelector('#game-restart-button');
-if (gameRestartButton) {
-  gameRestartButton.style.display = 'none';
-}
+const submitButtonHandle = GameView.getSubmitButtonHandle();
+const restartButtonHandle = GameView.getRestartButtonHandle();
+GameView.toggleGameRestartButton(false);
 
-/** @type {HTMLElement} */
-(document.querySelector('#submit')).addEventListener('click', () => {
-  /** @type {string} */
-  const userInputString = /** @type {HTMLInputElement} */ (document.querySelector('#user-input')).value;
+submitButtonHandle.addEventListener('click', () => {
+  const userInput = GameView.getUserInputText();
+  let gameResult = '';
 
-  /** @type {string} */
-  let playResult = '';
-  if (checkInput(userInputString)) {
-    /** @type {number[]} */
-    const userInputNumbers = [...userInputString].map(Number);
-    playResult = BaseballGame.play(answerNumbers, userInputNumbers);
+  if (baseballGame.play(userInput) === true) {
+    gameResult = baseballGame.getResult();
   } else {
-    /* eslint-disable no-alert */
-    alert('입력값이 형식에 맞지 않습니다!');
-    /* eslint-enable no-alert */
-    /** @type {HTMLInputElement} */(document.querySelector('#user-input')).value = '';
+    GameView.alertMessage('입력값이 형식에 맞지 않습니다!');
+    gameResult = '';
+    GameView.clearUserInputText();
   }
-  printResult(playResult);
+
+  if (gameResult === '3스트라이크') {
+    GameView.toggleGameRestartButton(true);
+  }
+  GameView.showResult(gameResult);
 });
 
-/** @type {HTMLElement} */
-(document.querySelector('#game-restart-button')).addEventListener('click', () => {
-  answerNumbers = getRandomNumbers();
-  /** @type {HTMLElement} */
-  (document.querySelector('#game-restart-button')).style.display = 'none';
-  /** @type {HTMLInputElement} */
-  (document.querySelector('#user-input')).value = '';
-  printResult('');
+restartButtonHandle.addEventListener('click', () => {
+  baseballGame.setRandomAnswers();
+  GameView.toggleGameRestartButton(false);
+  GameView.clearUserInputText();
+  GameView.showResult('');
 });
