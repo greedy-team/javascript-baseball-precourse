@@ -4,15 +4,27 @@
 // 3. 입력 값 검증 함수
 
 export default class BaseballGame {
+  // 컴퓨터 랜덤값과 유저값을 비교해서 결과 반환하는 함수
+  play(computerInputNumbers, userInputNumbers) {
+    // 숫자로 이루어진 문자열을 배열로 변환후 split으로 나눈후 map으로 숫자로 변환
+    const computerNumbers = this.toNumberArray(computerInputNumbers);
+    const userNumbers = this.toNumberArray(userInputNumbers);
+
+    return "결과 값 String";
+  }
+
+  toNumberArray(numbers) {
+    return input.toString().split("").map(Number);
+  }
+
   // 유저 입력값 검증 함수
   // 1. 숫자가 아닌경우
   // 2. 3자리 숫자가 아닌경우
   // 3. 중복된 숫자가 있는 경우
   // 4. 1부터 9까지의 숫자가 아닌 경우
   // try-catch문으로 play함수에서 호출해서 에러메시지 출력
-
   validateInput(userInputNumbers) {
-    const userNumbers = userInputNumbers.toString().split("").map(Number);
+    const userNumbers = this.toNumberArray(userInputNumbers);
 
     // 1. 숫자가 아닌 경우
     if (isNaN(userInputNumbers)) {
