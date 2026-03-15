@@ -1,7 +1,9 @@
 // 구현해야할 함수
-// 1. 게임 결과 함수
-// 2. 랜덤 숫자 생성 함수
-// 3. 입력 값 검증 함수
+// 1. 게임 결과 함수 play(컴퓨터 입력값, 유저 입력값) => 결과 문자열 반환
+// 2. 랜덤 숫자 생성 함수 randomNumbers() => 랜덤 숫자 배열 반환
+// 3. 입력 값 검증 함수 validateInput (유저 입력값) => 에러 메시지 반환
+// 4. 결과 반환 함수 getResult(스트라이크, 볼) => 결과 문자열 반환
+// 5. 숫자 문자열을 배열로 변환하는 함수 toNumberArray(문자열) => 숫자 배열 반환
 
 export default class BaseballGame {
   // 컴퓨터 랜덤값과 유저값을 비교해서 결과 반환하는 함수
@@ -10,7 +12,33 @@ export default class BaseballGame {
     const computerNumbers = this.toNumberArray(computerInputNumbers);
     const userNumbers = this.toNumberArray(userInputNumbers);
 
-    return "결과 값 String";
+    let strikes = 0;
+    let balls = 0;
+
+    for (let i = 0; i < 3; i++) {
+      // 같은 위치에 같은 숫자가 있는 경우 스트라이크
+      if (computerNumbers[i] === userNumbers[i]) {
+        strikes++;
+      }
+      // 다른 위치에 같은 숫자가 있는 경우 볼
+      else if (computerNumbers.includes(userNumbers[i])) {
+        balls++;
+      }
+    }
+
+    return this.getResult(strikes, balls);
+  }
+
+  getResult(strikes, balls) {
+    if (strikes === 0 && balls === 0) {
+      return "낫싱";
+    } else if (strikes > 0 && balls > 0) {
+      return `${balls}볼 ${strikes}스트라이크`;
+    } else if (strikes > 0) {
+      return `${strikes}스트라이크`;
+    } else {
+      return `${balls}볼`;
+    }
   }
 
   toNumberArray(numbers) {
@@ -56,6 +84,7 @@ export default class BaseballGame {
     const numbers = [];
     while (numbers.length < 3) {
       const randomNum = Random.pickNumberInRange(1, 9);
+      // 중복되지 않는 랜덤숫자만 배열에 추가
       if (!numbers.includes(randomNum)) {
         numbers.push(randomNum);
       }
