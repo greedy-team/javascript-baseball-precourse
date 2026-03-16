@@ -27,6 +27,49 @@ export default class BaseballGame {
         return numbers;
     }   
     
+    // 이벤트 관리 (사용자 입력과 시스템 반응을 연결)
+    initEventListeners() {
+        // HTML 태그 안에 직접 <button onclick="play()"> 라고 적는 방법도 있음
+        this.submit.addEventListener('click', (e) => {
+            
+            // 브라우저의 자동 새로고침 본능을 억제
+            e.preventDefault();
+            
+            // 사용자가 입력창에 쓴 값을 가져옴
+            const userValue = this.userInput.value;
+
+            // 유효성 검사 모듈(isValid)을 호출해 통과 여부를 확인
+            if (!isValid(userValue)) return;
+
+            // play 로직을 실행해 결과를 받아옴
+            const resultText = this.play(this.computerNumbers, userValue);
+            
+            if (resultText === "3스트라이크"){
+                // 정답 시 원래 있던 결과창 글자를 싹 
+                // 지우고 축하 문구 및 재시작 버튼 활성화
+                this.result.innerHTML = `
+                    <div>🎉 정답을 맞추셨습니다 🎉</div>
+                    <br>게임을 새로 시작하시겠습니까?
+                `;
+                // textContent (변수만 섞인 글자를 보여줄 때)
+                // testContent로 `<b>${strike}스트라이크</b>` 할당하면 그대로 출력됨 
+                
+                // innerHTML (버튼이나 문단 같은 HTML 구조를 통째로 만들어서 끼워 넣고 싶을 때 사용)
+                // 백틱 사이에 <button id="game-restart-button">재시작</button> 이렇게 적어도 구현 가능 
+                this.restart.style.display = 'block';
+
+            }else{
+                this.result.textContent=resultText;
+                // 평소엔 숨기기
+                this.restart.style.display='none'; 
+            }
+        });
+
+        this.restart.addEventListener('click', ()=>{
+            this.RestartEvent();
+        });
+    }
+    
 }
 
 new BaseballGame();
