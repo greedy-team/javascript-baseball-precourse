@@ -89,12 +89,13 @@ export default class BaseballGame {
     // 컴퓨터가 랜덤 숫자 배열
     const numbers = [];
     while (numbers.length < 3) {
-      const randomNum = Random.pickNumberInRange(1, 9);
+      const randomNum = MissionUtils.Random.pickNumberInRange(1, 9);
       // 중복되지 않는 랜덤숫자만 배열에 추가
       if (!numbers.includes(randomNum)) {
         numbers.push(randomNum);
       }
     }
+    console.log("컴퓨터 랜덤 숫자:", numbers); // 디버깅용 로그
     return numbers;
   }
 }
