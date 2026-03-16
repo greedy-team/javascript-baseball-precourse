@@ -5,6 +5,11 @@
 // 4. 결과 반환 함수 getResult(스트라이크, 볼) => 결과 문자열 반환
 // 5. 숫자 문자열을 배열로 변환하는 함수 toNumberArray(문자열) => 숫자 배열 반환
 
+// id(#). class(.) 등 유연하게 선택자 사용해서 getElementById 말고 querySelector DOM 요소 선택
+const userInput = document.querySelector("#user-input");
+const submitButton = document.querySelector("#submit");
+const resultDiv = document.querySelector("#result");
+const restartButton = document.querySelector("#game-restart-button");
 export default class BaseballGame {
   // 컴퓨터 랜덤값과 유저값을 비교해서 결과 반환하는 함수
   play(computerInputNumbers, userInputNumbers) {
@@ -42,7 +47,7 @@ export default class BaseballGame {
   }
 
   toNumberArray(numbers) {
-    return input.toString().split("").map(Number);
+    return numbers.toString().split("").map(Number);
   }
 
   // 유저 입력값 검증 함수
