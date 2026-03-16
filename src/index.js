@@ -61,23 +61,19 @@ export default class BaseballGame {
   // try-catch문으로 play함수에서 호출해서 에러메시지 출력
   validateInput(userInputNumbers) {
     const userNumbers = this.toNumberArray(userInputNumbers);
-
     // 1. 숫자가 아닌 경우
     if (isNaN(userInputNumbers)) {
       throw new Error("숫자만 입력해주세요.");
     }
-
     // 2. 3자리 숫자가 아닌 경우
     if (userNumbers.length !== 3) {
       throw new Error("3자리 숫자를 입력해주세요.");
     }
-
     // 3. 중복된 숫자가 있는 경우
     const uniqueNumbers = new Set(userNumbers);
     if (uniqueNumbers.size !== userNumbers.length) {
       throw new Error("중복된 숫자는 입력할 수 없습니다.");
     }
-
     // 4. 1부터 9까지의 숫자가 아닌 경우
     for (const num of userNumbers) {
       if (num < 1 || num > 9) {
@@ -114,6 +110,7 @@ restartButton.addEventListener("click", () => {
   computerNumbers = game.randomNumbers();
   userInput.value = ""; // 입력창 초기화
   resultDiv.textContent = ""; // 결과창 초기화
+  restartButton.style.display = "none"; // 재시작 버튼 초기화 (숨기기)
 });
 
 submitButton.addEventListener("click", (e) => {
@@ -123,6 +120,11 @@ submitButton.addEventListener("click", (e) => {
     game.validateInput(userInputValue); //userInput.value는 문자열(text)이므로 validateInput에서 숫자 배열로 변환해서 검증
     const result = game.play(computerNumbers, userInputValue);
     resultDiv.textContent = result;
+
+    // 3스트라이크시 재시작 버튼 노출
+    if (result === "3스트라이크") {
+      restartButton.style.display = "block";
+    }
   } catch (error) {
     //validateInput에서 발생한 에러 메시지 alert로 출력
     alert(error.message);
