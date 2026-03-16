@@ -5,11 +5,12 @@
 // 4. 결과 반환 함수 getResult(스트라이크, 볼) => 결과 문자열 반환
 // 5. 숫자 문자열을 배열로 변환하는 함수 toNumberArray(문자열) => 숫자 배열 반환
 
-// id(#). class(.) 등 유연하게 선택자 사용해서 getElementById 말고 querySelector DOM 요소 선택
+// id(#). class(.) 등 유연하게 선택자 사용할 수 있게 getElementById 말고 querySelector DOM 요소 선택
 const userInput = document.querySelector("#user-input");
 const submitButton = document.querySelector("#submit");
 const resultDiv = document.querySelector("#result");
 const restartButton = document.querySelector("#game-restart-button");
+
 export default class BaseballGame {
   // 컴퓨터 랜덤값과 유저값을 비교해서 결과 반환하는 함수
   play(computerInputNumbers, userInputNumbers) {
@@ -97,6 +98,31 @@ export default class BaseballGame {
     return numbers;
   }
 }
+
+const game = new BaseballGame();
+
+// JS의 함수문법
+// element.addEventListener("이벤트종류", () => {
+//   // 이벤트 발생 시 실행할 코드
+// });
+
+restartButton.addEventListener("click", () => {
+  userInput.value = ""; // 입력창 초기화
+  resultDiv.textContent = ""; // 결과창 초기화
+});
+
+submitButton.addEventListener("click", () => {
+  try {
+    const userInputValue = userInput.value;
+    game.validateInput(userInputValue); //userInput.value는 문자열(text)이므로 validateInput에서 숫자 배열로 변환해서 검증
+    const computerNumbers = game.randomNumbers();
+    const result = game.play(computerNumbers, userInputValue);
+    resultDiv.textContent = result;
+  } catch (error) {
+    //validateInput에서 발생한 에러 메시지 alert로 출력
+    alert(error.message);
+  }
+});
 
 // 예시
 // play(123, 456); // '낫싱'
