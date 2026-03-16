@@ -36,3 +36,34 @@
 ## 검증
 
 npm run test
+
+# MVC 패턴 리펙토링
+
+## Model
+
+- Model은 Controller와 View에 의존하지 않아야 한다.
+- 데이터 저장 및 처리
+
+현재 웹에서 다루는 데이터
+
+- 컴퓨터 랜덤 값
+- 사용자 입력 값
+- 스트라이크
+- 볼
+
+--- 모두에게 같게 보여지는 값인가? ---
+
+- 컴퓨터 랜덤 값은 사용자가 입력하는 상태에 상관 없이 같은 값을 입력받는다.
+
+## View
+
+- View는 Model에만 의존해야 하고, Controller에는 의존하면 안된다.
+- View가 Model로부터 데이터를 받을 때는, 사용자마다 다르게 보여주어야 하는 데이터에 대해서만 받아야 한다.
+- View가 Model로 부터 데이터를 받을 때, 반드시 Controller에서 받아야 한다.
+- 입력을 Controller로 전달
+
+## Controller
+
+- Controller는 Model과 View를 연결하는 역할
+- Controller는 Model과 View에 의존해도 된다.
+- 사용자 요청 처리 및 모델과 뷰 연결
