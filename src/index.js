@@ -14,14 +14,11 @@ const restartButton = document.querySelector("#game-restart-button");
 export default class BaseballGame {
   // 컴퓨터 랜덤값과 유저값을 비교해서 결과 반환하는 함수
   play(computerInputNumbers, userInputNumbers) {
-    // 숫자로 이루어진 문자열을 배열로 변환후 split으로 나눈후 map으로 숫자로 변환
     const computerNumbers = computerInputNumbers;
     const userNumbers = this.toNumberArray(userInputNumbers);
 
     let strikes = 0;
     let balls = 0;
-    console.log("컴퓨터 숫자 배열:", computerNumbers); // 디버깅용 로그
-    console.log("유저 숫자 배열:", userNumbers); // 디버깅용 로그
 
     for (let i = 0; i < 3; i++) {
       // 같은 위치에 같은 숫자가 있는 경우 스트라이크
@@ -93,7 +90,6 @@ export default class BaseballGame {
         numbers.push(randomNum);
       }
     }
-    console.log("컴퓨터 랜덤 숫자:", numbers); // 디버깅용 로그
     return numbers;
   }
 }
@@ -130,13 +126,3 @@ submitButton.addEventListener("click", (e) => {
     alert(error.message);
   }
 });
-
-// 예시
-// play(123, 456); // '낫싱'
-// play(123, 345); // '1볼'
-// play(123, 432); // '2볼'
-// play(123, 312); // '3볼'
-// play(123, 145); // '1스트라이크'
-// play(123, 134); // '1볼 1스트라이크'
-// play(123, 132); // '2볼 1스트라이크'
-// play(123, 124); // '2스트라이크'
