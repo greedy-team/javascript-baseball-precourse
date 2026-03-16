@@ -101,6 +101,7 @@ export default class BaseballGame {
 }
 
 const game = new BaseballGame();
+let computerNumbers = game.randomNumbers(); //게임 첫 시작 시 컴퓨터 랜덤 숫자 생성
 
 // JS의 함수문법
 // element.addEventListener("이벤트종류", () => {
@@ -108,6 +109,7 @@ const game = new BaseballGame();
 // });
 
 restartButton.addEventListener("click", () => {
+  computerNumbers = game.randomNumbers();
   userInput.value = ""; // 입력창 초기화
   resultDiv.textContent = ""; // 결과창 초기화
 });
@@ -117,7 +119,6 @@ submitButton.addEventListener("click", (e) => {
   try {
     const userInputValue = userInput.value;
     game.validateInput(userInputValue); //userInput.value는 문자열(text)이므로 validateInput에서 숫자 배열로 변환해서 검증
-    const computerNumbers = game.randomNumbers();
     const result = game.play(computerNumbers, userInputValue);
     resultDiv.textContent = result;
   } catch (error) {
