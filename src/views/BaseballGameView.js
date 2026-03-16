@@ -11,6 +11,32 @@ class BaseballGameView {
     this.resultDiv = document.querySelector("#result");
     this.restartButton = document.querySelector("#game-restart-button");
   }
+
+  showRestartButton() {
+    this.restartButton.style.display = "block";
+  }
+
+  restartButtonListener(callback) {
+    this.restartButton.addEventListener("click", callback);
+  }
+
+  submitButtonListener(callback) {
+    this.submitButton.addEventListener("click", callback);
+  }
+
+  getUserInput() {
+    return this.userInput.value;
+  }
+
+  displayResult(result) {
+    this.resultDiv.textContent = result;
+  }
+
+  resetView() {
+    this.userInput.value = ""; // 입력창 초기화
+    this.resultDiv.textContent = ""; // 결과창 초기화
+    this.restartButton.style.display = "none"; // 재시작 버튼 초기화 (숨기기)
+  }
 }
 
 export default BaseballGameView;

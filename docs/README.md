@@ -62,6 +62,8 @@ npm run test
 - View가 Model로 부터 데이터를 받을 때, 반드시 Controller에서 받아야 한다.
 - 입력을 Controller로 전달
 
+-> 재시도 display: none -> display: block
+
 ## Controller
 
 - Controller는 Model과 View를 연결하는 역할
