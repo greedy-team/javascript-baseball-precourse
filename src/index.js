@@ -112,7 +112,8 @@ restartButton.addEventListener("click", () => {
   resultDiv.textContent = ""; // 결과창 초기화
 });
 
-submitButton.addEventListener("click", () => {
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault(); // 폼 제출 시 페이지 새로고침 방지
   try {
     const userInputValue = userInput.value;
     game.validateInput(userInputValue); //userInput.value는 문자열(text)이므로 validateInput에서 숫자 배열로 변환해서 검증
