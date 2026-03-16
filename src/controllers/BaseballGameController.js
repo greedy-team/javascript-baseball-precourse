@@ -6,6 +6,36 @@ class BaseballGameController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+    this.restartButtonListener();
+    this.submitButtonListener();
+  }
+
+  restartButtonListener() {
+    this.view.restartButtonListener(() => {
+      this.model.randomNumbers(); // 모델의 랜덤 숫자 재생성
+      this.view.resetView(); // 뷰 초기화
+    });
+  }
+
+  submitButtonListener() {
+    this.view.submitButtonListener((e) => {
+      e.preventDefault(); // 폼 제출 시 페이지 새로고침 방지
+      const userInputValue = this.view.getUserInput();
+      try {
+        //userInput.value는 문자열(text)이므로 validateInput에서 숫자 배열로 변환해서 검증
+        this.model.validateInput(userInputValue);
+        const result = this.model.play(userInputValue);
+        this.view.displayResult(result);
+
+        // 3스트라이크시 재시작 버튼 노출
+        if (result === "3스트라이크") {
+          this.view.showRestartButton();
+        }
+      } catch (error) {
+        //validateInput에서 발생한 에러 메시지 alert로 출력
+        alert(error.message);
+      }
+    });
   }
 }
 
