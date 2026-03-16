@@ -110,8 +110,14 @@ export default class BaseballGame {
 
         return result.join(" ");
 
-    } 
-    
+    }
+
+    // 시스템 리셋
+    RestartEvent(){
+        this.computerNumbers = this.generateComputerNumbers();
+        this.result.innerHTML = '';
+        this.restart.style.display = 'none';
+    }
 }
 
 new BaseballGame();
