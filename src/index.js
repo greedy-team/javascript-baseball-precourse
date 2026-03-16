@@ -69,6 +69,48 @@ export default class BaseballGame {
             this.RestartEvent();
         });
     }
+
+    // 스트라이크/볼 판정
+    play(computerInputNumbers, userInputNumbers) {
+        
+        let strike = 0;
+        let ball = 0;
+
+        for(let i=0;i<3;i++){
+            const userDigit=Number(userInputNumbers[i]);
+            //userInput.value로 가져온 값은 무조건 글자 상태로 들어오기 때문에 
+            // Number()을 써서 숫자로 변환
+            if(userDigit===computerInputNumbers[i]){
+                strike++;
+            }else if (computerInputNumbers.includes(userDigit)){
+                ball++;
+            }
+        }
+        // 조건에 맞춰 문자열로 출력
+        if (strike===0 && ball===0){
+            return "낫싱";
+        }
+        if(strike===3){
+            return "3스트라이크"
+        }
+        // string으로 출력하는 방식
+        // 1. 템플릿 리터럴: 백틱(` `)과 ${} 사용 (대부분 템플릿 리터럴 사용함)
+        // 2. 문자열 연결 연산자: (+) 기호 사용
+        // 3. 배열 합치기(join): result.join(" ") 사용
+        // 볼과 스트라이크가 있을수도 없을수도 있으니 join 사용함
+        const result = [];
+
+        if(ball > 0){
+            result.push(`${ball}볼`);
+        }
+
+        if(strike > 0){
+            result.push(`${strike}스트라이크`);
+        }
+
+        return result.join(" ");
+
+    } 
     
 }
 
