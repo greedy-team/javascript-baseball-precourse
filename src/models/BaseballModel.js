@@ -17,7 +17,7 @@ export default class BaseballModel {
 
     // 스트라이크와 볼의 개수를 계산하는 함수
     countScore(computerInputNumbers,userInputNumbers){
-        
+
         let strike = 0;
         let ball = 0;
 
@@ -43,6 +43,7 @@ export default class BaseballModel {
         if(strike === 3){
             return "3스트라이크"
         }
+
         // string으로 출력하는 방식
         // 1. 템플릿 리터럴: 백틱(` `)과 ${} 사용 (대부분 템플릿 리터럴 사용함)
         // 2. 문자열 연결 연산자: (+) 기호 사용

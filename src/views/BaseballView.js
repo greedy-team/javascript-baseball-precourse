@@ -23,6 +23,9 @@ export default class BaseballView {
             <div>🎉 정답을 맞추셨습니다 🎉</div>
             <br>게임을 새로 시작하시겠습니까?
         `;
+        // 버튼 비활성화
+        this.submit.disabled=true;
+
         // textContent (변수만 섞인 글자를 보여줄 때)
         // testContent로 `<b>${strike}스트라이크</b>` 할당하면 그대로 출력됨 
         
@@ -32,7 +35,12 @@ export default class BaseballView {
     }
 
     restartUI(){
+        // 입력창 비우기
+        this.userInput.value = ''
         this.result.innerHTML = '';
         this.restart.style.display = 'none';
+
+        // 버튼 활성화
+        this.submit.disabled = false;
     }
 }
