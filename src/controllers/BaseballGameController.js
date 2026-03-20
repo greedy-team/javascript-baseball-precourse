@@ -12,7 +12,7 @@ class BaseballGameController {
 
   restartButtonListener() {
     this.view.restartButtonListener(() => {
-      this.model.randomNumbers(); // 모델의 랜덤 숫자 재생성
+      this.model.generateRandomNumbers(); // 모델의 랜덤 숫자 재생성
       this.view.resetView(); // 뷰 초기화
     });
   }

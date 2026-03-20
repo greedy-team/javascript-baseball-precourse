@@ -4,7 +4,7 @@ class BaseballGameModel {
   constructor() {
     // 게임 내내 유지되는 데이터
     // 컴퓨터가 랜덤으로 생성한 숫자 배열;
-    this.computerNumbers = this.randomNumbers();
+    this.computerNumbers = this.generateRandomNumbers();
   }
   // 파라미터 하나로 변경, validateInput에서 검증 후 play함수에서 호출
   play(userInputNumbers) {
@@ -74,7 +74,7 @@ class BaseballGameModel {
   }
 
   // 1부터 9까지의 숫자 중에서 중복되지 않는 3개의 숫자를 랜덤으로 생성하여 배열로 반환
-  randomNumbers() {
+  generateRandomNumbers() {
     // 컴퓨터가 랜덤 숫자 배열
     const numbers = [];
     while (numbers.length < 3) {

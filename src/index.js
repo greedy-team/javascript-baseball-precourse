@@ -1,6 +1,6 @@
 // 구현해야할 함수
 // 1. 게임 결과 함수 play(컴퓨터 입력값, 유저 입력값) => 결과 문자열 반환
-// 2. 랜덤 숫자 생성 함수 randomNumbers() => 랜덤 숫자 배열 반환
+// 2. 랜덤 숫자 생성 함수 generateRandomNumbers() => 랜덤 숫자 배열 반환
 // 3. 입력 값 검증 함수 validateInput (유저 입력값) => 에러 메시지 반환
 // 4. 결과 반환 함수 getResult(스트라이크, 볼) => 결과 문자열 반환
 // 5. 숫자 문자열을 배열로 변환하는 함수 toNumberArray(문자열) => 숫자 배열 반환
@@ -80,7 +80,7 @@ export default class BaseballGame {
   }
 
   // 1부터 9까지의 숫자 중에서 중복되지 않는 3개의 숫자를 랜덤으로 생성하여 배열로 반환
-  randomNumbers() {
+  generateRandomNumbers() {
     // 컴퓨터가 랜덤 숫자 배열
     const numbers = [];
     while (numbers.length < 3) {
@@ -95,7 +95,7 @@ export default class BaseballGame {
 }
 
 const game = new BaseballGame();
-let computerNumbers = game.randomNumbers(); //게임 첫 시작 시 컴퓨터 랜덤 숫자 생성
+let computerNumbers = game.generateRandomNumbers(); //게임 첫 시작 시 컴퓨터 랜덤 숫자 생성
 
 // JS의 함수문법
 // element.addEventListener("이벤트종류", () => {
@@ -103,7 +103,7 @@ let computerNumbers = game.randomNumbers(); //게임 첫 시작 시 컴퓨터 �
 // });
 
 restartButton.addEventListener("click", () => {
-  computerNumbers = game.randomNumbers();
+  computerNumbers = game.generateRandomNumbers();
   userInput.value = ""; // 입력창 초기화
   resultDiv.textContent = ""; // 결과창 초기화
   restartButton.style.display = "none"; // 재시작 버튼 초기화 (숨기기)

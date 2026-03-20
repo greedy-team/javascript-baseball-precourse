@@ -74,7 +74,7 @@ npm run test
 
 ## 구현 결과
 
-- Model: computerNumbers를 자체 관리 (constructor에서 초기화, randomNumbers()로 재생성)
+- Model: computerNumbers를 자체 관리 (constructor에서 초기화, generateRandomNumbers()로 재생성)
 - Model: play()는 파라미터로 userInput만 받고, computerNumbers는 this에서 사용
 - View: showRestartButton() 추가 (3스트라이크 시 버튼 노출)
 - Controller: constructor에서 이벤트 리스너 자동 등록
