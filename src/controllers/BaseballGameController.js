@@ -6,19 +6,19 @@ class BaseballGameController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
-    this.restartButtonListener();
-    this.submitButtonListener();
+    this.handleRestart();
+    this.handleSubmit();
   }
 
-  restartButtonListener() {
-    this.view.restartButtonListener(() => {
+  handleRestart() {
+    this.view.onRestartButtonListener(() => {
       this.model.generateRandomNumbers(); // 모델의 랜덤 숫자 재생성
       this.view.resetView(); // 뷰 초기화
     });
   }
 
-  submitButtonListener() {
-    this.view.submitButtonListener((e) => {
+  handleSubmit() {
+    this.view.onSubmitButtonListener((e) => {
       e.preventDefault(); // 폼 제출 시 페이지 새로고침 방지
       const userInputValue = this.view.getUserInput();
       try {

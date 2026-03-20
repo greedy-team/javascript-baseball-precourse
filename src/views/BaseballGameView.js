@@ -16,11 +16,11 @@ class BaseballGameView {
     this.restartButton.style.display = "block";
   }
 
-  restartButtonListener(callback) {
+  onRestartButtonListener(callback) {
     this.restartButton.addEventListener("click", callback);
   }
 
-  submitButtonListener(callback) {
+  onSubmitButtonListener(callback) {
     this.submitButton.addEventListener("click", callback);
   }
 
