@@ -52,9 +52,9 @@ class BaseballGameModel {
   // try-catch문으로 play함수에서 호출해서 에러메시지 출력
   validateInput(userInputNumbers) {
     const userNumbers = this.toNumberArray(userInputNumbers);
-    // 1. 숫자가 아닌 경우
-    if (isNaN(userInputNumbers)) {
-      throw new Error("숫자만 입력해주세요.");
+    // 1. 숫자(양의 정수)가 아닌 경우
+    if (!/^\d+$/.test(userInputNumbers)) {
+      throw new Error("양의 정수만 입력해주세요.");
     }
     // 2. 3자리 숫자가 아닌 경우
     if (userNumbers.length !== 3) {
