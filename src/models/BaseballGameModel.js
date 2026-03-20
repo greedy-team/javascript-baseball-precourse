@@ -8,24 +8,26 @@ class BaseballGameModel {
   }
   // 파라미터 하나로 변경, validateInput에서 검증 후 play함수에서 호출
   play(userInputNumbers) {
-    const computerNumbers = this.computerNumbers;
     const userNumbers = this.toNumberArray(userInputNumbers);
+    const { strikes, balls } = this.countStrikesAndBalls(userNumbers);
 
+    return this.getResult(strikes, balls);
+  }
+
+  countStrikesAndBalls(userNumbers) {
     let strikes = 0;
     let balls = 0;
-
     for (let i = 0; i < 3; i++) {
       // 같은 위치에 같은 숫자가 있는 경우 스트라이크
-      if (computerNumbers[i] === userNumbers[i]) {
+      if (this.computerNumbers[i] === userNumbers[i]) {
         strikes++;
       }
       // 다른 위치에 같은 숫자가 있는 경우 볼
-      else if (computerNumbers.includes(userNumbers[i])) {
+      else if (this.computerNumbers.includes(userNumbers[i])) {
         balls++;
       }
     }
-
-    return this.getResult(strikes, balls);
+    return { strikes, balls };
   }
 
   getResult(strikes, balls) {
