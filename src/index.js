@@ -3,7 +3,7 @@
 // 2. 랜덤 숫자 생성 함수 generateRandomNumbers() => 랜덤 숫자 배열 반환
 // 3. 입력 값 검증 함수 validateInput (유저 입력값) => 에러 메시지 반환
 // 4. 결과 반환 함수 getResult(스트라이크, 볼) => 결과 문자열 반환
-// 5. 숫자 문자열을 배열로 변환하는 함수 toNumberArray(문자열) => 숫자 배열 반환
+// 5. 숫자 문자열을 배열로 변환하는 함수 splitStringToNumberArray(문자열) => 숫자 배열 반환
 
 // id(#). class(.) 등 유연하게 선택자 사용할 수 있게 getElementById 말고 querySelector DOM 요소 선택
 const userInput = document.querySelector("#user-input");
@@ -15,7 +15,7 @@ export default class BaseballGame {
   // 컴퓨터 랜덤값과 유저값을 비교해서 결과 반환하는 함수
   play(computerInputNumbers, userInputNumbers) {
     const computerNumbers = computerInputNumbers;
-    const userNumbers = this.toNumberArray(userInputNumbers);
+    const userNumbers = this.splitStringToNumberArray(userInputNumbers);
 
     let strikes = 0;
     let balls = 0;
@@ -46,7 +46,7 @@ export default class BaseballGame {
     }
   }
 
-  toNumberArray(numbers) {
+  splitStringToNumberArray(numbers) {
     return numbers.toString().split("").map(Number);
   }
 
@@ -57,7 +57,7 @@ export default class BaseballGame {
   // 4. 1부터 9까지의 숫자가 아닌 경우
   // try-catch문으로 play함수에서 호출해서 에러메시지 출력
   validateInput(userInputNumbers) {
-    const userNumbers = this.toNumberArray(userInputNumbers);
+    const userNumbers = this.splitStringToNumberArray(userInputNumbers);
     // 1. 숫자가 아닌 경우
     if (isNaN(userInputNumbers)) {
       throw new Error("숫자만 입력해주세요.");

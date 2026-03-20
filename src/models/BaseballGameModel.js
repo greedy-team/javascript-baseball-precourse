@@ -8,7 +8,7 @@ class BaseballGameModel {
   }
   // 파라미터 하나로 변경, validateInput에서 검증 후 play함수에서 호출
   play(userInputNumbers) {
-    const userNumbers = this.toNumberArray(userInputNumbers);
+    const userNumbers = this.splitStringToNumberArray(userInputNumbers);
     const { strikes, balls } = this.countStrikesAndBalls(userNumbers);
 
     return this.getResult(strikes, balls);
@@ -42,7 +42,7 @@ class BaseballGameModel {
     }
   }
 
-  toNumberArray(numbers) {
+  splitStringToNumberArray(numbers) {
     return numbers.toString().split("").map(Number);
   }
 
@@ -53,7 +53,7 @@ class BaseballGameModel {
   // 4. 1부터 9까지의 숫자가 아닌 경우
   // try-catch문으로 play함수에서 호출해서 에러메시지 출력
   validateInput(userInputNumbers) {
-    const userNumbers = this.toNumberArray(userInputNumbers);
+    const userNumbers = this.splitStringToNumberArray(userInputNumbers);
     // 1. 숫자(양의 정수)가 아닌 경우
     if (!/^\d+$/.test(userInputNumbers)) {
       throw new Error("양의 정수만 입력해주세요.");
