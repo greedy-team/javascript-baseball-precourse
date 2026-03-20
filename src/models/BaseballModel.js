@@ -1,4 +1,4 @@
-//데이터의 생성, 저장, 처리를 전담
+// 데이터의 생성, 저장, 처리를 전담
 
 export default class BaseballModel {
     constructor(){
@@ -15,8 +15,9 @@ export default class BaseballModel {
         return numbers;
     } 
 
-    play(userInputNumbers){
-        // 스트라이크/볼 판정
+    // 스트라이크와 볼의 개수를 계산하는 함수
+    countScore(computerInputNumbers,userInputNumbers){
+        
         let strike = 0;
         let ball = 0;
 
@@ -30,6 +31,11 @@ export default class BaseballModel {
                 ball++;
             }
         }
+        return {strike, ball};
+    }
+
+    // 결과를 문자열로 반환하는 함수
+    resultString(strike,ball){
         // 조건에 맞춰 문자열로 출력
         if (strike === 0 && ball === 0){
             return "낫싱";
@@ -53,7 +59,16 @@ export default class BaseballModel {
         }
 
         return result.join(" ");
+    }
 
+    // 스트라이크/볼 판정
+    play(computerInputNumbers,userInputNumbers){
+        // 1. 점수 계산
+        // 중괄호를 사용해서 구조 분해 할당 및 코드 간소화
+        const {strike, ball} = this.countScore(userInputNumbers, computerInputNumbers);
+
+        // 2. 메시지 생성
+        return this.resultString(strike, ball);
     }
 
     prepareNewGame(){

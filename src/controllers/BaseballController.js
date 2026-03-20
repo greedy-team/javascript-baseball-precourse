@@ -2,7 +2,7 @@ import BaseballModel from '../models/BaseballModel.js';
 import BaseballView from '../views/BaseballView.js';
 import { isValid } from '../models/isValid.js';
 
-export default class BaseballControllor {
+export default class BaseballController {
     constructor(){
         this.model=new BaseballModel();
         this.view=new BaseballView();
@@ -33,7 +33,7 @@ export default class BaseballControllor {
 
         this.view.restart.addEventListener('click', ()=>{
             this.model.prepareNewGame()
-            this.view.RestartUI();
+            this.view.restartUI();
         });
     }
 }
