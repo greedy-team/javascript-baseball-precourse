@@ -1,5 +1,7 @@
 // 데이터의 생성, 저장, 처리를 전담
 
+const DIGIT_COUNT = 3;
+
 export default class BaseballModel {
     constructor(){
         this.computerInputNumbers=this.generateComputerNumbers();
@@ -8,7 +10,7 @@ export default class BaseballModel {
     // 컴퓨터 숫자 생성 (중복 없는 난수 3개)
     generateComputerNumbers() {
         const numbers = [];
-        while (numbers.length < 3) {
+        while (numbers.length < DIGIT_COUNT) {
             const number = MissionUtils.Random.pickNumberInRange(1, 9);
             if (!numbers.includes(number)) numbers.push(number);
         }
@@ -21,13 +23,13 @@ export default class BaseballModel {
         let strike = 0;
         let ball = 0;
 
-        for(let i=0;i<3;i++){
+        for(let i=0;i<DIGIT_COUNT;i++){
             const userDigit=Number(userInputNumbers[i]);
             //userInput.value로 가져온 값은 무조건 글자 상태로 들어오기 때문에 
             // Number()을 써서 숫자로 변환
-            if(userDigit===this.computerInputNumbers[i]){
+            if(userDigit===computerInputNumbers[i]){
                 strike++;
-            }else if (this.computerInputNumbers.includes(userDigit)){
+            }else if (computerInputNumbers.includes(userDigit)){
                 ball++;
             }
         }
@@ -40,7 +42,7 @@ export default class BaseballModel {
         if (strike === 0 && ball === 0){
             return "낫싱";
         }
-        if(strike === 3){
+        if(strike === DIGIT_COUNT){
             return "3스트라이크"
         }
 
@@ -62,7 +64,7 @@ export default class BaseballModel {
     play(computerInputNumbers,userInputNumbers){
         // 1. 점수 계산
         // 중괄호를 사용해서 구조 분해 할당 및 코드 간소화
-        const {strike, ball} = this.countScore(userInputNumbers, computerInputNumbers);
+        const {strike, ball} = this.countScore(computerInputNumbers, userInputNumbers);
 
         // 2. 메시지 생성
         return this.resultString(strike, ball);
