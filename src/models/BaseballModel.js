@@ -44,11 +44,7 @@ export default class BaseballModel {
             return "3스트라이크"
         }
 
-        // string으로 출력하는 방식
-        // 1. 템플릿 리터럴: 백틱(` `)과 ${} 사용 (대부분 템플릿 리터럴 사용함)
-        // 2. 문자열 연결 연산자: (+) 기호 사용
-        // 3. 배열 합치기(join): result.join(" ") 사용
-        // 볼과 스트라이크가 있을수도 없을수도 있으니 join 사용함
+        // 가변적인 볼/스트라이크 조합의 공백 처리를 자동화하기 위해 join 사용
         const result = [];
 
         if(ball > 0){
