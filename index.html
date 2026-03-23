@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>숫자 야구 게임</title>
+  <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -15,16 +17,17 @@
       올바른 예) 139 <br />
       틀린 예) 122
     </p>
-    <form>
-      <input type="text" id="user-input" />
-      <button id="submit">확인</button>
-    </form>
+    <div>
+      <input type="text" id="user-input"/>
+      <button type="button"id="submit">확인</button>
+    </div>
     <h3>📄 결과</h3>
-    <div id="result">1볼 1스트라이크</div>
+    <div id="result"></div>
     <button id="game-restart-button">재시작</button>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@woowacourse/mission-utils@1.0.1/dist/mission-utils.min.js"></script>
-  <script type="module" src="src/index.js"></script>
+  <!-- <script type="module" src="./src/index.js"></script> -->
+  <script type="module" src="./src/controllers/Play.js"></script>
 </body>
 
 </html>

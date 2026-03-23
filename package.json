@@ -7,7 +7,7 @@
     "cypress": "8.7.0"
   },
   "scripts": {
-    "test": "cypress run --browser chrome"
+    "test": "set CYPRESS_VERIFY_TIMEOUT=100000 && cypress run --browser electron"
   },
   "repository": {
     "type": "git",

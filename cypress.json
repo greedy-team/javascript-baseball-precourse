@@ -1,6 +1,6 @@
 {
   "integrationFolder": "test",
-  "testFiles": "*.spec.js",
+  "testFiles": "**/*.spec.js",
   "screenshotOnRunFailure": false,
   "video": false,
   "pluginsFile": false,
